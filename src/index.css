@@ -3,18 +3,18 @@
 @import "tailwindcss";
 
 @theme {
-  --font-alumni: Alumni Sans SC, "sans-serif";
-  --font-rubik: Rubik, "sans-serif";
-  --font-montserrat: Montserrat, "sans-serif";
+  --font-logo: Alumni Sans SC, "sans-serif";
+  --font-heading: Montserrat, "sans-serif";
+  --font-body: Rubik, "sans-serif";
 }
 
 /* #938783  Taupe / Wram Gray*/
 /* #f5e1da  Pale Pink*/
-/* #f2f2f1  Off White*/
+/* #f2f2f1  Off White -- light-mode-bg*/
 /* #8dcac1  Light Teal*/
 /* #53aea0  Teal*/
 /* #416272  Muted Blue*/
-/* #18455a  Dark Blue*/
+/* #18455a  Dark Blue -- dark-mode-bg*/
 
 body {
   min-height: 100vh;
