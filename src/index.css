@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+SC:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-alumni: Alumni Sans SC, "sans-serif";
+  --font-rubik: Rubik, "sans-serif";
+  --font-montserrat: Montserrat, "sans-serif";
+}
+
+/* #938783  Taupe / Wram Gray*/
+/* #f5e1da  Pale Pink*/
+/* #f2f2f1  Off White*/
+/* #8dcac1  Light Teal*/
+/* #53aea0  Teal*/
+/* #416272  Muted Blue*/
+/* #18455a  Dark Blue*/
+
+body {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
