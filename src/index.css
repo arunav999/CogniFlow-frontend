@@ -10,18 +10,70 @@
 
 
   /* CUSTOM COLORS */
+  /* ****************************** */
+  /*  LIGHT MODE  */
+  /* ****************************** */
 
-  /* ----- Light Mode ----- */
-  /* --color-cBackground: #f2f2f1;
-  --color-cTeal: #53aea0;
-  --color-cCardBg: #ffffff;
-  --color-cText: #000000; */
+  /* Text Colors */
+  --color-light-text-primary: #18455a;
+  /* Main text, headings */
+  --color-light-text-secondary: #938783;
+  /* Subtext, labels */
+  --color-light-text-link: #53aea0;
+  /* Links, highlights */
 
+  /* Backgrounds */
+  --color-light-bg-body: #f2f2f1;
+  /* Page background */
+  --color-light-bg-card: #ffffff;
+  /* Cards, containers */
+  --color-light-bg-accent: #f5e1da;
+  /* Empty states, soft UI blocks */
+
+  /* UI Elements */
+  --color-light-ui-primary: #53aea0;
+  /* Buttons, icons, active elements */
+  --color-light-ui-hover: #8dcac1;
+  /* Hover state */
+  --color-light-ui-border: #416272;
+  /* Optional: borders or dividers */
+
+
+  /* ****************************** */
+  /*  DARK MODE  */
+  /* ****************************** */
+  /* Text Colors */
+  --color-dark-text-primary: #f2f2f1;
+  /* Main text */
+  --color-dark-text-secondary: #f5e1da;
+  /* Subtext, muted text */
+  --color-dark-text-link: #8dcac1;
+  /* Links, highlights */
+
+  /* Backgrounds */
+  --color-dark-bg-body: #18455a;
+  /* Page background */
+  --color-dark-bg-card: #416272;
+  /* Cards, modals */
+  --color-dark-bg-accent: #938783;
+  /* Optional: UI blocks */
+
+  /* UI Elements */
+  --color-dark-ui-primary: #8dcac1;
+  /* Buttons, icons */
+  --color-dark-ui-hover: #53aea0;
+  /* Hover state */
+  --color-dark-ui-border: #8dcac1;
+  /* Optional: borders or outlines */
+
+
+  /* ****************************** */
   /* CUSTOM SHADOW */
-  --shadow-link: 0 10px 20px rgba(0, 0, 0, 0.2);
-  --shadow-link-active: 0 5px 10px rgba(0, 0, 0, 0.2);
+  /* ****************************** */
+  --shadow-button: 0 10px 20px rgba(0, 0, 0, 0.2);
+  --shadow-button-active: 0 5px 10px rgba(0, 0, 0, 0.2);
 
-  /* ----- Dark Mode ----- */
+
 }
 
 /* #938783  Taupe / Wram Gray*/
@@ -32,11 +84,11 @@
 /* #416272  Muted Blue*/
 /* #18455a  Dark Blue -- dark-mode-bg*/
 
-body {
+/* body {
   background-color: #f2f2f2;
   min-height: 100vh;
 
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
