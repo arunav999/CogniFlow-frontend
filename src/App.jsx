@@ -1,7 +1,8 @@
+import Links from "./components/Reusable/Links/Links";
 const App = () => {
   return (
     <>
-      <h1>CogniFlow</h1>
+      <Links />
     </>
   );
 };

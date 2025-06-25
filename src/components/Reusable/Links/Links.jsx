@@ -1,9 +1,7 @@
 const Links = () => {
   return (
     <>
-      <div className="">
-        <a href="">Custom Link</a>
-      </div>
+        <a href="" className="px-10 py-4 border">Custom Link</a>
     </>
   );
 };

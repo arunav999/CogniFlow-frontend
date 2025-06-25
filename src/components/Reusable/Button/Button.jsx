@@ -1,7 +1,7 @@
-const Button = () => {
+const Button = ({ heading, disabled = true }) => {
   return (
     <>
-      <button>Custom Button</button>
+      <button disabled={disabled}></button>
     </>
   );
 };
