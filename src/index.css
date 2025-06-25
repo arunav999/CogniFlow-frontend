@@ -8,6 +8,7 @@
   --font-heading: Montserrat, "sans-serif";
   --font-body: Rubik, "sans-serif";
 
+
   /* CUSTOM COLORS */
 
   /* ----- Light Mode ----- */
@@ -15,6 +16,10 @@
   --color-cTeal: #53aea0;
   --color-cCardBg: #ffffff;
   --color-cText: #000000; */
+
+  /* CUSTOM SHADOW */
+  --shadow-link: 0 10px 20px rgba(0, 0, 0, 0.2);
+  --shadow-link-active: 0 5px 10px rgba(0, 0, 0, 0.2);
 
   /* ----- Dark Mode ----- */
 }
@@ -28,6 +33,7 @@
 /* #18455a  Dark Blue -- dark-mode-bg*/
 
 body {
+  background-color: #f2f2f2;
   min-height: 100vh;
 
   display: flex;
