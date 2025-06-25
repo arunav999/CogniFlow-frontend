@@ -31,7 +31,8 @@
   /* Empty states, soft UI blocks */
 
   /* UI Elements */
-  --color-light-ui-primary: #53aea0;
+  --color-light-ui-primary: #416272;
+  --color-light-ui-secondary: #53aea0;
   /* Buttons, icons, active elements */
   --color-light-ui-hover: #8dcac1;
   /* Hover state */
@@ -60,6 +61,7 @@
 
   /* UI Elements */
   --color-dark-ui-primary: #8dcac1;
+  --color-dark-ui-secondary: #416272;
   /* Buttons, icons */
   --color-dark-ui-hover: #53aea0;
   /* Hover state */
