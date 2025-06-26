@@ -33,6 +33,17 @@
   --color-light-ui-secondary: #416272;   /* Secondary button */
   --color-light-ui-border: #416272;      /* Borders/dividers */
   --color-light-ui-disabled: #8dcac1;    /* Optional: disabled state */
+  
+  /* ======================== */
+  /*        GRADIENTS         */
+  /* ======================== */
+  --color-gradient-fresh-pastel: linear-gradient(135deg, #8dcac1, #f5e1da);
+                                          /* Free Plan */
+  --color-gradient-deep-cool: linear-gradient(135deg, #18455a, #53aea0);
+                                          /* Paid Plan */
+  --color-gradient-soft-muted: linear-gradient(135deg, #938783, #8dcac1);
+                                          /* Custom Plan */
+
 
   /* ======================== */
   /*         SHADOWS          */

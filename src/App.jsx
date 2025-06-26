@@ -1,13 +1,13 @@
-import Button from "./components/Reusable/Button/Button";
-import Links from "./components/Reusable/Links/Links";
-import Cards from "./components/Reusable/Cards/Cards";
+import Header from "./components/Layout/Header/Header";
+import Main from "./components/Main/Main";
+import Footer from "./components/Layout/Footer/Footer";
 
 const App = () => {
   return (
     <>
-      {/* <Button disabled={false} secondary/> */}
-      <Links />
-      {/* <Cards /> */}
+      <Header />
+      <Main />
+      <Footer />
     </>
   );
 };

@@ -1,4 +1,4 @@
-const Button = ({ heading, secondary, disabled = true }) => {
+const Button = ({ children, heading, secondary, disabled = true }) => {
   return (
     <>
       <button
@@ -13,7 +13,7 @@ const Button = ({ heading, secondary, disabled = true }) => {
         } disabled:bg-light-ui-disabled disabled:cursor-not-allowed`}
         disabled={disabled}
       >
-        Custom Button
+        {children}
       </button>
     </>
   );
