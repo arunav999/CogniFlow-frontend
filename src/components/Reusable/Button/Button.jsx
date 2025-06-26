@@ -2,7 +2,7 @@ const Button = ({ children, heading, secondary, disabled = true }) => {
   return (
     <>
       <button
-        className={`inline-block relative text-white py-4 px-10 font-body rounded-4xl ${
+        className={`inline-block relative text-white py-4 px-10 xl:py-3 xl:px-8 lg:py-2 lg:px-6 md:text-sm lg:text-base font-text rounded-4xl ${
           !disabled
             ? `${
                 secondary ? "bg-light-ui-secondary" : "bg-light-ui-primary"

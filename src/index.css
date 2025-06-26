@@ -1,6 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+SC:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+SC:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
 @import "tailwindcss";
+
+/* #938783  Taupe / Wram Gray*/
+/* #f5e1da  Pale Pink*/
+/* #f2f2f1  Off White -- light-mode-bg*/
+/* #8dcac1  Light Teal*/
+/* #53aea0  Teal*/
+/* #416272  Muted Blue*/
+/* #18455a  Dark Blue -- dark-mode-bg*/
 
 @theme {
   /* ======================== */
@@ -9,6 +17,7 @@
   --font-logo: "Alumni Sans SC", sans-serif;
   --font-heading: "Montserrat", sans-serif;
   --font-body: "Rubik", sans-serif;
+  --font-text: "Roboto", sans-serif;
 
   /* ======================== */
   /*        TEXT COLORS       */
@@ -37,12 +46,18 @@
   /* ======================== */
   /*        GRADIENTS         */
   /* ======================== */
+  --color-gradient-soft-aqua: linear-gradient(135deg, #fbeeee, #8dcac1);
+                                          /* Free Plan Front Side */
+  --color-gradient-cool-mint: linear-gradient(135deg, #416272, #18455a);
+                                          /* Paid Plan Front Side */
+  --color-gradient-warm-muted: linear-gradient(135deg, #f5e1da, #938783);
+                                          /* Custom Plan Front Side */
   --color-gradient-fresh-pastel: linear-gradient(135deg, #8dcac1, #f5e1da);
-                                          /* Free Plan */
+                                          /* Free Plan Back Side */
   --color-gradient-deep-cool: linear-gradient(135deg, #18455a, #53aea0);
-                                          /* Paid Plan */
+                                          /* Paid Plan Back Side */
   --color-gradient-soft-muted: linear-gradient(135deg, #938783, #8dcac1);
-                                          /* Custom Plan */
+                                          /* Custom Plan Back Side */
 
 
   /* ======================== */
@@ -50,12 +65,10 @@
   /* ======================== */
   --shadow-button: 0 10px 20px rgba(0, 0, 0, 0.2);
   --shadow-button-active: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
+  --shadow-card: 0 18px 48px rgba(0, 0, 0, 0.15);
 
-/* #938783  Taupe / Wram Gray*/
-/* #f5e1da  Pale Pink*/
-/* #f2f2f1  Off White -- light-mode-bg*/
-/* #8dcac1  Light Teal*/
-/* #53aea0  Teal*/
-/* #416272  Muted Blue*/
-/* #18455a  Dark Blue -- dark-mode-bg*/
+  /* ======================== */
+  /*        BREAKPOINT        */
+  /* ======================== */
+  --breakpoint-3xl: 1920px;         /* Breakpoint for 4k displays */
+}

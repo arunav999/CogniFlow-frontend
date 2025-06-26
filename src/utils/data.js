@@ -16,12 +16,13 @@ const CARD_DATA = [
       "Normal support",
     ],
     button: "Get Started",
+    front: "var(--color-gradient-soft-aqua)",
     gradient: "var(--color-gradient-fresh-pastel)",
   },
   {
     id: 2,
     plan: "Pro",
-    price: "₹299/month or $5/month",
+    price: "₹299 / month",
     details: [
       "For power users and small teams",
       "Everything in Free, plus:",
@@ -31,12 +32,13 @@ const CARD_DATA = [
       "Priority support",
     ],
     button: "Upgrade Now",
+    front: "var(--color-gradient-cool-mint)",
     gradient: "var(--color-gradient-deep-cool)",
   },
   {
     id: 3,
     plan: "Team",
-    price: "₹999/month or $12/month",
+    price: "₹999 / month",
     details: [
       "Best for teams and startups",
       "Everything in Pro, plus:",
@@ -46,7 +48,9 @@ const CARD_DATA = [
       "Early access to new features",
     ],
     button: "Contact Us",
+    front: "var(--color-gradient-warm-muted)",
     gradient: "var(--color-gradient-soft-muted)",
+    secondary: true,
   },
 ];
 
