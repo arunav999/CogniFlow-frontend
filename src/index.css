@@ -3,79 +3,42 @@
 @import "tailwindcss";
 
 @theme {
-  /* CUSTOM FONTS */
-  --font-logo: Alumni Sans SC, "sans-serif";
-  --font-heading: Montserrat, "sans-serif";
-  --font-body: Rubik, "sans-serif";
+  /* ======================== */
+  /*        FONTS             */
+  /* ======================== */
+  --font-logo: "Alumni Sans SC", sans-serif;
+  --font-heading: "Montserrat", sans-serif;
+  --font-body: "Rubik", sans-serif;
 
+  /* ======================== */
+  /*        TEXT COLORS       */
+  /* ======================== */
+  --color-light-text-primary: #18455a;   /* Main text, headings */
+  --color-light-text-secondary: #938783; /* Subtext, labels */
+  --color-light-text-link: #53aea0;      /* Links default */
+  --color-light-text-link-hover: #416272; /* Links hover */
+  --color-light-text-link-active: #18455a; /* Links active */
 
-  /* CUSTOM COLORS */
-  /* ****************************** */
-  /*  LIGHT MODE  */
-  /* ****************************** */
+  /* ======================== */
+  /*       BACKGROUNDS        */
+  /* ======================== */
+  --color-light-bg-body: #f2f2f1;        /* Page background */
+  --color-light-bg-card: #ffffff;        /* Cards, containers */
+  --color-light-bg-accent: #f5e1da;      /* Empty states, soft UI blocks */
 
-  /* Text Colors */
-  --color-light-text-primary: #18455a;
-  /* Main text, headings */
-  --color-light-text-secondary: #938783;
-  /* Subtext, labels */
-  --color-light-text-link: #53aea0;
-  /* Links, highlights */
+  /* ======================== */
+  /*      UI ELEMENTS         */
+  /* ======================== */
+  --color-light-ui-primary: #53aea0;     /* Primary button */
+  --color-light-ui-secondary: #416272;   /* Secondary button */
+  --color-light-ui-border: #416272;      /* Borders/dividers */
+  --color-light-ui-disabled: #8dcac1;    /* Optional: disabled state */
 
-  /* Backgrounds */
-  --color-light-bg-body: #f2f2f1;
-  /* Page background */
-  --color-light-bg-card: #ffffff;
-  /* Cards, containers */
-  --color-light-bg-accent: #f5e1da;
-  /* Empty states, soft UI blocks */
-
-  /* UI Elements */
-  --color-light-ui-primary: #416272;
-  --color-light-ui-secondary: #53aea0;
-  /* Buttons, icons, active elements */
-  --color-light-ui-hover: #8dcac1;
-  /* Hover state */
-  --color-light-ui-border: #416272;
-  /* Optional: borders or dividers */
-
-
-  /* ****************************** */
-  /*  DARK MODE  */
-  /* ****************************** */
-  /* Text Colors */
-  --color-dark-text-primary: #f2f2f1;
-  /* Main text */
-  --color-dark-text-secondary: #f5e1da;
-  /* Subtext, muted text */
-  --color-dark-text-link: #8dcac1;
-  /* Links, highlights */
-
-  /* Backgrounds */
-  --color-dark-bg-body: #18455a;
-  /* Page background */
-  --color-dark-bg-card: #416272;
-  /* Cards, modals */
-  --color-dark-bg-accent: #938783;
-  /* Optional: UI blocks */
-
-  /* UI Elements */
-  --color-dark-ui-primary: #8dcac1;
-  --color-dark-ui-secondary: #416272;
-  /* Buttons, icons */
-  --color-dark-ui-hover: #53aea0;
-  /* Hover state */
-  --color-dark-ui-border: #8dcac1;
-  /* Optional: borders or outlines */
-
-
-  /* ****************************** */
-  /* CUSTOM SHADOW */
-  /* ****************************** */
+  /* ======================== */
+  /*         SHADOWS          */
+  /* ======================== */
   --shadow-button: 0 10px 20px rgba(0, 0, 0, 0.2);
   --shadow-button-active: 0 5px 10px rgba(0, 0, 0, 0.2);
-
-
 }
 
 /* #938783  Taupe / Wram Gray*/
@@ -85,12 +48,3 @@
 /* #53aea0  Teal*/
 /* #416272  Muted Blue*/
 /* #18455a  Dark Blue -- dark-mode-bg*/
-
-/* body {
-  background-color: #f2f2f2;
-  min-height: 100vh;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
