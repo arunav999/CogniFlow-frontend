@@ -79,3 +79,20 @@
   --breakpoint-xs: 384px;           /* Breakpoint for XS displays */
   --breakpoint-3xl: 1920px;         /* Breakpoint for 4k displays */
 }
+
+
+.section {
+  @apply xs:py-4 xs:px-6 3xl:py-12 3xl:px-24;
+}
+
+.head-util{
+  @apply text-center mb-16;
+}
+
+.heading {
+  @apply font-heading text-light-text-primary font-extrabold xs:text-[18px] sm:text-2xl;
+}
+
+.sub-heading {
+  @apply font-body mt-2 xs:text-[14px] sm:text-lg;
+}
