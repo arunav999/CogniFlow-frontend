@@ -1,5 +1,5 @@
+import { useEffect, useRef, useState } from "react";
 import { TiTick } from "react-icons/ti";
-
 import Button from "../Button/Button";
 
 const Cards = ({
@@ -11,14 +11,37 @@ const Cards = ({
   gradient,
   secondary,
 }) => {
-  // w-full aspect-[3/4] max-w-[clamp(18rem, 30vw, 30rem)]
+  const [flipped, setFlipped] = useState(false);
+  const cardRef = useRef(null);
+
+  // Flip back when clicking outside the card
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (cardRef.current && !cardRef.current.contains(event.target)) {
+        setFlipped(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <div className="relative w-80 h-120 perspective-[1000px] cursor-pointer">
-      <div className="w-full h-full transition-transform ease-in duration-500 [transform-style:preserve-3d] hover:-rotate-y-180 rounded-2xl shadow-card">
+    <div
+      ref={cardRef}
+      className="group relative w-80 h-120 perspective-[1000px] cursor-pointer"
+      onClick={() => setFlipped((prev) => !prev)}
+    >
+      <div
+        className={`w-full h-full transition-transform duration-500 [transform-style:preserve-3d] rounded-2xl shadow-card
+          ${flipped ? "-rotate-y-180" : ""}
+          group-hover:-rotate-y-180
+        ease-in`}
+      >
         {/* Front Side */}
-        <div className="absolute w-full h-full bg-white backface-hidden rounded-2xl flex  flex-col overflow-hidden">
+        <div className="absolute w-full h-full bg-white backface-hidden rounded-2xl flex flex-col overflow-hidden">
           <div
-            className="relative font-heading uppercase text-lg  text-white w-full h-[40%] clip-bottom"
+            className="relative font-heading uppercase text-lg text-white w-full h-[40%] clip-bottom"
             style={{ backgroundImage: front }}
           >
             <h4 className="py-2.5 px-6 absolute bottom-15 right-10">
@@ -33,17 +56,15 @@ const Cards = ({
           <div className="font-body m-4">
             <ul className="flex flex-col text-sm gap-4">
               {details.map((point, index) => (
-                <>
-                  <li
-                    key={index}
-                    className="flex items-center gap-4 text-light-text-secondary"
-                  >
-                    <span>
-                  <TiTick />
+                <li
+                  key={index}
+                  className="flex items-center gap-4 text-light-text-secondary"
+                >
+                  <span>
+                    <TiTick />
                   </span>
-                    <span>{point}</span>
-                  </li>
-                </>
+                  <span>{point}</span>
+                </li>
               ))}
             </ul>
           </div>
@@ -54,7 +75,7 @@ const Cards = ({
           className="absolute w-full h-full bg-white backface-hidden rotate-y-180 rounded-2xl flex items-center justify-center"
           style={{ backgroundImage: gradient }}
         >
-          <div className=" flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center">
             <p className="uppercase font-heading mb-10 text-lg xl:text-base 3xl:text-xl text-white lg:text-sm">
               {plan}
             </p>
