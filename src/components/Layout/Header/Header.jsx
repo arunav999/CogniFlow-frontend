@@ -48,12 +48,16 @@ const Header = () => {
                 linkBg ? "bg-light-bg-body" : "bg-light-bg-card"
               }`}
             >
-              MENU
+              <span
+                className={`nav-icon ${
+                  isMobileNavOpen ? "nav-icon-checked" : ""
+                }`}
+              ></span>
             </div>
             <div
               className={`h-11 w-11 rounded-[50%] ${
                 isMobileNavOpen ? "scale-[80]" : "scale-[0]"
-              } transition-all duration-800 ease-in-out`}
+              } transition-all duration-900 ease-[cubic-bezier(0.86, 0, 0.07, 1)]`}
               style={{
                 background:
                   "radial-gradient(circle at center, rgba(141, 202, 193, 0.3), rgba(83, 174, 160, 0.3))",
@@ -64,14 +68,7 @@ const Header = () => {
         </div>
 
         {/* NAVIGATION-FOR-LARGER-DEVICES */}
-        {/* top-[70%] left-[50%] transform -translate-x-[50%] translate-y-[70%] */}
-        <nav
-          className={`nav ${
-            isMobileNavOpen
-              ? "nav-open"
-              : ""
-          } `}
-        >
+        <nav className={`nav ${isMobileNavOpen ? "nav-open" : ""} `}>
           <ul className="flex flex-col lg:flex-row items-center gap-8 lg:gap-4">
             <li onClick={() => setIsMobileNavOpen(false)}>
               <Links to="/about" bg={linkBg}>
