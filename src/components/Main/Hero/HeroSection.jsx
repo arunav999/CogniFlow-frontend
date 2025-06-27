@@ -7,7 +7,7 @@ const HeroSection = () => {
 
   return (
     <>
-      <section className="section scroll-mt-20" id="about">
+      <section className="section scroll-mt-20">
         <div className="text-center mb-10">
           <h2 className="heading">
             <span className="logo logo-gradient">Cogniflow</span> - your new

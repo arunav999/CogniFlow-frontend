@@ -91,7 +91,7 @@ const Header = () => {
               </Links>
             </li>
             <li onClick={() => setIsMobileNavOpen(false)}>
-              <Button secondary disabled={false}>
+              <Button disabled={false}>
                 Get Started
               </Button>
             </li>

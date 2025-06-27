@@ -1,9 +1,7 @@
-import React from 'react'
-
 const AboutSection = () => {
   return (
     <>
-     <section className="">About Section</section> 
+     <section className="section scroll-mt-20" id="about"></section> 
     </>
   )
 }
