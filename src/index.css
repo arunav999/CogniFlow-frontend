@@ -10,6 +10,12 @@
 /* #416272  Muted Blue*/
 /* #18455a  Dark Blue -- dark-mode-bg*/
 
+@layer utilities{
+  .clip-bottom {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+}
+
 @theme {
   /* ======================== */
   /*        FONTS             */
@@ -46,9 +52,9 @@
   /* ======================== */
   /*        GRADIENTS         */
   /* ======================== */
-  --color-gradient-soft-aqua: linear-gradient(135deg, #fbeeee, #8dcac1 45%);
+  --color-gradient-soft-aqua: linear-gradient(135deg, #cee7e2, #8dcac1);
                                           /* Free Plan Front Side */
-  --color-gradient-cool-mint: linear-gradient(135deg, #416272, #18455a);
+  --color-gradient-cool-mint: linear-gradient(135deg, #416272 45%, #18455a);
                                           /* Paid Plan Front Side */
   --color-gradient-warm-muted: linear-gradient(135deg, #f5e1da, #938783);
                                           /* Custom Plan Front Side */
