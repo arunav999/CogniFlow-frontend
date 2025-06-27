@@ -1,12 +1,12 @@
 import "./button.css";
 
-const Button = ({ children, heading, secondary, disabled = true }) => {
+const Button = ({ children, design, secondary, disabled = true }) => {
   return (
     <>
       <button
         className={`button ${secondary ? "secondary" : "primary"} ${
           disabled ? "disabled" : ""
-        }`}
+        } ${design ? `${design}` : ""}`}
         disabled={disabled}
       >
         {children}

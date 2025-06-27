@@ -8,7 +8,7 @@ const PricingSection = () => {
       <section className="section scroll-mt-20" id="pricing">
         <div className="text-center mb-16">
           <h2 className="heading">Simple Plans, Built for Flow</h2>
-          <h4 className="sub-heading">
+          <h4 className="sub-heading text-light-text-secondary">
             Whether you're solo or scaling,{" "}
             <span className="logo logo-gradient">
               Cogniflow

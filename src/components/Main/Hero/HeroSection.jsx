@@ -10,8 +10,8 @@ const HeroSection = () => {
       <section className="section scroll-mt-20">
         <div className="text-center mb-10">
           <h2 className="heading">
-            <span className="logo logo-gradient">Cogniflow</span> - your new
-            favourite way to manage work.
+            <span className="logo logo-gradient">Cogniflow</span> &mdash; your
+            new favourite way to manage work.
           </h2>
         </div>
 
@@ -36,8 +36,10 @@ const HeroSection = () => {
         </div>
 
         <div>
-          <Button disabled={false}>Get Started</Button>
-          <Button disabled={false} secondary>
+          <Button disabled={false} design="w-45">
+            Get Started
+          </Button>
+          <Button disabled={false} secondary design="w-45">
             Demo
           </Button>
         </div>
