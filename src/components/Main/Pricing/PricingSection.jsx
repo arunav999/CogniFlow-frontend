@@ -33,6 +33,7 @@ const PricingSection = () => {
           ))}
         </div>
 
+        {/* CTA */}
         <div className="text-center">
           <h4 className="sub-heading text-light-text-tertiary">
             Not sure which to pick? &mdash;{" "}
