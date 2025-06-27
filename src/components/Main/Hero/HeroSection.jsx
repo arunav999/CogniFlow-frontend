@@ -8,6 +8,7 @@ const HeroSection = () => {
   return (
     <>
       <section className="section scroll-mt-20">
+        {/* HEADING */}
         <div className="text-center mb-10">
           <h2 className="heading">
             <span className="logo logo-gradient">Cogniflow</span> &mdash; your
@@ -15,6 +16,7 @@ const HeroSection = () => {
           </h2>
         </div>
 
+        {/* DYNAMIC TYPING */}
         <div className="text-3xl ">
           <p>It helps you</p>
           <p>
@@ -31,10 +33,11 @@ const HeroSection = () => {
           <p>Just clean, simple task management that works with you.</p>
           <p>
             Less Stress. More Flow. That's the{" "}
-            <span className="logo logo-gradient">Cogniflow</span> way.
+            <span className="logo">Cogniflow</span> way.
           </p>
         </div>
 
+        {/* GET STARTED BUTTONS */}
         <div>
           <Button disabled={false} design="w-45">
             Get Started

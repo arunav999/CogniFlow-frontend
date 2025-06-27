@@ -38,6 +38,7 @@ const Header = () => {
         </h2>
 
         {/* NAVIGATION */}
+        {/* NAVIGATION-FOR-SMALLER-DEVICES */}
         <div className="relative lg:hidden h-13 w-13 rounded-[50%] flex items-center justify-center shadow-nav">
           <button
             onClick={() => setIsMobileNavOpen((prev) => !prev)}
@@ -91,9 +92,7 @@ const Header = () => {
               </Links>
             </li>
             <li onClick={() => setIsMobileNavOpen(false)}>
-              <Button disabled={false}>
-                Get Started
-              </Button>
+              <Button disabled={false}>Get Started</Button>
             </li>
           </ul>
         </nav>

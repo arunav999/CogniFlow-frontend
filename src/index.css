@@ -29,7 +29,8 @@
   /*        TEXT COLORS       */
   /* ======================== */
   --color-light-text-primary: #18455a;   /* Main text, headings */
-  --color-light-text-secondary: #938783; /* Subtext, labels */
+  --color-light-text-secondary: #416272; /* Links hover */
+  --color-light-text-tertiary: #938783; /* Subtext, labels */
   --color-light-text-link: #53aea0;      /* Links default */
   --color-light-text-link-hover: #416272; /* Links hover */
   --color-light-text-link-active: #18455a; /* Links active */
@@ -88,6 +89,10 @@
 
 .logo-gradient {
   @apply bg-gradient-to-r from-[#53aea0] to-[#18455a] bg-clip-text text-transparent;
+}
+
+.logo-secondary-gradient {
+  @apply bg-gradient-to-r from-[#416272] to-[#938783] bg-clip-text text-transparent;
 }
 
 /* SECTION */

@@ -1,5 +1,6 @@
 import HeroSection from "./Hero/HeroSection";
 import AboutSection from "./About/AboutSection";
+import FeaturesSection from "./Features/FeaturesSection";
 import PricingSection from "./Pricing/PricingSection";
 
 const Main = () => {
@@ -8,6 +9,7 @@ const Main = () => {
       <main className="mt-28">
         <HeroSection />
         <AboutSection />
+        <FeaturesSection />
         <PricingSection />
       </main>
     </>

@@ -4,12 +4,13 @@ const AboutSection = () => {
   return (
     <>
       <section className="section scroll-mt-20" id="about">
+        {/* HEADING */}
         <div className="text-center mb-10">
           <h2 className="heading">
             Tired of juggling tools and forgetting tasks?
           </h2>
           <h4 className="sub-heading text-light-text-secondary">
-            <span className="logo logo-gradient">Cogniflow</span> brings calm to
+            <span className="logo logo-secondary-gradient">Cogniflow</span> brings calm to
             your chaos &mdash; everything you need, in one clean space.
           </h4>
         </div>
@@ -44,9 +45,9 @@ const AboutSection = () => {
         </div>
 
         <div className="text-center">
-          <h4 className="sub-heading text-light-text-secondary">
+          <h4 className="sub-heading text-light-text-tertiary">
             It doesn't have to be this way. Let{" "}
-            <span className="logo logo-gradient">Cogniflow</span> simplify your
+            <span className="logo logo-secondary-gradient">Cogniflow</span> simplify your
             workday.
           </h4>
         </div>
