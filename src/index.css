@@ -81,6 +81,7 @@
   --breakpoint-3xl: 1920px;         /* Breakpoint for 4k displays */
 }
 
+/* LOGO */
 .logo {
   @apply font-logo xs:text-2xl sm:text-3xl font-bold;
 }
@@ -89,10 +90,12 @@
   @apply bg-gradient-to-r from-[#53aea0] to-[#18455a] bg-clip-text text-transparent;
 }
 
+/* SECTION */
 .section {
   @apply xs:py-4 xs:px-6 3xl:py-12 3xl:px-24;
 }
 
+/* SECTION HEADING */
 .head-util{
   @apply text-center mb-16;
 }

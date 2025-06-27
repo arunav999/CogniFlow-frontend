@@ -71,22 +71,22 @@ const Header = () => {
         <nav className={`nav ${isMobileNavOpen ? "nav-open" : ""} `}>
           <ul className="flex flex-col lg:flex-row items-center gap-8 lg:gap-4">
             <li onClick={() => setIsMobileNavOpen(false)}>
-              <Links to="/about" bg={linkBg}>
+              <Links to="/#about" bg={linkBg}>
                 About
               </Links>
             </li>
             <li onClick={() => setIsMobileNavOpen(false)}>
-              <Links to="/features" bg={linkBg}>
+              <Links to="/#features" bg={linkBg}>
                 Features
               </Links>
             </li>
             <li onClick={() => setIsMobileNavOpen(false)}>
-              <Links to="/demo" bg={linkBg}>
+              <Links to="/#demo" bg={linkBg}>
                 Demo
               </Links>
             </li>
             <li onClick={() => setIsMobileNavOpen(false)}>
-              <Links to="/pricing" bg={linkBg}>
+              <Links to="/#pricing" bg={linkBg}>
                 Pricing
               </Links>
             </li>

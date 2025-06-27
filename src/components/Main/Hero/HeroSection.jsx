@@ -1,9 +1,9 @@
-import React from "react";
-
 const HeroSection = () => {
   return (
     <>
-      <section className="">Hero Section</section>
+      <section className="section scroll-mt-20 border" id="about">
+        Hero Section
+      </section>
     </>
   );
 };
