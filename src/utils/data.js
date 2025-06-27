@@ -54,4 +54,25 @@ const CARD_DATA = [
   },
 ];
 
+/* ======================== */
+/*   DYNAMIC TYPING DATA    */
+/* ======================== */
+
+const typingConfig = [
+  {
+    texts: [
+      "get organized",
+      "crush deadlines",
+      "sync up",
+      "stay chill",
+      "win your day",
+    ],
+    typingDuration: 500,
+    deletingDuration: 150,
+    blinkSpeed: 250,
+    pauseDuration: 1500,
+  },
+];
+
 export default CARD_DATA;
+export { typingConfig };
