@@ -86,3 +86,8 @@
   background-color: #8dcac1;
   cursor: not-allowed;
 }
+
+.button.secondary.disabled {
+  background-color: #8da1aa;
+  cursor: not-allowed;
+}

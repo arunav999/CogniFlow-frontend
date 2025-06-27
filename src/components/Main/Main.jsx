@@ -3,7 +3,7 @@ import PricingSection from "./Pricing/PricingSection";
 const Main = () => {
   return (
     <>
-      <main className="">
+      <main className="mt-28">
         <PricingSection />
       </main>
     </>

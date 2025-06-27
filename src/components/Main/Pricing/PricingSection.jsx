@@ -5,14 +5,12 @@ import CARD_DATA from "../../../utils/data";
 const PricingSection = () => {
   return (
     <>
-      <section className="section">
+      <section className="section" id="/pricing">
         <div className="text-center mb-16">
-          <h2 className="heading">
-            Simple Plans, Built for Flow
-          </h2>
+          <h2 className="heading">Simple Plans, Built for Flow</h2>
           <h4 className="sub-heading">
             Whether you're solo or scaling,{" "}
-            <span className="font-logo xs:text-2xl sm:text-3xl font-bold">
+            <span className="logo logo-gradient">
               Cogniflow
             </span>{" "}
             has a plan that fits your style.
