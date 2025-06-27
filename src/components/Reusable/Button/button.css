@@ -1,0 +1,88 @@
+.button {
+  display: inline-block;
+  position: relative;
+  color: white;
+  padding: 1rem 2.5rem;
+  font-family: var(--font-text);
+  border-radius: 2rem;
+  font-size: 1rem;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .button {
+    font-size: 0.875rem;
+    /* md:text-sm */
+    padding: 0.5rem 1.5rem;
+    /* lg:px-6 lg:py-2 */
+  }
+}
+
+@media (min-width: 1024px) {
+  .button {
+    font-size: 1rem;
+    /* lg:text-base */
+  }
+}
+
+@media (min-width: 1280px) {
+  .button {
+    padding: 0.75rem 2rem;
+    /* xl:py-3 xl:px-8 */
+  }
+}
+
+/* Primary button (default) */
+.button.primary {
+  background-color: #53aea0;
+}
+
+/* Secondary button */
+.button.secondary {
+  background-color: #416272;
+}
+
+/* Hover + Active Effects */
+.button:not(.disabled):hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-button);
+}
+
+.button:not(.disabled):active {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-button-active);
+}
+
+/* After pseudo-element for animated ripple */
+.button::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  z-index: -1;
+  transition: all 0.5s;
+}
+
+.button.primary::after {
+  background-color: #53aea0;
+}
+
+.button.secondary::after {
+  background-color: #416272;
+}
+
+.button:not(.disabled):hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+/* Disabled styles */
+.button.disabled {
+  background-color: #8dcac1;
+  cursor: not-allowed;
+}

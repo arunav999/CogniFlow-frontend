@@ -46,7 +46,7 @@
   /* ======================== */
   /*        GRADIENTS         */
   /* ======================== */
-  --color-gradient-soft-aqua: linear-gradient(135deg, #fbeeee, #8dcac1);
+  --color-gradient-soft-aqua: linear-gradient(135deg, #fbeeee, #8dcac1 45%);
                                           /* Free Plan Front Side */
   --color-gradient-cool-mint: linear-gradient(135deg, #416272, #18455a);
                                           /* Paid Plan Front Side */
@@ -70,5 +70,6 @@
   /* ======================== */
   /*        BREAKPOINT        */
   /* ======================== */
+  --breakpoint-xs: 384px;           /* Breakpoint for XS displays */
   --breakpoint-3xl: 1920px;         /* Breakpoint for 4k displays */
 }

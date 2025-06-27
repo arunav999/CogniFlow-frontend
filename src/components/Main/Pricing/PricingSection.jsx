@@ -5,7 +5,7 @@ import CARD_DATA from "../../../utils/data";
 const PricingSection = () => {
   return (
     <>
-      <section className="flex md:flex-col lg:flex-row items-center justify-center gap-10 py-16 px-28">
+      <section className="flex xs:flex-col lg:flex-row items-center justify-evenly gap-10 py-12 px-24">
         {CARD_DATA.map((item) => (
           <Cards
             key={item.id}

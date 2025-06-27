@@ -11,18 +11,21 @@ const Cards = ({
   gradient,
   secondary,
 }) => {
+  // w-full aspect-[3/4] max-w-[clamp(18rem, 30vw, 30rem)]
   return (
-    <div className="relative w-full aspect-[3/4] max-w-[clamp(18rem, 30vw, 30rem)] perspective-[1000px] cursor-pointer">
+    <div className="relative w-80 h-120 perspective-[1000px] cursor-pointer">
       <div className="w-full h-full transition-transform duration-700 [transform-style:preserve-3d] hover:-rotate-y-180 rounded-2xl shadow-card">
         {/* Front Side */}
         <div
-          className="absolute w-full h-full bg-white backface-hidden rounded-2xl p-4 flex items-center justify-center flex-col"
-          style={{ backgroundImage: front }}
+          className="absolute w-full h-full bg-white backface-hidden rounded-2xl flex  flex-col overflow-hidden"
+          
         >
-          <div className="font-heading">{plan}</div>
-          <div className="font-body">
+          <div className="font-heading uppercase text-lg  text-white w-full h-[40%] flex items-center justify-center" style={{ backgroundImage: front }}>
+            <p className="border py-2.5 px-6">{plan}</p>
+          </div>
+          <div className="font-body border">
             {details.map((point, index) => (
-              <p key={index}>
+              <p key={index} className="flex items-center gap-3">
                 <span>
                   <TiTick />
                 </span>
