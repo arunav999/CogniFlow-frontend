@@ -34,14 +34,14 @@ const PricingSection = () => {
         </div>
 
         {/* CTA */}
-        <div className="text-center">
-          <h4 className="sub-heading text-light-text-tertiary">
-            Not sure which to pick? &mdash;{" "}
+        <div className="my-12">
+          <h4 className="sub-heading text-light-text-tertiary flex xs:flex-col lg:flex-row items-center justify-center gap-2">
+            <span>Not sure which to pick? &mdash; </span>
             <Button secondary disabled={false}>
               {" "}
               Start with free
             </Button>{" "}
-            upgrade when you're ready.
+            <span>upgrade when you're ready.</span>
           </h4>
         </div>
       </section>
