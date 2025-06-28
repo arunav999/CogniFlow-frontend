@@ -1,3 +1,4 @@
+// Custom component
 import Button from "../../Reusable/Button/Button";
 
 const DemoSection = () => {

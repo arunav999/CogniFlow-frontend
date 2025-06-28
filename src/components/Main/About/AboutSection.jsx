@@ -10,8 +10,9 @@ const AboutSection = () => {
             Tired of juggling tools and forgetting tasks?
           </h2>
           <h4 className="sub-heading text-light-text-secondary">
-            <span className="logo logo-secondary-gradient">Cogniflow</span> brings calm to
-            your chaos &mdash; everything you need, in one clean space.
+            <span className="logo logo-secondary-gradient">Cogniflow</span>{" "}
+            brings calm to your chaos &mdash; everything you need, in one clean
+            space.
           </h4>
         </div>
 
@@ -47,14 +48,16 @@ const AboutSection = () => {
         <div className="text-center">
           <h4 className="sub-heading text-light-text-tertiary">
             It doesn't have to be this way. Let{" "}
-            <span className="logo logo-secondary-gradient">Cogniflow</span> simplify your
-            workday.
+            <span className="logo logo-secondary-gradient">Cogniflow</span>{" "}
+            simplify your workday.
           </h4>
         </div>
 
         <div>
           <Button secondary disabled={false} design="w-55">
-            Try <span className="font-logo text-2xl font-semibold">Cogniflow</span> free
+            Try{" "}
+            <span className="font-logo text-2xl font-semibold">Cogniflow</span>{" "}
+            free
           </Button>
         </div>
       </section>

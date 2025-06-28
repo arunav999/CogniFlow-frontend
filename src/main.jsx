@@ -4,10 +4,15 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
 
+// Custom context
+import { ActiveSectionProvider } from "./context/ActiveSectionContext.jsx";
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <ActiveSectionProvider>
+        <App />
+      </ActiveSectionProvider>
     </BrowserRouter>
   </StrictMode>
 );

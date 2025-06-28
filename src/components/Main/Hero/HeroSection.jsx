@@ -7,7 +7,7 @@ const HeroSection = () => {
 
   return (
     <>
-      <section className="section scroll-mt-20">
+      <section className="section scroll-mt-20 h-screen" id="hero">
         {/* HEADING */}
         <div className="text-center mb-10">
           <h2 className="heading">
