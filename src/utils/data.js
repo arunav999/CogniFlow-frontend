@@ -1,3 +1,51 @@
+import cogniLogo from "../assets/cimg.png";
+
+/* ======================== */
+/*      FEATURES DATA      */
+/* ======================== */
+
+export const FEATURES_DATA = [
+  {
+    id: 1,
+    title: "Task Boards",
+    description:
+      "Drag, drop, and get things done with intuitive boards that just make sense.",
+    imgSrc: cogniLogo,
+    imgAlt: "task boards img",
+  },
+  {
+    id: 2,
+    title: "Smart Scheduling",
+    description:
+      "Set deadlines, recurring tasks, and let Cogniflow keep your calendar clean.",
+    imgSrc: cogniLogo,
+    imgAlt: "smart scheduling img",
+  },
+  {
+    id: 3,
+    title: "Team Collaboration",
+    description: "Tag teammates, assign tasks, and chat — all in one flow.",
+    imgSrc: cogniLogo,
+    imgAlt: "team collaboration img",
+  },
+  {
+    id: 4,
+    title: "Reminders That Work",
+    description:
+      "Get notified before it's too late. Not too early. Just right.",
+    imgSrc: cogniLogo,
+    imgAlt: "reminders that work img",
+  },
+  {
+    id: 5,
+    title: "Progress Insights",
+    description:
+      "See how far you've come — and what's next — with simple visual summaries.",
+    imgSrc: cogniLogo,
+    imgAlt: "progress insights img",
+  },
+];
+
 /* ======================== */
 /*     PRICING CARD DATA    */
 /* ======================== */

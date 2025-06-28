@@ -33,7 +33,7 @@ export const useActiveSectionObserver = () => {
         setActiveSection(mostVisible.target.id);
       },
       {
-        threshold: 0.9, //when the 90% of the section is visible
+        threshold: 0.3, //when the 30% of the section is visible
       }
     );
 
@@ -48,3 +48,44 @@ export const useActiveSectionObserver = () => {
     };
   }, [setActiveSection]);
 };
+
+// import { useEffect } from "react";
+// import { useActiveSection } from "../context/ActiveSectionContext";
+
+// const SECTIONS = [
+//   { id: "about", threshold: 0.6 },
+//   { id: "features", threshold: 0.5 },
+//   { id: "demo", threshold: 0.7 },
+//   { id: "pricing", threshold: 0.4 },
+// ];
+
+// export const useActiveSectionObserver = () => {
+//   const { setActiveSection } = useActiveSection();
+
+//   useEffect(() => {
+//     const observers = [];
+
+//     SECTIONS.forEach(({ id, threshold }) => {
+//       const section = document.getElementById(id);
+//       if (!section) return;
+
+//       const observer = new IntersectionObserver(
+//         ([entry]) => {
+//           if (entry.isIntersecting) {
+//             setActiveSection(id);
+//           }
+//         },
+//         { threshold }
+//       );
+
+//       observer.observe(section);
+//       observers.push({ observer, section });
+//     });
+
+//     return () => {
+//       observers.forEach(({ observer, section }) => {
+//         observer.unobserve(section);
+//       });
+//     };
+//   }, [setActiveSection]);
+// };

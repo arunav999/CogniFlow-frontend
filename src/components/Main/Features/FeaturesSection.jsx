@@ -1,3 +1,7 @@
+import cogniLogo from "../../../assets/cimg.png";
+
+import { FEATURES_DATA } from "../../../utils/data";
+
 const FeaturesSection = () => {
   return (
     <>
@@ -15,84 +19,35 @@ const FeaturesSection = () => {
         </div>
 
         {/* FEATURES */}
-        {/* 1 */}
-        <div className="">
-          {/* F-NAME */}
-          <div className="">
-            <h3>Task Boards</h3>
-            <p>
-              Drag, drop, and get things done with intuitive boards that just
-              make sense.
-            </p>
-          </div>
+        {FEATURES_DATA.map((feature, index) => (
+          <div
+            key={feature.id}
+            className={`flex flex-col ${
+              index % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"
+            } items-center justify-between gap-12 mb-16 md:px-12`}
+          >
+            <div className="md:w-1/2 text-center md:text-left">
+              <p className="xs:text-[43px] sm:text-[86px] font-heading text-[#97878360] xs:font-bold sm:font-extrabold">
+                0{feature.id}
+              </p>
+              <h3 className="xs:text-[16px] sm:text-2xl text-light-text-primary font-semibold mb-2 font-body">
+                {feature.title}
+              </h3>
+              <p className="font-text xs:text-[14px] sm:text-lg text-light-text-secondary">
+                {feature.description}
+              </p>
+            </div>
 
-          {/* IMAGE-CONTAINER */}
-          <div className="">
-            <img src="" alt="" />
+            {/* IMAGE-CONTAINER */}
+            <div className="md:w-1/2 h-64 md:h-96 flex items-center justify-center overflow-hidden">
+              <img
+                src={feature.imgSrc}
+                alt={feature.imgAlt}
+                className="object-contain max-w-full max-h-full bg-black"
+              />
+            </div>
           </div>
-        </div>
-
-        {/* 2 */}
-        <div className="">
-          {/* F-NAME */}
-          <div className="">
-            <h3>Smart Scheduling</h3>
-            <p>
-              Set deadlines, recurring tasks, and let Cogniflow keep your
-              calendar clean.
-            </p>
-          </div>
-
-          {/* IMAGE-CONTAINER */}
-          <div className="">
-            <img src="" alt="" />
-          </div>
-        </div>
-
-        {/* 3 */}
-        <div className="">
-          {/* F-NAME */}
-          <div className="">
-            <h3>Team Collaboration</h3>
-            <p>Tag teammates, assign tasks, and chat — all in one flow.</p>
-          </div>
-
-          {/* IMAGE-CONTAINER */}
-          <div className="">
-            <img src="" alt="" />
-          </div>
-        </div>
-
-        {/* 4 */}
-        <div className="">
-          {/* F-NAME */}
-          <div className="">
-            <h3>Reminders That Work</h3>
-            <p>Get notified before it's too late. Not too early. Just right.</p>
-          </div>
-
-          {/* IMAGE-CONTAINER */}
-          <div className="">
-            <img src="" alt="" />
-          </div>
-        </div>
-
-        {/* 5 */}
-        <div className="">
-          {/* F-NAME */}
-          <div className="">
-            <h3>Progress Insights</h3>
-            <p>
-              See how far you’ve come — and what’s next — with simple visual
-              summaries.
-            </p>
-          </div>
-
-          {/* IMAGE-CONTAINER */}
-          <div className="">
-            <img src="" alt="" />
-          </div>
-        </div>
+        ))}
 
         <div className="text-center">
           <h4 className="sub-heading text-light-text-tertiary">
