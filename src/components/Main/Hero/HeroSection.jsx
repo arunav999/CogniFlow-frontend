@@ -17,28 +17,29 @@ const HeroSection = () => {
         </div>
 
         {/* DYNAMIC TYPING */}
-        <div className="text-3xl ">
-          <p>It helps you</p>
-          <p>
-            {/* {state.text} */}
-            stay organized
-            <span
-              className="text-4xl transition-opacity duration-700 ease-in-out font-semibold"
-              style={{ opacity: state.blink ? 1 : 0 }}
-            >
-              |
-            </span>
-          </p>
+        <div className="xs:text-[22px] xs:p-4 lg:pl-18 md:text-[28px] xs:h-[43vh] lg:h-[60vh] flex flex-col md:justify-center gap-4 font-body text-light-text-link-active">
+          <div>
+            <p className="inline mr-2">It helps you</p>
+            <p className="inline font-text font-semibold text-light-text-tertiary">
+              {state.text}
+              <span
+                className="xs:text-3xl lg:text-4xl transition-opacity duration-700 ease-in-out font-light"
+                style={{ opacity: state.blink ? 1 : 0 }}
+              >
+                |
+              </span>
+            </p>
+          </div>
           <p>No more messy boards or cluttered lists.</p>
           <p>Just clean, simple task management that works with you.</p>
           <p>
             Less Stress. More Flow. That's the{" "}
-            <span className="logo">Cogniflow</span> way.
+            <span className="logo logo-secondary-gradient">Cogniflow</span> way.
           </p>
         </div>
 
         {/* GET STARTED BUTTONS */}
-        <div>
+        <div className=" flex xs:flex-col md:flex-row items-center xs:gap-12 justify-evenly">
           <Button disabled={false} design="w-45">
             Get Started
           </Button>
