@@ -31,6 +31,7 @@
   --color-light-text-primary: #18455a;   /* Main text, headings */
   --color-light-text-secondary: #416272; /* Links hover */
   --color-light-text-tertiary: #938783; /* Subtext, labels */
+  --color-light-text-footer: #666;      /* Footer */
   --color-light-text-link: #53aea0;      /* Links default */
   --color-light-text-link-hover: #416272; /* Links hover */
   --color-light-text-link-active: #18455a; /* Links active */
@@ -75,6 +76,9 @@
   --shadow-card: 0 18px 48px rgba(0, 0, 0, 0.15);
   --shadow-nav: 0 10px 20px rgba(0, 0, 0, 0.15);
   --shadow-d-card: 16px 16px 0 rgba(0, 0, 0, 0.1);
+  --shadow-c-link: 8px 8px 0 rgba(0, 0, 0, 0.4);
+  --shadow-f-link: 7px 7px 0 rgba(0, 0, 0, 0.2);
+  --shadow-s-link: inset 5px 5px 0 rgba(0, 0, 0, 0.2);
 
   /* ======================== */
   /*        BREAKPOINT        */
@@ -85,7 +89,7 @@
 
 /* LOGO */
 .logo {
-  @apply font-logo xs:text-2xl sm:text-3xl font-bold;
+  @apply font-logo xs:text-3xl sm:text-5xl font-bold;
 }
 
 .logo-gradient {
@@ -96,13 +100,17 @@
   @apply bg-gradient-to-r from-[#416272] to-[#938783] bg-clip-text text-transparent;
 }
 
+.logo-footer-gradient {
+  @apply bg-gradient-to-r from-[#bbb] to-[#555] bg-clip-text text-transparent;
+}
+
 /* SECTION */
 .section {
   @apply xs:py-4 xs:px-6 3xl:py-12 3xl:px-24;
 }
 
 /* SECTION HEADING */
-.head-util{
+.head-util {
   @apply text-center mb-16;
 }
 

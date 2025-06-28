@@ -1,3 +1,19 @@
+// React-Icons
+import {
+  FiPackage,
+  FiBriefcase,
+  FiInfo,
+  FiPenTool,
+  FiMail,
+  FiLifeBuoy,
+} from "react-icons/fi";
+import {
+  AiOutlineAppstore,
+  AiOutlinePlayCircle,
+  AiOutlineQuestionCircle,
+} from "react-icons/ai";
+import { BiMoney, BiBookContent, BiBug } from "react-icons/bi";
+
 import cogniLogo from "../assets/cimg.png";
 
 /* ======================== */
@@ -99,6 +115,83 @@ const CARD_DATA = [
     front: "var(--color-gradient-warm-muted)",
     gradient: "var(--color-gradient-soft-muted)",
     secondary: true,
+  },
+];
+
+/* ======================== */
+/*     FOOTER CARD DATA     */
+/* ======================== */
+
+export const FOOTER_DATA = [
+  {
+    id: 1,
+    head: "Product",
+    logo: FiPackage,
+    items: [
+      {
+        id: 1,
+        name: "Features",
+        logo: AiOutlineAppstore,
+        href: "/#features",
+      },
+      {
+        id: 2,
+        name: "Pricing",
+        logo: BiMoney,
+        href: "/#pricing",
+      },
+      {
+        id: 3,
+        name: "Demo",
+        logo: AiOutlinePlayCircle,
+        href: "/#demo",
+      },
+    ],
+  },
+  {
+    id: 2,
+    head: "Company",
+    logo: FiBriefcase,
+    items: [
+      {
+        id: 1,
+        name: "About",
+        logo: FiInfo,
+        href: "/#about",
+      },
+      {
+        id: 2,
+        name: "Blog",
+        logo: FiPenTool,
+      },
+      {
+        id: 3,
+        name: "Contact",
+        logo: FiMail,
+      },
+    ],
+  },
+  {
+    id: 3,
+    head: "Support",
+    logo: FiLifeBuoy,
+    items: [
+      {
+        id: 1,
+        name: "FAQs",
+        logo: AiOutlineQuestionCircle,
+      },
+      {
+        id: 2,
+        name: "Help Center",
+        logo: BiBookContent,
+      },
+      {
+        id: 3,
+        name: "Report Issue",
+        logo: BiBug,
+      },
+    ],
   },
 ];
 

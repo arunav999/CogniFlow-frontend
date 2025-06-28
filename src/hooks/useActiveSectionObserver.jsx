@@ -33,7 +33,7 @@ export const useActiveSectionObserver = () => {
         setActiveSection(mostVisible.target.id);
       },
       {
-        threshold: 0.6, //when the 60% of the section is visible
+        threshold: 0.3, //when the 30% of the section is visible
       }
     );
 
