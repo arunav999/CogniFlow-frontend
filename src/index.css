@@ -92,6 +92,10 @@
   @apply font-logo xs:text-3xl sm:text-5xl font-bold;
 }
 
+.logo-footer {
+  @apply font-logo xs:text-lg md:text-3xl font-semibold;
+}
+
 .logo-gradient {
   @apply bg-gradient-to-r from-[#53aea0] to-[#18455a] bg-clip-text text-transparent;
 }

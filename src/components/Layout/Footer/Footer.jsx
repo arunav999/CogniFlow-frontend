@@ -86,14 +86,19 @@ const Footer = () => {
         </div>
 
         {/* COPYRIGHT */}
-        <div className="">
-          <p>
-            &copy; <span className="logo">Cogniflow</span>.All rights reserved.
+        <div className="flex flex-col items-center justify-center mt-12 gap-1 text-sm text-[#777] font-body">
+          <p className="xs:text-[12px] md:text-[14px]">
+            &copy; {new Date().getFullYear()}.{" "}
+            <span className="logo-footer">Cogniflow</span>.All rights reserved.
           </p>
 
-          <p>
+          <p className="xs:text-[12px] md:text-[14px]">
             Built by{" "}
-            <a href="https://arunavsingh.netlify.app/" target="blank">
+            <a
+              href="https://arunavsingh.netlify.app/"
+              target="blank"
+              className="inline-block px-2 border-b-2 font-heading hover:text-[#ddd] hover:bg-[#777] transition-all duration-300"
+            >
               Arunav Singh
             </a>{" "}
             with 💙 using the MERN Stack.
