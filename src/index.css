@@ -112,3 +112,16 @@
 .sub-heading {
   @apply font-body mt-2 xs:text-[14px] sm:text-lg;
 }
+
+/* ABOUT SECTION - POINTS */
+.points {
+  @apply flex flex-col gap-2 items-center font-text xs:p-3 lg:text-lg shadow-card rounded;
+}
+
+.points-h {
+  @apply border-b-2 p-2 font-body font-semibold xs:text-lg lg:text-2xl text-light-text-primary;
+}
+
+.points-p {
+  @apply text-center text-light-text-secondary;
+}
