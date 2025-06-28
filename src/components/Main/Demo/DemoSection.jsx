@@ -1,3 +1,9 @@
+import cogniImg from "../../../assets/cimg.png";
+
+// React icons
+import { FiPlusCircle, FiUsers, FiTarget } from "react-icons/fi";
+import { BiTransferAlt } from "react-icons/bi";
+
 // Custom component
 import Button from "../../Reusable/Button/Button";
 
@@ -15,19 +21,51 @@ const DemoSection = () => {
           </h4>
         </div>
 
-        {/* IMAGE / GIF */}
-        <div className="">
-          <span>Image or Gif</span>
+        {/* IMAGE / GIF / VIDEO */}
+        <div className="md:w-full h-64 md:h-96 flex items-center justify-center overflow-hidden">
+          <img
+            src={cogniImg}
+            alt=""
+            className="object-contain max-w-full max-h-full bg-black"
+          />
         </div>
 
         {/* FEATURE POINTS */}
-        <div className="">
-          <ul>
-            <li>"Add a task in one click"</li>
-            <li>"Easily switch between Board and List views"</li>
-            <li>"Collaborate with your team in real-time"</li>
-            <li>Track your weekly focus at a glance</li>
-          </ul>
+        <div className="flex justify-center my-12">
+          <div className="grid md:grid-cols-2 text-center gap-12 w-[85%]">
+            <div className="demo-f">
+              <p className="demo-n">
+                <span>
+                  <FiPlusCircle />
+                </span>
+                "Add a task in one click"
+              </p>
+            </div>
+            <div className="demo-f">
+              <p className="demo-n">
+                <span>
+                  <BiTransferAlt />
+                </span>
+                "Easily switch between Board and List views"
+              </p>
+            </div>
+            <div className="demo-f">
+              <p className="demo-n">
+                <span>
+                  <FiUsers />
+                </span>
+                "Collaborate with your team in real-time"
+              </p>
+            </div>
+            <div className="demo-f">
+              <p className="demo-n">
+                <span>
+                  <FiTarget />
+                </span>
+                "Track your weekly focus at a glance"
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* CTA */}

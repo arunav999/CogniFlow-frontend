@@ -74,6 +74,7 @@
   --shadow-button-active: 0 5px 10px rgba(0, 0, 0, 0.2);
   --shadow-card: 0 18px 48px rgba(0, 0, 0, 0.15);
   --shadow-nav: 0 10px 20px rgba(0, 0, 0, 0.15);
+  --shadow-d-card: 16px 16px 0 rgba(0, 0, 0, 0.1);
 
   /* ======================== */
   /*        BREAKPOINT        */
@@ -126,4 +127,11 @@
   @apply text-center text-light-text-secondary;
 }
 
-/* FEATURES SECTION */
+/* DEMO SECTION */
+.demo-f {
+  @apply xs:text-[1rem] lg:text-[1.4rem] font-body font-light bg-light-bg-accent p-6 shadow-d-card transform skew-x-[-12deg] rounded;
+}
+
+.demo-n {
+  @apply transform skew-x-[12deg] flex items-center justify-center gap-3 text-light-text-primary;
+}
