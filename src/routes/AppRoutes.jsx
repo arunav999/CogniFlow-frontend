@@ -8,8 +8,7 @@ import {
 
 // Importing components
 import HomePage from "../components/Layout/HomePage";
-import Login from "../pages/Auth/Login";
-import Signup from "../pages/Auth/Signup";
+import AuthPage from "../pages/Auth/AuthPage";
 
 // Dashboards
 import AdminDashboard from "../pages/Admin/AdminDashboard";
@@ -21,7 +20,9 @@ const AppRoutes = () => {
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/u" element={<UserDashboard />} />
           <Route />
         </Routes>
       </Router>
