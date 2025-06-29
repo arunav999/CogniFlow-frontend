@@ -1,19 +1,15 @@
-// Section hook
-import { useActiveSectionObserver } from "./hooks/useActiveSectionObserver";
+// Routes
+import AppRoutes from "./routes/AppRoutes";
 
-// My custom components
-import Header from "./components/Layout/Header/Header";
-import Main from "./components/Main/Main";
-import Footer from "./components/Layout/Footer/Footer";
+// Context
+import { ActiveSectionProvider } from "./context/ActiveSectionContext";
 
 const App = () => {
-  useActiveSectionObserver();
-
   return (
     <>
-      <Header />
-      <Main />
-      <Footer />
+      <ActiveSectionProvider>
+        <AppRoutes />
+      </ActiveSectionProvider>
     </>
   );
 };
