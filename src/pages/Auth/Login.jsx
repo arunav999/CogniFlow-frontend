@@ -3,7 +3,6 @@ import Input from "../../components/Reusable/Input/Input";
 import { FiLock } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 import Button from "../../components/Reusable/Button/Button";
-import { FaSlack } from "react-icons/fa";
 
 const Login = () => {
   return (
