@@ -18,7 +18,7 @@ const Signup = () => {
     <>
       <section className="section">
         {/* HEADING */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <h2 className="heading">
             Create your <span className="logo logo-gradient">Cogniflow</span>{" "}
             account
@@ -28,6 +28,7 @@ const Signup = () => {
           </h4>
         </div>
 
+        {/* SIGNUP FORM */}
         <form className="flex items-center justify-center">
           <div className="flex flex-col items-center justify-center gap-1">
             {/* First name */}
