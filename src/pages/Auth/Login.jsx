@@ -1,10 +1,17 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleSignupRedirect = () => {
+    navigate("/auth?type=signup", { replace: true });
+  };
+
   return (
     <>
       <div className="">
-        <Link to="/auth?type=login">Login Page</Link>
+        Don't have an account create one.
+        <button onClick={handleSignupRedirect}>SignUp</button>
       </div>
     </>
   );

@@ -14,6 +14,9 @@ import AuthPage from "../pages/Auth/AuthPage";
 import AdminDashboard from "../pages/Admin/AdminDashboard";
 import UserDashboard from "../pages/User/UserDashboard";
 
+// 404 | NotFound
+import NotFound from "../pages/404/NotFound";
+
 const AppRoutes = () => {
   return (
     <>
@@ -23,7 +26,8 @@ const AppRoutes = () => {
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/u" element={<UserDashboard />} />
-          <Route />
+          <Route path="*" element={<NotFound />} />
+          {/* <Route /> */}
         </Routes>
       </Router>
     </>
