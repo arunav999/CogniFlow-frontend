@@ -7,10 +7,11 @@ const Input = ({
   id,
   name,
   value,
-  label,
+  required = true,
   type,
   placeholder,
   onChange,
+  icon,
   error,
   errorMessage,
 }) => {
@@ -32,15 +33,22 @@ const Input = ({
             error ? "border-red-600" : "border-gray-300"
           } relative flex w-90 font-body rounded-2xl text-gray-700 items-center`}
         >
+          <span
+            className={`pl-1.5 ${error ? "text-red-700" : "text-gray-500"}`}
+          >
+            {icon}
+          </span>
           {/* INPUT */}
           <input
             id={id}
             value={value}
+            name={name}
             type={
               type === "password" ? (showPassword ? "text" : "password") : type
             }
             className="peer  outline-none py-4 px-6 w-[90%]"
             placeholder=" "
+            required={required}
             onChange={onChange}
           />
 
@@ -53,14 +61,14 @@ const Input = ({
               isFilled ? "-top-2.5 text-sm" : "top-4 text-base"
             } peer-focus:-top-2.5 peer-focus:text-sm`}
           >
-            {placeholder}
+            {placeholder} {required && <span>*</span>}
           </label>
 
           {/* EYE-ICON */}
           <span
             className={`cursor-pointer ${
               error ? "text-red-700" : "text-gray-500"
-            }`}
+            } pr-2`}
           >
             {type === "password" &&
               (showPassword ? (
@@ -72,16 +80,18 @@ const Input = ({
         </div>
 
         {/* Error Message */}
-        <div className="flex items-center gap-2 px-4 text-red-700 font-body text-sm h-8 w-full">
-          {error && (
-            <>
-              <span className="text-base">
-                <MdOutlineErrorOutline />
-              </span>
-              <p>{errorMessage}</p>
-            </>
-          )}
-        </div>
+        {required && (
+          <div className="flex items-center gap-2 px-4 text-red-700 font-body text-sm my-1 h-4 w-full">
+            {error && (
+              <>
+                <span className="text-base">
+                  <MdOutlineErrorOutline />
+                </span>
+                <p>{errorMessage}</p>
+              </>
+            )}
+          </div>
+        )}
       </div>
     </>
   );

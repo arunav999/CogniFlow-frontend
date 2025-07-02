@@ -1,108 +1,186 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import Input from "../../components/Reusable/Input/Input";
-import { validateEmail, confirmPassword } from "../../utils/utils";
 import Button from "../../components/Reusable/Button/Button";
 
+import { FiUser, FiLock, FiBriefcase, FiHash } from "react-icons/fi";
+import { MdOutlineEmail } from "react-icons/md";
+import { AiOutlineAppstore } from "react-icons/ai";
+
 const Signup = () => {
-  const navigate = useNavigate();
+  // temp remove later
+  const [value, setValue] = useState("");
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPass, setConfirmPass] = useState("");
-
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-
-  const handleLoginRedirect = () => {
-    navigate("/auth?type=login", { replace: true });
-  };
-
-  const validateForm = () => {
-    const newErrors = {
-      email: "",
-      password: "",
-      confirmPassword: "",
-    };
-
-    if (!validateEmail(email)) {
-      newErrors.email = "Invalid email format";
-    }
-
-    // Just a placeholder for password validation
-    if (password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
-    }
-
-    if (!confirmPassword(password, confirmPass)) {
-      newErrors.confirmPassword = "Passwords do not match";
-    }
-
-    setErrors(newErrors);
-
-    // Check if there are no errors
-    return Object.values(newErrors).every((error) => error === "");
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (validateForm()) {
-      // proceed with signup logic
-      console.log("Form is valid");
-    }
-  };
+  // toogle radio button
+  const [role, setRole] = useState("admin");
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="h-screen flex flex-col gap-4 items-center justify-center"
-    >
-      <Input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        error={!!errors.email}
-        errorMessage={errors.email}
-      />
+    <>
+      <section className="section">
+        {/* HEADING */}
+        <div className="text-center mb-16">
+          <h2 className="heading">
+            Create your <span className="logo logo-gradient">Cogniflow</span>{" "}
+            account
+          </h2>
+          <h4 className="sub-heading text-light-text-secondary">
+            Join free and start flowing through your tasks
+          </h4>
+        </div>
 
-      <Input
-        type="password"
-        id="password"
-        name="password"
-        placeholder="Enter password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        error={!!errors.password}
-        errorMessage={errors.password}
-      />
+        <form className="flex items-center justify-center">
+          <div className="flex flex-col items-center justify-center gap-1">
+            {/* First name */}
+            <Input
+              type="text"
+              id="fName"
+              name="fName"
+              icon={<FiUser />}
+              placeholder="First"
+              value={value}
+              onChange={(event) => setValue(event.target.value)}
+            />
 
-      <Input
-        type="password"
-        id="confirm-password"
-        name="confirm-password"
-        placeholder="Confirm password"
-        value={confirmPass}
-        onChange={(e) => setConfirmPass(e.target.value)}
-        error={!!errors.confirmPassword}
-        errorMessage={errors.confirmPassword}
-      />
+            {/* Last name */}
+            <Input
+              type="text"
+              id="lName"
+              name="lName"
+              icon={<FiUser />}
+              placeholder="Last"
+              // required={false}
+              value={value}
+              onChange={(event) => setValue(event.target.value)}
+            />
 
-      <Button disabled={false}>Sign up</Button>
+            {/* Email */}
+            <Input
+              type="email"
+              id="email"
+              name="email"
+              icon={<MdOutlineEmail />}
+              placeholder="Email"
+              value={value}
+              onChange={(event) => setValue(event.target.value)}
+            />
 
-      <div className="flex items-end text-gray-500 gap-4 font-body">
-        <p className="">Already have an account?</p>
-        <Button secondary disabled={false} redirect="/auth?type=login">
-          Login
-        </Button>
-      </div>
-    </form>
+            {/* Password */}
+            <Input
+              type="password"
+              id="password"
+              name="password"
+              icon={<FiLock />}
+              placeholder="Enter password"
+              value={value}
+              onChange={(event) => setValue(event.target.value)}
+            />
+
+            {/* Confirm password */}
+            <Input
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              icon={<FiLock />}
+              placeholder="Confirm password"
+              value={value}
+              onChange={(event) => setValue(event.target.value)}
+            />
+
+            {/* ROLE */}
+            <h4 className="font-body text-lg text-gray-500">
+              What type of user are you?
+            </h4>
+            <div className="flex items-center justify-evenly w-full font-body">
+              <label htmlFor="admin" className="radio">
+                <input
+                  type="radio"
+                  name="role"
+                  id="admin"
+                  value="admin"
+                  checked={role === "admin"}
+                  onChange={(e) => setRole(e.target.value)}
+                />
+                <p>Admin</p>
+              </label>
+
+              <label htmlFor="member" className="radio">
+                <input
+                  type="radio"
+                  name="role"
+                  id="member"
+                  value="member"
+                  checked={role === "member"}
+                  onChange={(e) => setRole(e.target.value)}
+                />
+                <p>Member</p>
+              </label>
+            </div>
+
+            {/* CONDITIONAL RENDERING ADMIN / MEMBER */}
+            {/* ADMIN */}
+            <div className="mt-4 flex flex-col items-center justify-center">
+              {role === "admin" && (
+                <>
+                  <Input
+                    type="text"
+                    id="company"
+                    name="company"
+                    placeholder="Company"
+                    icon={<FiBriefcase />}
+                  />
+
+                  <Input
+                    type="text"
+                    id="workspace"
+                    name="workspace"
+                    placeholder="Workspace"
+                    required={false}
+                    icon={<AiOutlineAppstore />}
+                  />
+                </>
+              )}
+
+              {/* MEMBER */}
+              {role === "member" && (
+                <>
+                  <Input
+                    type="text"
+                    id="inviteCode"
+                    name="inviteCode"
+                    placeholder="Workspace code"
+                    icon={<FiHash />}
+                    required={false}
+                  />
+
+                  <p className="xs:text-xs md:text-sm text-center text-gray-500 font-text mt-4">
+                    Don't have one? &rarr; We'll create a personal workspace for
+                    you.
+                  </p>
+                </>
+              )}
+            </div>
+
+            <div className="my-4">
+              <Button
+                disabled={false}
+                redirect={`${role === "admin" ? "/admin" : "/u"}`}
+              >
+                {role === "admin"
+                  ? "Create Account & Get Started"
+                  : "Join Workspace"}
+              </Button>
+            </div>
+
+            <div className="flex items-center text-gray-500 gap-4 font-body">
+              <p>Already have an account?</p>
+              <Button secondary disabled={false} redirect="/auth?type=login">
+                Login
+              </Button>
+            </div>
+          </div>
+        </form>
+      </section>
+    </>
   );
 };
 
