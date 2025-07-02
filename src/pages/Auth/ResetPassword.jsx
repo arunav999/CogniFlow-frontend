@@ -32,7 +32,7 @@ const ForgotPassword = () => {
                 <Button disabled={false}>Reset password</Button>
               </span>
 
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-2 text-gray-600">
                 <p>Remembered your password?</p>
                 <Button secondary disabled={false} redirect="/auth?type=login">
                   Login

@@ -60,7 +60,7 @@ const Login = () => {
                 <Button disabled={false}>Login to Cogniflow</Button>
               </span>
 
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-2 text-gray-600">
                 <p>Don't have an account?</p>
                 <Button secondary disabled={false}>
                   Sign up
