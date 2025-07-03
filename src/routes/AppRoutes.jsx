@@ -24,7 +24,10 @@ const AppRoutes = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/auth" element={<AuthPage />} />
-          <Route path="/admin" element={<AdminDashboard />} />
+
+          {/* Admin Routes */}
+          <Route element></Route>
+
           <Route path="/u" element={<UserDashboard />} />
           <Route path="*" element={<NotFound />} />
           {/* <Route /> */}

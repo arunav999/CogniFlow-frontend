@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import Input from "../../components/Reusable/Input/Input";
+import ProfilePhoto from "../../components/Reusable/Input/ProfilePhoto";
 import Button from "../../components/Reusable/Button/Button";
 
 import { FiUser, FiLock, FiBriefcase, FiHash } from "react-icons/fi";
@@ -20,7 +22,10 @@ const Signup = () => {
         {/* HEADING */}
         <div className="text-center mb-8">
           <h2 className="heading">
-            Create your <span className="logo logo-gradient">Cogniflow</span>{" "}
+            Create your{" "}
+            <span className="logo logo-gradient">
+              <Link to="/">Cogniflow</Link>
+            </span>{" "}
             account
           </h2>
           <h4 className="sub-heading text-light-text-secondary">
@@ -31,6 +36,9 @@ const Signup = () => {
         {/* SIGNUP FORM */}
         <form className="flex items-center justify-center">
           <div className="flex flex-col items-center justify-center gap-1">
+            {/* Upload profile Image */}
+            <ProfilePhoto />
+
             {/* First name */}
             <Input
               type="text"
@@ -92,6 +100,7 @@ const Signup = () => {
               What type of user are you?
             </h4>
             <div className="flex items-center justify-evenly w-full font-body">
+              {/* Radio for admin */}
               <label htmlFor="admin" className="radio">
                 <input
                   type="radio"
@@ -104,16 +113,30 @@ const Signup = () => {
                 <p>Admin</p>
               </label>
 
-              <label htmlFor="member" className="radio">
+              {/* Radio for manager */}
+              <label htmlFor="manager" className="radio">
                 <input
                   type="radio"
                   name="role"
-                  id="member"
-                  value="member"
-                  checked={role === "member"}
+                  id="manager"
+                  value="manager"
+                  checked={role === "manager"}
                   onChange={(e) => setRole(e.target.value)}
                 />
-                <p>Member</p>
+                <p>Manager</p>
+              </label>
+
+              {/* Radio for developer */}
+              <label htmlFor="developer" className="radio">
+                <input
+                  type="radio"
+                  name="role"
+                  id="developer"
+                  value="developer"
+                  checked={role === "developer"}
+                  onChange={(e) => setRole(e.target.value)}
+                />
+                <p>Developer</p>
               </label>
             </div>
 
@@ -130,19 +153,19 @@ const Signup = () => {
                     icon={<FiBriefcase />}
                   />
 
-                  <Input
+                  {/* <Input
                     type="text"
                     id="workspace"
                     name="workspace"
                     placeholder="Workspace"
                     required={false}
                     icon={<AiOutlineAppstore />}
-                  />
+                  /> */}
                 </>
               )}
 
-              {/* MEMBER */}
-              {role === "member" && (
+              {/* MANAGER */}
+              {role === "manager" && (
                 <>
                   <Input
                     type="text"
@@ -153,10 +176,29 @@ const Signup = () => {
                     required={false}
                   />
 
-                  <p className="xs:text-xs md:text-sm text-center text-gray-500 font-text mt-4">
+                  {/* <p className="xs:text-xs md:text-sm text-center text-gray-500 font-text mt-4">
                     Don't have one? &rarr; We'll create a personal workspace for
                     you.
-                  </p>
+                  </p> */}
+                </>
+              )}
+
+              {/* DEVELOPER */}
+              {role === "developer" && (
+                <>
+                  <Input
+                    type="text"
+                    id="inviteCode"
+                    name="inviteCode"
+                    placeholder="Workspace code"
+                    icon={<FiHash />}
+                    required={false}
+                  />
+
+                  {/* <p className="xs:text-xs md:text-sm text-center text-gray-500 font-text mt-4">
+                    Don't have one? &rarr; We'll create a personal workspace for
+                    you.
+                  </p> */}
                 </>
               )}
             </div>

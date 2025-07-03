@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import Input from "../../components/Reusable/Input/Input";
 
 import { FiLock } from "react-icons/fi";
@@ -12,7 +14,9 @@ const Login = () => {
         <div className="text-center mb-8">
           <h2 className="heading">
             Welcome back to{" "}
-            <span className="logo logo-gradient">Cogniflow</span>
+            <span className="logo logo-gradient">
+              <Link to="/">Cogniflow</Link>
+            </span>
           </h2>
           <h4 className="sub-heading text-light-text-secondary">
             Login and flow through your tasks

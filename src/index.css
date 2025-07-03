@@ -79,6 +79,7 @@
   --shadow-c-link: 8px 8px 0 rgba(0, 0, 0, 0.4);
   --shadow-f-link: 7px 7px 0 rgba(0, 0, 0, 0.2);
   --shadow-s-link: inset 5px 5px 0 rgba(0, 0, 0, 0.2);
+  --shadow-profile-pic: 0 0 20px 7px rgba(0, 0, 0, 0.06);
 
   /* ======================== */
   /*        BREAKPOINT        */

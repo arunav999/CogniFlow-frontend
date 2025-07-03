@@ -12,7 +12,7 @@ const Button = ({
   const navigate = useNavigate();
 
   const handlePageRedirects = () => {
-    navigate(redirect, { replace: false });
+    navigate(redirect, { replace: true });
   };
 
   return (
