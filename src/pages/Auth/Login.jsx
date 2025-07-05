@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 
 import Input from "../../components/Reusable/Input/Input";
+import Button from "../../components/Reusable/Button/Button";
+
+import { pageTitle } from "../../utils/utils";
 
 import { FiLock } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
-import Button from "../../components/Reusable/Button/Button";
 
 const Login = () => {
+  pageTitle("Login - Cogniflow");
+
   return (
     <>
       <section className="section">

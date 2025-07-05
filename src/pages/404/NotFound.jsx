@@ -2,7 +2,11 @@ import { useLocation } from "react-router-dom";
 
 import Links from "../../components/Reusable/Links/Links";
 
+import { pageTitle } from "../../utils/utils";
+
 const NotFound = () => {
+  pageTitle("404 - Not found");
+
   const location = useLocation();
 
   return (

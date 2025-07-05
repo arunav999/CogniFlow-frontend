@@ -5,11 +5,15 @@ import Input from "../../components/Reusable/Input/Input";
 import ProfilePhoto from "../../components/Reusable/Input/ProfilePhoto";
 import Button from "../../components/Reusable/Button/Button";
 
+import { pageTitle } from "../../utils/utils";
+
 import { FiUser, FiLock, FiBriefcase, FiHash } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 import { AiOutlineAppstore } from "react-icons/ai";
 
 const Signup = () => {
+  pageTitle("Sign up - Cogniflow");
+
   // temp remove later
   const [value, setValue] = useState("");
 

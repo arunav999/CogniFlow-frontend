@@ -24,7 +24,7 @@ const ProfilePhoto = () => {
       <div className="h-36 w-36 rounded-[50%] mb-6 shadow-profile-pic relative">
         <input
           type="file"
-          accept="image"
+          accept="image/png, image/jpeg, image/jpg, image/webp"
           ref={imageRef}
           onChange={handleImageChange}
           className="hidden"
