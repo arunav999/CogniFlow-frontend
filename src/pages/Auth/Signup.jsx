@@ -42,24 +42,35 @@ const Signup = () => {
   const [role, setRole] = useState("admin");
 
   // User register function
-  const handleSignup = async (e) => {
-    e.preventDefault();
+  function signupAction(formData) {
+    const firstName = formData.get("firstName");
+    const lastName = formData.get("lastName");
+    const email = formData.get("email");
+    const password = formData.get("password");
+    const confirmPassword = formData.get("confirmPassword");
+    const role = formData.get("role");
+    const company = formData.get("company");
+    const inviteCode = formData.get("inviteCode");
+  }
 
-    const payload = {
-      ...formData,
-      role,
-    };
+  // const handleSignup = async (e) => {
+  //   e.preventDefault();
 
-    try {
-      const res = await registerUser(payload);
-      console.log("Signup success:", res);
+  //   const payload = {
+  //     ...formData,
+  //     role,
+  //   };
 
-      // if redirect
-      navigate(res.redirect);
-    } catch (error) {
-      console.log("Signup error:", error.response?.data || error.message);
-    }
-  };
+  //   try {
+  //     const res = await registerUser(payload);
+  //     console.log("Signup success:", res);
+
+  //     // if redirect
+  //     navigate(res.redirect);
+  //   } catch (error) {
+  //     console.log("Signup error:", error.response?.data || error.message);
+  //   }
+  // };
 
   return (
     <>
@@ -81,7 +92,8 @@ const Signup = () => {
         {/* SIGNUP FORM */}
         <form
           className="flex items-center justify-center"
-          onSubmit={handleSignup}
+          // onSubmit={handleSignup}
+          action={signupAction}
           noValidate
         >
           <div className="flex flex-col items-center justify-center gap-1">
@@ -106,9 +118,9 @@ const Signup = () => {
               type="text"
               id="lName"
               name="lastName"
+              required={false}
               icon={<FiUser />}
               placeholder="Last"
-              // required={false}
               value={formData.lastName}
               onChange={(e) =>
                 setFormData({ ...formData, lastName: e.target.value })
@@ -236,7 +248,6 @@ const Signup = () => {
                     name="inviteCode"
                     placeholder="Workspace code"
                     icon={<FiHash />}
-                    required={false}
                     value={formData.inviteCode}
                     onChange={(e) =>
                       setFormData({ ...formData, inviteCode: e.target.value })
@@ -259,7 +270,6 @@ const Signup = () => {
                     name="inviteCode"
                     placeholder="Workspace code"
                     icon={<FiHash />}
-                    required={false}
                     value={formData.inviteCode}
                     onChange={(e) =>
                       setFormData({ ...formData, inviteCode: e.target.value })
@@ -275,7 +285,7 @@ const Signup = () => {
             </div>
 
             {/* Reset form */}
-            <div
+            {/* <div
               className="w-[100%] underline cursor-pointer text-right font-body text-gray-500"
               onClick={() =>
                 setFormData({
@@ -290,7 +300,7 @@ const Signup = () => {
               }
             >
               Reset
-            </div>
+            </div> */}
 
             {/* Signup button */}
             <div className="my-4">

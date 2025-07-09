@@ -80,7 +80,7 @@ const Input = ({
         </div>
 
         {/* Error Message */}
-        {required && (
+        {(name === "lastName" || required) && (
           <div className="flex items-center gap-2 px-4 text-red-700 font-body text-sm my-1 h-4 w-full">
             {error && (
               <>
