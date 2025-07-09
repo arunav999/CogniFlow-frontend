@@ -1,15 +1,52 @@
-import { Link } from "react-router-dom";
+// React imports
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
+// Custom component
 import Input from "../../components/Reusable/Input/Input";
 import Button from "../../components/Reusable/Button/Button";
 
+// Util
 import { pageTitle } from "../../utils/utils";
 
+// Icon
 import { FiLock } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 
+// Service
+import { loginUser } from "../../services/authService";
+
 const Login = () => {
+  // Page title
   pageTitle("Login - Cogniflow");
+
+  const navigate = useNavigate();
+
+  // Form data
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    // remember: "",
+  });
+
+  // User login
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const payload = {
+      ...formData,
+    };
+
+    try {
+      const res = await loginUser(payload);
+      console.log("Login success:", res);
+
+      // If redirect
+      navigate(res.redirect);
+    } catch (error) {
+      console.log("Login error:", error.response?.data || error.message);
+    }
+  };
 
   return (
     <>
@@ -28,7 +65,10 @@ const Login = () => {
         </div>
 
         {/* LOGIN FORM */}
-        <form className="flex items-center justify-center">
+        <form
+          className="flex items-center justify-center"
+          onSubmit={handleLogin}
+        >
           <div className="flex flex-col items-center justify-center gap-1">
             {/* Email */}
             <Input
@@ -37,6 +77,10 @@ const Login = () => {
               name="email"
               icon={<MdOutlineEmail />}
               placeholder="Email"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
             />
 
             {/* Password */}
@@ -46,12 +90,21 @@ const Login = () => {
               name="password"
               icon={<FiLock />}
               placeholder="Enter password"
+              value={formData.password}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
             />
 
             {/* Remember me and Forgot password */}
             <div className="flex items-center justify-between w-full text-light-text-primary">
               <span className="flex items-center gap-1 justify-center">
-                <input type="checkbox" name="remember" id="remember" />
+                <input
+                  type="checkbox"
+                  name="remember"
+                  id="remember"
+                  onChange={(e) => console.log(e.target.value)}
+                />
                 <label htmlFor="remember" className="cursor-pointer">
                   Stay logged in
                 </label>
@@ -65,7 +118,9 @@ const Login = () => {
             {/* Login button and Signup page */}
             <div className="flex flex-col items-center justify-center gap-6 mt-8">
               <span>
-                <Button disabled={false}>Login to Cogniflow</Button>
+                <Button disabled={false} type="submit">
+                  Login to Cogniflow
+                </Button>
               </span>
 
               <span className="flex items-center gap-2 text-gray-600">

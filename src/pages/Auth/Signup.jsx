@@ -1,16 +1,25 @@
+// React imports
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+// Custom component
 import Input from "../../components/Reusable/Input/Input";
 import ProfilePhoto from "../../components/Reusable/Input/ProfilePhoto";
 import Button from "../../components/Reusable/Button/Button";
 
+// Util
 import { pageTitle } from "../../utils/utils";
 
+// Icon
 import { FiUser, FiLock, FiBriefcase, FiHash } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 import { AiOutlineAppstore } from "react-icons/ai";
+
+// Service
 import { registerUser } from "../../services/authService";
+
+// Validation
+import { emailIsValid } from "../../utils/validation";
 
 const Signup = () => {
   // Page title
@@ -73,6 +82,7 @@ const Signup = () => {
         <form
           className="flex items-center justify-center"
           onSubmit={handleSignup}
+          noValidate
         >
           <div className="flex flex-col items-center justify-center gap-1">
             {/* Upload profile Image */}
@@ -262,6 +272,24 @@ const Signup = () => {
                   </p> */}
                 </>
               )}
+            </div>
+
+            {/* Reset form */}
+            <div
+              className="w-[100%] underline cursor-pointer text-right font-body text-gray-500"
+              onClick={() =>
+                setFormData({
+                  firstName: "",
+                  lastName: "",
+                  email: "",
+                  password: "",
+                  confirmPassword: "",
+                  company: "",
+                  inviteCode: "",
+                })
+              }
+            >
+              Reset
             </div>
 
             {/* Signup button */}
