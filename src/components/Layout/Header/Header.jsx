@@ -92,7 +92,9 @@ const Header = () => {
               </Links>
             </li>
             <li onClick={() => setIsMobileNavOpen(false)}>
-              <Button disabled={false}>Get Started</Button>
+              <Button disabled={false} redirect="/auth?type=signup">
+                Get Started
+              </Button>
             </li>
           </ul>
         </nav>

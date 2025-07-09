@@ -7,12 +7,16 @@ const Button = ({
   design,
   secondary,
   disabled = true,
-  redirect = "/auth?type=signup",
+  redirect,
+  onClick,
+  type = "button",
 }) => {
   const navigate = useNavigate();
 
-  const handlePageRedirects = () => {
-    navigate(redirect, { replace: true });
+  const handleClick = (e) => {
+    if (onClick) onClick(e);
+
+    if (redirect) navigate(redirect, { replace: true });
   };
 
   return (
@@ -22,7 +26,8 @@ const Button = ({
           disabled ? "disabled" : ""
         } ${design ? `${design}` : ""}`}
         disabled={disabled}
-        onClick={handlePageRedirects}
+        onClick={handleClick}
+        type={type}
       >
         {children}
       </button>

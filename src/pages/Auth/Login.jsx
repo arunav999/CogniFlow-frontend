@@ -70,7 +70,7 @@ const Login = () => {
 
               <span className="flex items-center gap-2 text-gray-600">
                 <p>Don't have an account?</p>
-                <Button secondary disabled={false}>
+                <Button secondary disabled={false} redirect="/auth?type=signup">
                   Sign up
                 </Button>
               </span>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Input from "../../components/Reusable/Input/Input";
 import ProfilePhoto from "../../components/Reusable/Input/ProfilePhoto";
@@ -10,15 +10,47 @@ import { pageTitle } from "../../utils/utils";
 import { FiUser, FiLock, FiBriefcase, FiHash } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 import { AiOutlineAppstore } from "react-icons/ai";
+import { registerUser } from "../../services/authService";
 
 const Signup = () => {
+  // Page title
   pageTitle("Sign up - Cogniflow");
 
-  // temp remove later
-  const [value, setValue] = useState("");
+  const navigate = useNavigate();
+
+  //  Form Data
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    company: "",
+    inviteCode: "",
+  });
 
   // toogle radio button
   const [role, setRole] = useState("admin");
+
+  // User register function
+  const handleSignup = async (e) => {
+    e.preventDefault();
+
+    const payload = {
+      ...formData,
+      role,
+    };
+
+    try {
+      const res = await registerUser(payload);
+      console.log("Signup success:", res);
+
+      // if redirect
+      navigate(res.redirect);
+    } catch (error) {
+      console.log("Signup error:", error.response?.data || error.message);
+    }
+  };
 
   return (
     <>
@@ -38,7 +70,10 @@ const Signup = () => {
         </div>
 
         {/* SIGNUP FORM */}
-        <form className="flex items-center justify-center">
+        <form
+          className="flex items-center justify-center"
+          onSubmit={handleSignup}
+        >
           <div className="flex flex-col items-center justify-center gap-1">
             {/* Upload profile Image */}
             <ProfilePhoto />
@@ -50,8 +85,10 @@ const Signup = () => {
               name="firstName"
               icon={<FiUser />}
               placeholder="First"
-              value={value}
-              onChange={(event) => setValue(event.target.value)}
+              value={formData.firstName}
+              onChange={(e) =>
+                setFormData({ ...formData, firstName: e.target.value })
+              }
             />
 
             {/* Last name */}
@@ -62,8 +99,10 @@ const Signup = () => {
               icon={<FiUser />}
               placeholder="Last"
               // required={false}
-              value={value}
-              onChange={(event) => setValue(event.target.value)}
+              value={formData.lastName}
+              onChange={(e) =>
+                setFormData({ ...formData, lastName: e.target.value })
+              }
             />
 
             {/* Email */}
@@ -73,8 +112,10 @@ const Signup = () => {
               name="email"
               icon={<MdOutlineEmail />}
               placeholder="Email"
-              value={value}
-              onChange={(event) => setValue(event.target.value)}
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
             />
 
             {/* Password */}
@@ -84,8 +125,10 @@ const Signup = () => {
               name="password"
               icon={<FiLock />}
               placeholder="Enter password"
-              value={value}
-              onChange={(event) => setValue(event.target.value)}
+              value={formData.password}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
             />
 
             {/* Confirm password */}
@@ -95,8 +138,10 @@ const Signup = () => {
               name="confirmPassword"
               icon={<FiLock />}
               placeholder="Confirm password"
-              value={value}
-              onChange={(event) => setValue(event.target.value)}
+              value={formData.confirmPassword}
+              onChange={(e) =>
+                setFormData({ ...formData, confirmPassword: e.target.value })
+              }
             />
 
             {/* ROLE */}
@@ -155,6 +200,10 @@ const Signup = () => {
                     name="company"
                     placeholder="Company"
                     icon={<FiBriefcase />}
+                    value={formData.company}
+                    onChange={(e) =>
+                      setFormData({ ...formData, company: e.target.value })
+                    }
                   />
 
                   {/* <Input
@@ -178,6 +227,10 @@ const Signup = () => {
                     placeholder="Workspace code"
                     icon={<FiHash />}
                     required={false}
+                    value={formData.inviteCode}
+                    onChange={(e) =>
+                      setFormData({ ...formData, inviteCode: e.target.value })
+                    }
                   />
 
                   {/* <p className="xs:text-xs md:text-sm text-center text-gray-500 font-text mt-4">
@@ -197,6 +250,10 @@ const Signup = () => {
                     placeholder="Workspace code"
                     icon={<FiHash />}
                     required={false}
+                    value={formData.inviteCode}
+                    onChange={(e) =>
+                      setFormData({ ...formData, inviteCode: e.target.value })
+                    }
                   />
 
                   {/* <p className="xs:text-xs md:text-sm text-center text-gray-500 font-text mt-4">
@@ -207,10 +264,12 @@ const Signup = () => {
               )}
             </div>
 
+            {/* Signup button */}
             <div className="my-4">
               <Button
                 disabled={false}
-                redirect={`${role === "admin" ? "/admin" : "/u"}`}
+                // redirect={`${role === "admin" ? "/admin" : "/u"}`}
+                type="submit"
               >
                 {role === "admin"
                   ? "Create Account & Get Started"
@@ -218,6 +277,7 @@ const Signup = () => {
               </Button>
             </div>
 
+            {/* Re-direct to login */}
             <div className="flex items-center text-gray-500 gap-4 font-body">
               <p>Already have an account?</p>
               <Button secondary disabled={false} redirect="/auth?type=login">
