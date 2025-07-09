@@ -47,7 +47,7 @@ const Signup = () => {
             <Input
               type="text"
               id="fName"
-              name="fName"
+              name="firstName"
               icon={<FiUser />}
               placeholder="First"
               value={value}
@@ -58,7 +58,7 @@ const Signup = () => {
             <Input
               type="text"
               id="lName"
-              name="lName"
+              name="lastName"
               icon={<FiUser />}
               placeholder="Last"
               // required={false}
@@ -91,8 +91,8 @@ const Signup = () => {
             {/* Confirm password */}
             <Input
               type="password"
-              id="confirm-password"
-              name="confirm-password"
+              id="confirmPassword"
+              name="confirmPassword"
               icon={<FiLock />}
               placeholder="Confirm password"
               value={value}

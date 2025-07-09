@@ -53,7 +53,7 @@ const Login = () => {
               <span className="flex items-center gap-1 justify-center">
                 <input type="checkbox" name="remember" id="remember" />
                 <label htmlFor="remember" className="cursor-pointer">
-                  Remember me
+                  Stay logged in
                 </label>
               </span>
 
