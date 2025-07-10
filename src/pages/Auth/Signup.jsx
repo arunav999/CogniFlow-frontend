@@ -14,6 +14,9 @@ import { pageTitle, debounce } from "../../utils/utils";
 import { FiUser, FiLock, FiBriefcase, FiHash } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 
+// Spinners
+import { SyncLoader } from "react-spinners";
+
 // Validators
 import * as validator from "../../utils/validation";
 
@@ -552,11 +555,16 @@ const Signup = () => {
                 // redirect={`${role === "admin" ? "/admin" : "/u"}`}
                 type="submit"
               >
-                {isSubmitting
-                  ? "Submitting..."
-                  : formData.role === "admin"
-                  ? "Create Account & Get Started"
-                  : "Join Workspace"}
+                {isSubmitting ? (
+                  <>
+                    <span className="font-body">Submitting</span>{" "}
+                    <SyncLoader size={8} color="#8a9d8e" />
+                  </>
+                ) : formData.role === "admin" ? (
+                  "Create Account & Get Started"
+                ) : (
+                  "Join Workspace"
+                )}
               </Button>
             </div>
 
