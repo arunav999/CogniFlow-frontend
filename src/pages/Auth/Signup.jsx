@@ -8,12 +8,7 @@ import ProfilePhoto from "../../components/Reusable/Input/ProfilePhoto";
 import Button from "../../components/Reusable/Button/Button";
 
 // Util
-import {
-  pageTitle,
-  debounce,
-  firstNameInitials,
-  lastNameInitials,
-} from "../../utils/utils";
+import { pageTitle, debounce } from "../../utils/utils";
 
 // Icon
 import { FiUser, FiLock, FiBriefcase, FiHash } from "react-icons/fi";
@@ -51,6 +46,9 @@ const Signup = () => {
     confirmPassword: { hasError: false, hasErrorMessage: null },
     company: { hasError: false, hasErrorMessage: null },
   });
+
+  // Submitting
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Debounce
   const debouncedCheckEmail = debounce(async (email) => {
@@ -292,6 +290,8 @@ const Signup = () => {
       company: formData.company,
     };
 
+    setIsSubmitting(true);
+
     try {
       const response = await registerUser(payload);
       console.log(response);
@@ -308,7 +308,9 @@ const Signup = () => {
         company: "",
       });
     } catch (error) {
-      console.log(error);
+      console.log(error, error.message || "Something went wrong");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -546,11 +548,13 @@ const Signup = () => {
             {/* Signup button */}
             <div className="my-4">
               <Button
-                disabled={hasErrors}
+                disabled={hasErrors || isSubmitting}
                 // redirect={`${role === "admin" ? "/admin" : "/u"}`}
                 type="submit"
               >
-                {formData.role === "admin"
+                {isSubmitting
+                  ? "Submitting..."
+                  : formData.role === "admin"
                   ? "Create Account & Get Started"
                   : "Join Workspace"}
               </Button>
