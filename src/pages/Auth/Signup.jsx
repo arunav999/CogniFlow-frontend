@@ -30,9 +30,6 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-  // toogle radio button
-  const [role, setRole] = useState("admin");
-
   // Form data
   const [formData, setFormData] = useState({
     firstName: "",
@@ -40,8 +37,8 @@ const Signup = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    role,
-    company: role === "admin" && "",
+    role: "admin",
+    company: "",
   });
 
   // Error
@@ -275,8 +272,23 @@ const Signup = () => {
   };
 
   // handle register user
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
+
+    // check for errors
+    const hasErrors = Object.values(error).some((field) => field.hasError);
+
+    if (hasErrors) return;
+
+    console.log(formData.role);
+
+    // if no errors
+    const payload = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      password: formData.password,
+    };
   };
 
   return (
@@ -300,7 +312,7 @@ const Signup = () => {
         <form
           className="flex items-center justify-center"
           onSubmit={handleSignup}
-          // noValidate
+          noValidate
         >
           <div className="flex flex-col items-center justify-center gap-1">
             {/* Upload profile Image */}
@@ -389,8 +401,10 @@ const Signup = () => {
                   name="role"
                   id="admin"
                   value="admin"
-                  checked={role === "admin"}
-                  onChange={(e) => setRole(e.target.value)}
+                  checked={formData.role === "admin"}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, role: e.target.value }))
+                  }
                 />
                 <p>Admin</p>
               </label>
@@ -402,8 +416,10 @@ const Signup = () => {
                   name="role"
                   id="manager"
                   value="manager"
-                  checked={role === "manager"}
-                  onChange={(e) => setRole(e.target.value)}
+                  checked={formData.role === "manager"}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, role: e.target.value }))
+                  }
                 />
                 <p>Manager</p>
               </label>
@@ -415,8 +431,10 @@ const Signup = () => {
                   name="role"
                   id="developer"
                   value="developer"
-                  checked={role === "developer"}
-                  onChange={(e) => setRole(e.target.value)}
+                  checked={formData.role === "developer"}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, role: e.target.value }))
+                  }
                 />
                 <p>Developer</p>
               </label>
@@ -425,7 +443,7 @@ const Signup = () => {
             {/* CONDITIONAL RENDERING ADMIN / MEMBER */}
             {/* ADMIN */}
             <div className="mt-4 flex flex-col items-center justify-center">
-              {role === "admin" && (
+              {formData.role === "admin" && (
                 <>
                   <Input
                     type="text"
@@ -443,7 +461,7 @@ const Signup = () => {
               )}
 
               {/* MANAGER */}
-              {role === "manager" && (
+              {formData.role === "manager" && (
                 <>
                   <Input
                     type="text"
@@ -451,14 +469,14 @@ const Signup = () => {
                     name="inviteCode"
                     placeholder="Workspace code"
                     icon={<FiHash />}
-                    value={""}
-                    onChange={""}
+                    // value={""}
+                    // onChange={""}
                   />
                 </>
               )}
 
               {/* DEVELOPER */}
-              {role === "developer" && (
+              {formData.role === "developer" && (
                 <>
                   <Input
                     type="text"
@@ -466,8 +484,8 @@ const Signup = () => {
                     name="inviteCode"
                     placeholder="Workspace code"
                     icon={<FiHash />}
-                    value={""}
-                    onChange={""}
+                    // value={""}
+                    // onChange={""}
                   />
                 </>
               )}
@@ -507,7 +525,7 @@ const Signup = () => {
                 // redirect={`${role === "admin" ? "/admin" : "/u"}`}
                 type="submit"
               >
-                {role === "admin"
+                {formData.role === "admin"
                   ? "Create Account & Get Started"
                   : "Join Workspace"}
               </Button>
