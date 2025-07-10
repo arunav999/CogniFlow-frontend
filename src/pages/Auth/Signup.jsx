@@ -9,6 +9,7 @@ import Button from "../../components/Reusable/Button/Button";
 
 // Util
 import { pageTitle } from "../../utils/utils";
+import { debounce } from "../../utils/utils";
 
 // Icon
 import { FiUser, FiLock, FiBriefcase, FiHash } from "react-icons/fi";
@@ -16,6 +17,9 @@ import { MdOutlineEmail } from "react-icons/md";
 
 // Validators
 import * as validator from "../../utils/validation";
+
+// Signup service
+import { checkUser } from "../../services/authService";
 
 // Signup Action
 // import { signupAction } from "./SignupAction";
@@ -50,44 +54,87 @@ const Signup = () => {
     company: { hasError: false, hasErrorMessage: null },
   });
 
+  // Debounce
+  const debouncedCheckEmail = debounce(async (email) => {
+    const res = await checkUser(email);
+
+    setError((prev) => ({
+      ...prev,
+      email: {
+        hasError: !res.success,
+        hasErrorMessage: res.success ? null : res.message,
+      },
+    }));
+  }, 500);
+
   // handle blur
   const handleBlur = (field) => {
-    const newErrors = { ...error };
-
     // first name
     if (field === "firstName") {
       const result = validator.firstNameIsValid(formData.firstName);
 
-      newErrors.firstName = result
-        ? { hasError: true, hasErrorMessage: result.message }
-        : { hasError: false, hasErrorMessage: null };
+      if (result) {
+        setError((prev) => ({
+          ...prev,
+          firstName: {
+            hasError: true,
+            hasErrorMessage: result.message,
+          },
+        }));
+        return;
+      }
     }
 
     // last name
     if (field === "lastName") {
       const result = validator.lastNameIsValid(formData.lastName);
 
-      newErrors.lastName = result
-        ? { hasError: true, hasErrorMessage: result.message }
-        : { hasError: false, hasErrorMessage: null };
+      if (result) {
+        setError((prev) => ({
+          ...prev,
+          lastName: {
+            hasError: true,
+            hasErrorMessage: result.message,
+          },
+        }));
+        return;
+      }
     }
 
     // email
     if (field === "email") {
+      const email = formData.email.trim();
       const result = validator.emailIsValid(formData.email);
 
-      newErrors.email = result
-        ? { hasError: true, hasErrorMessage: result.message }
-        : { hasError: false, hasErrorMessage: null };
+      if (result) {
+        setError((prev) => ({
+          ...prev,
+          email: {
+            hasError: true,
+            hasErrorMessage: result.message,
+          },
+        }));
+        return;
+      }
+
+      // Debounced API call
+      debouncedCheckEmail(email);
     }
 
     // password
     if (field === "password") {
       const result = validator.passwordIsValid(formData.password);
 
-      newErrors.password = result
-        ? { hasError: true, hasErrorMessage: result.message }
-        : { hasError: false, hasErrorMessage: null };
+      if (result) {
+        setError((prev) => ({
+          ...prev,
+          password: {
+            hasError: true,
+            hasErrorMessage: result.message,
+          },
+        }));
+        return;
+      }
     }
 
     // confirmPassword
@@ -97,23 +144,33 @@ const Signup = () => {
         formData.confirmPassword
       );
 
-      newErrors.confirmPassword = result
-        ? { hasError: true, hasErrorMessage: result.message }
-        : { hasError: false, hasErrorMessage: null };
+      if (result) {
+        setError((prev) => ({
+          ...prev,
+          confirmPassword: {
+            hasError: true,
+            hasErrorMessage: result.message,
+          },
+        }));
+        return;
+      }
     }
 
     // company
     if (field === "company") {
       const result = validator.companyIsValid(formData.company);
 
-      newErrors.company = result
-        ? { hasError: true, hasErrorMessage: result.message }
-        : { hasError: false, hasErrorMessage: null };
+      if (result) {
+        setError((prev) => ({
+          ...prev,
+          company: {
+            hasError: true,
+            hasErrorMessage: result.message,
+          },
+        }));
+        return;
+      }
     }
-
-    setError(newErrors);
-
-    console.log(error.firstName.hasError, error.firstName.hasErrorMessage);
   };
 
   // handle change
@@ -122,98 +179,98 @@ const Signup = () => {
 
     // first name
     if (field === "firstName") {
-      setFormData({
-        ...formData,
+      setFormData((prev) => ({
+        ...prev,
         firstName: value,
-      });
+      }));
 
-      setError({
-        ...error,
+      setError((prev) => ({
+        ...prev,
         firstName: {
           hasError: false,
           hasErrorMessage: null,
         },
-      });
+      }));
     }
 
     // last name
     if (field === "lastName") {
-      setFormData({
-        ...formData,
+      setFormData((prev) => ({
+        ...prev,
         lastName: value,
-      });
+      }));
 
-      setError({
-        ...error,
+      setError((prev) => ({
+        ...prev,
         lastName: {
           hasError: false,
           hasErrorMessage: null,
         },
-      });
+      }));
     }
 
     // email
     if (field === "email") {
-      setFormData({
-        ...formData,
+      setFormData((prev) => ({
+        ...prev,
         email: value,
-      });
+      }));
 
-      setError({
-        ...error,
+      setError((prev) => ({
+        ...prev,
         email: {
           hasError: false,
           hasErrorMessage: null,
         },
-      });
+      }));
     }
 
     // password
     if (field === "password") {
-      setFormData({
-        ...formData,
+      setFormData((prev) => ({
+        ...prev,
         password: value,
-      });
+      }));
 
-      setError({
-        ...error,
+      setError((prev) => ({
+        ...prev,
         password: {
           hasError: false,
           hasErrorMessage: null,
         },
-      });
+      }));
     }
 
     // confirmPassword
     if (field === "confirmPassword") {
-      setFormData({
-        ...formData,
+      setFormData((prev) => ({
+        ...prev,
         confirmPassword: value,
-      });
+      }));
 
-      setError({
-        ...error,
+      setError((prev) => ({
+        ...prev,
         confirmPassword: {
           hasError: false,
           hasErrorMessage: null,
         },
-      });
+      }));
     }
 
     // company
     if (field === "company") {
-      setFormData({
-        ...formData,
+      setFormData((prev) => ({
+        ...prev,
         company: value,
-      });
+      }));
 
-      setError({
-        ...error,
+      setError((prev) => ({
+        ...prev,
         company: {
           hasError: false,
           hasErrorMessage: null,
         },
-      });
+      }));
     }
   };
 
