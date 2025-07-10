@@ -19,10 +19,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import * as validator from "../../utils/validation";
 
 // Signup service
-import { checkUser } from "../../services/authService";
-
-// Signup Action
-// import { signupAction } from "./SignupAction";
+import { checkUser, registerUser } from "../../services/authService";
 
 const Signup = () => {
   // Page title
@@ -280,15 +277,35 @@ const Signup = () => {
 
     if (hasErrors) return;
 
-    console.log(formData.role);
-
     // if no errors
     const payload = {
       firstName: formData.firstName,
       lastName: formData.lastName,
       email: formData.email,
       password: formData.password,
+      confirmPassword: formData.confirmPassword,
+      role: formData.role,
+      company: formData.company,
     };
+
+    try {
+      const response = await registerUser(payload);
+      console.log(response);
+
+      navigate(response.redirect);
+
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        role: "admin",
+        company: "",
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
