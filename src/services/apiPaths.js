@@ -8,4 +8,7 @@ export const API_PATHS = {
     CHECK_EMAIL: "/api/v1/auth/check-email",
     GET_USER_INFO: "/api/v1/auth/getUser",
   },
+  UPLOAD: {
+    PROFILE_PIC: "/api/v1/upload/avatar",
+  },
 };

@@ -22,12 +22,16 @@ import * as validator from "../../utils/validation";
 
 // Signup service
 import { checkUser, registerUser } from "../../services/authService";
+import { uploadProfilePic } from "../../services/uploadService";
 
 const Signup = () => {
   // Page title
   pageTitle("Sign up - Cogniflow");
 
   const navigate = useNavigate();
+
+  // Profile Pic
+  const [avatarFile, setavAtarFile] = useState(null);
 
   // Form data
   const [formData, setFormData] = useState({
@@ -52,6 +56,8 @@ const Signup = () => {
 
   // Submitting
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleAvatarSelect = (file) => setavAtarFile(file);
 
   // Debounce
   const debouncedCheckEmail = debounce(async (email) => {
@@ -297,6 +303,16 @@ const Signup = () => {
 
     try {
       const response = await registerUser(payload);
+
+      if (avatarFile) {
+        try {
+          const uploadRes = await uploadProfilePic(avatarFile);
+          console.log("Avatar uploaded:", uploadRes.avatar);
+        } catch (uploadError) {
+          console.warn("Avatar upload failed:", uploadError.message);
+        }
+      }
+
       console.log(response);
 
       navigate(response.redirect);
@@ -345,6 +361,7 @@ const Signup = () => {
             <ProfilePhoto
               fName={formData.firstName}
               lName={formData.lastName}
+              onSelect={handleAvatarSelect}
             />
 
             {/* First name */}

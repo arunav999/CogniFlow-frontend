@@ -8,19 +8,18 @@ import { MdDelete } from "react-icons/md";
 // Utils
 import { firstNameInitials, lastNameInitials } from "../../../utils/utils";
 
-const ProfilePhoto = ({ fName, lName }) => {
+const ProfilePhoto = ({ fName, lName, onSelect }) => {
   const imageRef = useRef(null);
   const [image, setImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    if (file) {
-      setImage(file);
+    if (!file) return;
 
-      const preview = URL.createObjectURL(file);
-      setPreviewUrl(preview);
-    }
+    setImage(file);
+    setPreviewUrl(URL.createObjectURL(file));
+    onSelect?.(file);
   };
 
   return (
@@ -65,6 +64,7 @@ const ProfilePhoto = ({ fName, lName }) => {
               onClick={() => {
                 setImage(null);
                 setPreviewUrl(null);
+                onSelect?.(null);
               }}
             >
               <MdDelete className="text-gray-400 text-lg" />
