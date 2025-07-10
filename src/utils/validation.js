@@ -11,7 +11,7 @@ export const firstNameIsValid = (fName) => {
 
   if (!nameRegx.test(firstNameSanitized))
     return {
-      message: "First name must contain only letters (no numbers or symbols)",
+      message: "Letters only (no numbers or symbols)",
     };
 
   return null;
@@ -19,6 +19,8 @@ export const firstNameIsValid = (fName) => {
 
 // lastName
 export const lastNameIsValid = (lName) => {
+  if (!lName) return null;
+
   let lastNameSanitized = lName.trim();
 
   if (lastNameSanitized.length > 0 && lastNameSanitized.length < 3)
@@ -26,7 +28,7 @@ export const lastNameIsValid = (lName) => {
 
   if (!nameRegx.test(lastNameSanitized))
     return {
-      message: "First name must contain only letters (no numbers or symbols)",
+      message: "Letters only (no numbers or symbols)",
     };
 
   return null;

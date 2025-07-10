@@ -13,13 +13,12 @@ import { pageTitle } from "../../utils/utils";
 // Icon
 import { FiUser, FiLock, FiBriefcase, FiHash } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
-import { AiOutlineAppstore } from "react-icons/ai";
 
-// Service
-import { registerUser } from "../../services/authService";
+// Validators
+import * as validator from "../../utils/validation";
 
-// Validation
-import { emailIsValid } from "../../utils/validation";
+// Signup Action
+// import { signupAction } from "./SignupAction";
 
 const Signup = () => {
   // Page title
@@ -27,50 +26,201 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-  //  Form Data
+  // toogle radio button
+  const [role, setRole] = useState("admin");
+
+  // Form data
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
-    company: "",
-    inviteCode: "",
+    role,
+    company: role === "admin" && "",
   });
 
-  // toogle radio button
-  const [role, setRole] = useState("admin");
+  // Error
+  const [error, setError] = useState({
+    firstName: { hasError: false, hasErrorMessage: null },
+    lastName: { hasError: false, hasErrorMessage: null },
+    email: { hasError: false, hasErrorMessage: null },
+    password: { hasError: false, hasErrorMessage: null },
+    confirmPassword: { hasError: false, hasErrorMessage: null },
+    company: { hasError: false, hasErrorMessage: null },
+  });
 
-  // User register function
-  function signupAction(formData) {
-    const firstName = formData.get("firstName");
-    const lastName = formData.get("lastName");
-    const email = formData.get("email");
-    const password = formData.get("password");
-    const confirmPassword = formData.get("confirmPassword");
-    const role = formData.get("role");
-    const company = formData.get("company");
-    const inviteCode = formData.get("inviteCode");
-  }
+  // handle blur
+  const handleBlur = (field) => {
+    const newErrors = { ...error };
 
-  // const handleSignup = async (e) => {
-  //   e.preventDefault();
+    // first name
+    if (field === "firstName") {
+      const result = validator.firstNameIsValid(formData.firstName);
 
-  //   const payload = {
-  //     ...formData,
-  //     role,
-  //   };
+      newErrors.firstName = result
+        ? { hasError: true, hasErrorMessage: result.message }
+        : { hasError: false, hasErrorMessage: null };
+    }
 
-  //   try {
-  //     const res = await registerUser(payload);
-  //     console.log("Signup success:", res);
+    // last name
+    if (field === "lastName") {
+      const result = validator.lastNameIsValid(formData.lastName);
 
-  //     // if redirect
-  //     navigate(res.redirect);
-  //   } catch (error) {
-  //     console.log("Signup error:", error.response?.data || error.message);
-  //   }
-  // };
+      newErrors.lastName = result
+        ? { hasError: true, hasErrorMessage: result.message }
+        : { hasError: false, hasErrorMessage: null };
+    }
+
+    // email
+    if (field === "email") {
+      const result = validator.emailIsValid(formData.email);
+
+      newErrors.email = result
+        ? { hasError: true, hasErrorMessage: result.message }
+        : { hasError: false, hasErrorMessage: null };
+    }
+
+    // password
+    if (field === "password") {
+      const result = validator.passwordIsValid(formData.password);
+
+      newErrors.password = result
+        ? { hasError: true, hasErrorMessage: result.message }
+        : { hasError: false, hasErrorMessage: null };
+    }
+
+    // confirmPassword
+    if (field === "confirmPassword") {
+      const result = validator.confirmPasswordIsValid(
+        formData.password,
+        formData.confirmPassword
+      );
+
+      newErrors.confirmPassword = result
+        ? { hasError: true, hasErrorMessage: result.message }
+        : { hasError: false, hasErrorMessage: null };
+    }
+
+    // company
+    if (field === "company") {
+      const result = validator.companyIsValid(formData.company);
+
+      newErrors.company = result
+        ? { hasError: true, hasErrorMessage: result.message }
+        : { hasError: false, hasErrorMessage: null };
+    }
+
+    setError(newErrors);
+
+    console.log(error.firstName.hasError, error.firstName.hasErrorMessage);
+  };
+
+  // handle change
+  const handleChange = (e, field) => {
+    const value = e.target.value;
+
+    // first name
+    if (field === "firstName") {
+      setFormData({
+        ...formData,
+        firstName: value,
+      });
+
+      setError({
+        ...error,
+        firstName: {
+          hasError: false,
+          hasErrorMessage: null,
+        },
+      });
+    }
+
+    // last name
+    if (field === "lastName") {
+      setFormData({
+        ...formData,
+        lastName: value,
+      });
+
+      setError({
+        ...error,
+        lastName: {
+          hasError: false,
+          hasErrorMessage: null,
+        },
+      });
+    }
+
+    // email
+    if (field === "email") {
+      setFormData({
+        ...formData,
+        email: value,
+      });
+
+      setError({
+        ...error,
+        email: {
+          hasError: false,
+          hasErrorMessage: null,
+        },
+      });
+    }
+
+    // password
+    if (field === "password") {
+      setFormData({
+        ...formData,
+        password: value,
+      });
+
+      setError({
+        ...error,
+        password: {
+          hasError: false,
+          hasErrorMessage: null,
+        },
+      });
+    }
+
+    // confirmPassword
+    if (field === "confirmPassword") {
+      setFormData({
+        ...formData,
+        confirmPassword: value,
+      });
+
+      setError({
+        ...error,
+        confirmPassword: {
+          hasError: false,
+          hasErrorMessage: null,
+        },
+      });
+    }
+
+    // company
+    if (field === "company") {
+      setFormData({
+        ...formData,
+        company: value,
+      });
+
+      setError({
+        ...error,
+        company: {
+          hasError: false,
+          hasErrorMessage: null,
+        },
+      });
+    }
+  };
+
+  // handle register user
+  const handleSignup = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <>
@@ -92,9 +242,8 @@ const Signup = () => {
         {/* SIGNUP FORM */}
         <form
           className="flex items-center justify-center"
-          // onSubmit={handleSignup}
-          action={signupAction}
-          noValidate
+          onSubmit={handleSignup}
+          // noValidate
         >
           <div className="flex flex-col items-center justify-center gap-1">
             {/* Upload profile Image */}
@@ -108,9 +257,10 @@ const Signup = () => {
               icon={<FiUser />}
               placeholder="First"
               value={formData.firstName}
-              onChange={(e) =>
-                setFormData({ ...formData, firstName: e.target.value })
-              }
+              onBlur={() => handleBlur("firstName")}
+              onChange={(e) => handleChange(e, "firstName")}
+              error={error.firstName.hasError}
+              errorMessage={error.firstName.hasErrorMessage}
             />
 
             {/* Last name */}
@@ -122,9 +272,10 @@ const Signup = () => {
               icon={<FiUser />}
               placeholder="Last"
               value={formData.lastName}
-              onChange={(e) =>
-                setFormData({ ...formData, lastName: e.target.value })
-              }
+              onBlur={() => handleBlur("lastName")}
+              onChange={(e) => handleChange(e, "lastName")}
+              error={error.lastName.hasError}
+              errorMessage={error.lastName.hasErrorMessage}
             />
 
             {/* Email */}
@@ -135,9 +286,10 @@ const Signup = () => {
               icon={<MdOutlineEmail />}
               placeholder="Email"
               value={formData.email}
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
+              onBlur={() => handleBlur("email")}
+              onChange={(e) => handleChange(e, "email")}
+              error={error.email.hasError}
+              errorMessage={error.email.hasErrorMessage}
             />
 
             {/* Password */}
@@ -148,9 +300,10 @@ const Signup = () => {
               icon={<FiLock />}
               placeholder="Enter password"
               value={formData.password}
-              onChange={(e) =>
-                setFormData({ ...formData, password: e.target.value })
-              }
+              onBlur={() => handleBlur("password")}
+              onChange={(e) => handleChange(e, "password")}
+              error={error.password.hasError}
+              errorMessage={error.password.hasErrorMessage}
             />
 
             {/* Confirm password */}
@@ -161,9 +314,10 @@ const Signup = () => {
               icon={<FiLock />}
               placeholder="Confirm password"
               value={formData.confirmPassword}
-              onChange={(e) =>
-                setFormData({ ...formData, confirmPassword: e.target.value })
-              }
+              onBlur={() => handleBlur("confirmPassword")}
+              onChange={(e) => handleChange(e, "confirmPassword")}
+              error={error.confirmPassword.hasError}
+              errorMessage={error.confirmPassword.hasErrorMessage}
             />
 
             {/* ROLE */}
@@ -223,19 +377,11 @@ const Signup = () => {
                     placeholder="Company"
                     icon={<FiBriefcase />}
                     value={formData.company}
-                    onChange={(e) =>
-                      setFormData({ ...formData, company: e.target.value })
-                    }
+                    onBlur={() => handleBlur("company")}
+                    onChange={(e) => handleChange(e, "company")}
+                    error={error.company.hasError}
+                    errorMessage={error.company.hasErrorMessage}
                   />
-
-                  {/* <Input
-                    type="text"
-                    id="workspace"
-                    name="workspace"
-                    placeholder="Workspace"
-                    required={false}
-                    icon={<AiOutlineAppstore />}
-                  /> */}
                 </>
               )}
 
@@ -248,16 +394,9 @@ const Signup = () => {
                     name="inviteCode"
                     placeholder="Workspace code"
                     icon={<FiHash />}
-                    value={formData.inviteCode}
-                    onChange={(e) =>
-                      setFormData({ ...formData, inviteCode: e.target.value })
-                    }
+                    value={""}
+                    onChange={""}
                   />
-
-                  {/* <p className="xs:text-xs md:text-sm text-center text-gray-500 font-text mt-4">
-                    Don't have one? &rarr; We'll create a personal workspace for
-                    you.
-                  </p> */}
                 </>
               )}
 
@@ -270,24 +409,17 @@ const Signup = () => {
                     name="inviteCode"
                     placeholder="Workspace code"
                     icon={<FiHash />}
-                    value={formData.inviteCode}
-                    onChange={(e) =>
-                      setFormData({ ...formData, inviteCode: e.target.value })
-                    }
+                    value={""}
+                    onChange={""}
                   />
-
-                  {/* <p className="xs:text-xs md:text-sm text-center text-gray-500 font-text mt-4">
-                    Don't have one? &rarr; We'll create a personal workspace for
-                    you.
-                  </p> */}
                 </>
               )}
             </div>
 
             {/* Reset form */}
-            {/* <div
+            <div
               className="w-[100%] underline cursor-pointer text-right font-body text-gray-500"
-              onClick={() =>
+              onClick={() => {
                 setFormData({
                   firstName: "",
                   lastName: "",
@@ -296,11 +428,20 @@ const Signup = () => {
                   confirmPassword: "",
                   company: "",
                   inviteCode: "",
-                })
-              }
+                });
+
+                setError({
+                  firstName: { hasError: false, hasErrorMessage: null },
+                  lastName: { hasError: false, hasErrorMessage: null },
+                  email: { hasError: false, hasErrorMessage: null },
+                  password: { hasError: false, hasErrorMessage: null },
+                  confirmPassword: { hasError: false, hasErrorMessage: null },
+                  company: { hasError: false, hasErrorMessage: null },
+                });
+              }}
             >
               Reset
-            </div> */}
+            </div>
 
             {/* Signup button */}
             <div className="my-4">

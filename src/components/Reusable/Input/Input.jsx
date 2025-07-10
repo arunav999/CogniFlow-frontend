@@ -11,6 +11,7 @@ const Input = ({
   type,
   placeholder,
   onChange,
+  onBlur,
   icon,
   error,
   errorMessage,
@@ -49,6 +50,7 @@ const Input = ({
             className="peer  outline-none py-4 px-6 w-[90%]"
             placeholder=" "
             required={required}
+            onBlur={onBlur}
             onChange={onChange}
           />
 
