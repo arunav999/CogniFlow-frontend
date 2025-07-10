@@ -8,8 +8,12 @@ import ProfilePhoto from "../../components/Reusable/Input/ProfilePhoto";
 import Button from "../../components/Reusable/Button/Button";
 
 // Util
-import { pageTitle } from "../../utils/utils";
-import { debounce } from "../../utils/utils";
+import {
+  pageTitle,
+  debounce,
+  firstNameInitials,
+  lastNameInitials,
+} from "../../utils/utils";
 
 // Icon
 import { FiUser, FiLock, FiBriefcase, FiHash } from "react-icons/fi";
@@ -333,7 +337,10 @@ const Signup = () => {
         >
           <div className="flex flex-col items-center justify-center gap-1">
             {/* Upload profile Image */}
-            <ProfilePhoto />
+            <ProfilePhoto
+              fName={formData.firstName}
+              lName={formData.lastName}
+            />
 
             {/* First name */}
             <Input

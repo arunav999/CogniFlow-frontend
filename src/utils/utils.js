@@ -11,3 +11,19 @@ export const debounce = (fn, delay) => {
     timeoutId = setTimeout(() => fn(...args), delay);
   };
 };
+
+// Get Name Initials
+export const firstNameInitials = (name) => {
+  if (!name) return;
+
+  const firstLetter = name.split("")[0].toUpperCase();
+
+  return firstLetter;
+};
+
+export const lastNameInitials = (name) => {
+  if (!name) return;
+
+  const firstLetter = name.split("")[0].toUpperCase();
+  return firstLetter;
+};
