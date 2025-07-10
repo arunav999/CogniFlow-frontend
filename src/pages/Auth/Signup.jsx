@@ -268,12 +268,12 @@ const Signup = () => {
     }
   };
 
+  // check for errors
+  const hasErrors = Object.values(error).some((field) => field.hasError);
+
   // handle register user
   const handleSignup = async (e) => {
     e.preventDefault();
-
-    // check for errors
-    const hasErrors = Object.values(error).some((field) => field.hasError);
 
     if (hasErrors) return;
 
@@ -329,7 +329,7 @@ const Signup = () => {
         <form
           className="flex items-center justify-center"
           onSubmit={handleSignup}
-          noValidate
+          // noValidate
         >
           <div className="flex flex-col items-center justify-center gap-1">
             {/* Upload profile Image */}
@@ -519,6 +519,7 @@ const Signup = () => {
                   password: "",
                   confirmPassword: "",
                   company: "",
+                  role: "admin",
                   inviteCode: "",
                 });
 
@@ -538,7 +539,7 @@ const Signup = () => {
             {/* Signup button */}
             <div className="my-4">
               <Button
-                disabled={false}
+                disabled={hasErrors}
                 // redirect={`${role === "admin" ? "/admin" : "/u"}`}
                 type="submit"
               >
