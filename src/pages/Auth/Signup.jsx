@@ -574,8 +574,8 @@ const Signup = () => {
               >
                 {isSubmitting ? (
                   <>
-                    <span className="font-body">Submitting</span>{" "}
-                    <SyncLoader size={8} color="#8a9d8e" />
+                    <span className="font-body">Signing up</span>{" "}
+                    <SyncLoader size={8} color="#eee" />
                   </>
                 ) : formData.role === "admin" ? (
                   "Create Account & Get Started"

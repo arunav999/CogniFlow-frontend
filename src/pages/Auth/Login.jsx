@@ -13,6 +13,12 @@ import { pageTitle } from "../../utils/utils";
 import { FiLock } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 
+// Spinners
+import { SyncLoader } from "react-spinners";
+
+// Validators
+import { emailIsValid, passwordIsValid } from "../../utils/validation";
+
 // Service
 import { loginUser } from "../../services/authService";
 
@@ -29,13 +35,99 @@ const Login = () => {
     // remember: "",
   });
 
+  // Error
+  const [error, setError] = useState({
+    email: { hasError: false, hasErrorMessage: null },
+    password: { hasError: false, hasErrorMessage: null },
+  });
+
+  // Submitting
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Handle Blur
+  const handleBlur = (field) => {
+    // Email
+    if (field === "email") {
+      const result = emailIsValid(formData.email);
+
+      if (result) {
+        setError((prev) => ({
+          ...prev,
+          email: {
+            hasError: true,
+            hasErrorMessage: result.message,
+          },
+        }));
+      }
+    }
+
+    // Password
+    if (field === "password") {
+      const result = passwordIsValid(formData.password);
+
+      if (result) {
+        setError((prev) => ({
+          ...prev,
+          password: {
+            hasError: true,
+            hasErrorMessage: result.message,
+          },
+        }));
+      }
+    }
+  };
+
+  // Handle Chnage
+  const handleChange = (e, field) => {
+    const value = e.target.value;
+
+    // email
+    if (field === "email") {
+      setFormData((prev) => ({
+        ...prev,
+        email: value,
+      }));
+
+      setError((prev) => ({
+        ...prev,
+        email: {
+          hasError: false,
+          hasErrorMessage: null,
+        },
+      }));
+    }
+
+    // password
+    if (field === "password") {
+      setFormData((prev) => ({
+        ...prev,
+        password: value,
+      }));
+
+      setError((prev) => ({
+        ...prev,
+        password: {
+          hasError: false,
+          hasErrorMessage: null,
+        },
+      }));
+    }
+  };
+
+  // check for errors
+  const hasErrors = Object.values(error).some((field) => field.hasError);
+
   // User login
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    if (hasErrors) return;
+
     const payload = {
       ...formData,
     };
+
+    setIsSubmitting(true);
 
     try {
       const res = await loginUser(payload);
@@ -43,8 +135,15 @@ const Login = () => {
 
       // If redirect
       navigate(res.redirect);
+
+      setFormData({
+        email: "",
+        password: "",
+      });
     } catch (error) {
       console.log("Login error:", error.response?.data || error.message);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -78,9 +177,10 @@ const Login = () => {
               icon={<MdOutlineEmail />}
               placeholder="Email"
               value={formData.email}
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
+              onBlur={() => handleBlur("email")}
+              onChange={(e) => handleChange(e, "email")}
+              error={error.email.hasError}
+              errorMessage={error.email.hasErrorMessage}
             />
 
             {/* Password */}
@@ -91,9 +191,10 @@ const Login = () => {
               icon={<FiLock />}
               placeholder="Enter password"
               value={formData.password}
-              onChange={(e) =>
-                setFormData({ ...formData, password: e.target.value })
-              }
+              onBlur={() => handleBlur("password")}
+              onChange={(e) => handleChange(e, "password")}
+              error={error.password.hasError}
+              errorMessage={error.password.hasErrorMessage}
             />
 
             {/* Remember me and Forgot password */}
@@ -118,8 +219,15 @@ const Login = () => {
             {/* Login button and Signup page */}
             <div className="flex flex-col items-center justify-center gap-6 mt-8">
               <span>
-                <Button disabled={false} type="submit">
-                  Login to Cogniflow
+                <Button disabled={hasErrors || isSubmitting} type="submit">
+                  {isSubmitting ? (
+                    <>
+                      <span className="font-body">Logging in</span>
+                      <SyncLoader size={8} color="#eee" />
+                    </>
+                  ) : (
+                    "Login to Cogniflow"
+                  )}
                 </Button>
               </span>
 
@@ -129,6 +237,24 @@ const Login = () => {
                   Sign up
                 </Button>
               </span>
+            </div>
+
+            {/* Reset form */}
+            <div
+              className="underline cursor-pointer font-body text-gray-500"
+              onClick={() => {
+                setFormData({
+                  email: "",
+                  password: "",
+                });
+
+                setError({
+                  email: { hasError: false, hasErrorMessage: null },
+                  password: { hasError: false, hasErrorMessage: null },
+                });
+              }}
+            >
+              Reset
             </div>
           </div>
         </form>
