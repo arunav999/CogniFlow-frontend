@@ -35,11 +35,13 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  // Remember me
+  const [rememberMe, setRememberMe] = useState(false);
+
   // Form data
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    // remember: "",
   });
 
   // Error
@@ -132,6 +134,7 @@ const Login = () => {
 
     const payload = {
       ...formData,
+      remember: rememberMe,
     };
 
     setIsSubmitting(true);
@@ -147,6 +150,8 @@ const Login = () => {
         email: "",
         password: "",
       });
+
+      setRememberMe(false);
     } catch (error) {
       setIsSubmitting(false);
 
@@ -229,7 +234,7 @@ const Login = () => {
                   type="checkbox"
                   name="remember"
                   id="remember"
-                  onChange={(e) => console.log(e.target.value)}
+                  onChange={() => setRememberMe((prev) => !prev)}
                 />
                 <label htmlFor="remember" className="cursor-pointer">
                   Stay logged in
@@ -273,6 +278,9 @@ const Login = () => {
                   email: "",
                   password: "",
                 });
+
+                // Reset remember
+                setRememberMe(false);
 
                 // Reset errors
                 setError({
