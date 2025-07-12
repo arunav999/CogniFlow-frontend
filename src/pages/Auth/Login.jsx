@@ -234,6 +234,7 @@ const Login = () => {
                   type="checkbox"
                   name="remember"
                   id="remember"
+                  checked={rememberMe}
                   onChange={() => setRememberMe((prev) => !prev)}
                 />
                 <label htmlFor="remember" className="cursor-pointer">
