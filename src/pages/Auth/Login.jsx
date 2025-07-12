@@ -1,5 +1,5 @@
 // React imports
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 // Custom component
@@ -25,6 +25,13 @@ import { loginUser } from "../../services/authService";
 const Login = () => {
   // Page title
   pageTitle("Login - Cogniflow");
+
+  // Focus on first field
+  const emailRef = useRef(null);
+
+  useEffect(() => {
+    emailRef.current?.focus();
+  }, []);
 
   const navigate = useNavigate();
 
@@ -176,6 +183,7 @@ const Login = () => {
               name="email"
               icon={<MdOutlineEmail />}
               placeholder="Email"
+              ref={emailRef}
               value={formData.email}
               onBlur={() => handleBlur("email")}
               onChange={(e) => handleChange(e, "email")}
@@ -243,15 +251,20 @@ const Login = () => {
             <div
               className="underline cursor-pointer font-body text-gray-500"
               onClick={() => {
+                // Reset form data
                 setFormData({
                   email: "",
                   password: "",
                 });
 
+                // Reset errors
                 setError({
                   email: { hasError: false, hasErrorMessage: null },
                   password: { hasError: false, hasErrorMessage: null },
                 });
+
+                // Reset focus
+                emailRef.current?.focus();
               }}
             >
               Reset

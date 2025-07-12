@@ -10,6 +10,7 @@ const Input = ({
   required = true,
   type,
   placeholder,
+  ref,
   onChange,
   onBlur,
   icon,
@@ -50,6 +51,7 @@ const Input = ({
             className="peer  outline-none py-4 px-6 w-[90%]"
             placeholder=" "
             required={required}
+            ref={ref}
             onBlur={onBlur}
             onChange={onChange}
           />

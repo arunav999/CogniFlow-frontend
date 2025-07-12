@@ -1,5 +1,5 @@
 // React imports
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 // Custom component
@@ -32,6 +32,13 @@ const Signup = () => {
 
   // Profile Pic
   const [avatarFile, setavAtarFile] = useState(null);
+
+  // Focus on first field
+  const firstNameRef = useRef(null);
+
+  useEffect(() => {
+    firstNameRef.current?.focus();
+  }, []);
 
   // Form data
   const [formData, setFormData] = useState({
@@ -327,7 +334,22 @@ const Signup = () => {
         company: "",
       });
     } catch (error) {
-      console.log(error, error.message || "Something went wrong");
+      setIsSubmitting(false);
+
+      // Backend error message
+      const backendError = error.response?.data;
+
+      if (backendError && backendError.field) {
+        setError((prev) => ({
+          ...prev,
+          [backendError.field]: {
+            hasErrors: true,
+            hasErrorMessage: backendError.message,
+          },
+        }));
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -354,7 +376,7 @@ const Signup = () => {
         <form
           className="flex items-center justify-center"
           onSubmit={handleSignup}
-          // noValidate
+          noValidate
         >
           <div className="flex flex-col items-center justify-center gap-1">
             {/* Upload profile Image */}
@@ -371,6 +393,7 @@ const Signup = () => {
               name="firstName"
               icon={<FiUser />}
               placeholder="First"
+              ref={firstNameRef}
               value={formData.firstName}
               onBlur={() => handleBlur("firstName")}
               onChange={(e) => handleChange(e, "firstName")}
@@ -541,6 +564,7 @@ const Signup = () => {
             <div
               className="w-[100%] underline cursor-pointer text-right font-body text-gray-500"
               onClick={() => {
+                // Reset form data
                 setFormData({
                   firstName: "",
                   lastName: "",
@@ -552,6 +576,7 @@ const Signup = () => {
                   inviteCode: "",
                 });
 
+                // Reset errors
                 setError({
                   firstName: { hasError: false, hasErrorMessage: null },
                   lastName: { hasError: false, hasErrorMessage: null },
@@ -560,6 +585,9 @@ const Signup = () => {
                   confirmPassword: { hasError: false, hasErrorMessage: null },
                   company: { hasError: false, hasErrorMessage: null },
                 });
+
+                // Reset focus
+                firstNameRef.current?.focus();
               }}
             >
               Reset
