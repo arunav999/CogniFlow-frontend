@@ -376,7 +376,7 @@ const Signup = () => {
         <form
           className="flex items-center justify-center"
           onSubmit={handleSignup}
-          noValidate
+          // noValidate
         >
           <div className="flex flex-col items-center justify-center gap-1">
             {/* Upload profile Image */}

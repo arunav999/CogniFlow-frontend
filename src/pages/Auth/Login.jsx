@@ -148,7 +148,24 @@ const Login = () => {
         password: "",
       });
     } catch (error) {
-      console.log("Login error:", error.response?.data || error.message);
+      setIsSubmitting(false);
+
+      // Backend error message
+      const backendError = error?.response;
+
+      if (backendError?.data?.field === "login") {
+        setError((prev) => ({
+          ...prev,
+          email: {
+            hasError: true,
+            hasErrorMessage: backendError?.data?.message,
+          },
+          password: {
+            hasError: true,
+            hasErrorMessage: backendError?.data?.message,
+          },
+        }));
+      }
     } finally {
       setIsSubmitting(false);
     }
