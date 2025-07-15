@@ -11,12 +11,22 @@ import { firstNameInitials, lastNameInitials } from "../../../utils/utils";
 const ProfilePhoto = ({ fName, lName, onSelect }) => {
   const imageRef = useRef(null);
   const [image, setImage] = useState(null);
+  const [fileSizeError, setFileSizeError] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(null);
+
+  const MAX_FILE_SIZE_MB = 2;
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (!file) return;
 
+    // Check file size
+    if (file && file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+      setFileSizeError(true);
+      return;
+    }
+
+    setFileSizeError(false);
     setImage(file);
     setPreviewUrl(URL.createObjectURL(file));
     onSelect?.(file);
@@ -24,7 +34,11 @@ const ProfilePhoto = ({ fName, lName, onSelect }) => {
 
   return (
     <>
-      <div className="h-36 w-36 rounded-[50%] mb-6 shadow-profile-pic relative">
+      <div
+        className={`border-2 ${
+          fileSizeError ? "border-red-600" : "border-gray-300"
+        } h-36 w-36 rounded-[50%] mb-6 shadow-profile-pic relative`}
+      >
         <input
           type="file"
           name="profilePhoto"
@@ -47,6 +61,7 @@ const ProfilePhoto = ({ fName, lName, onSelect }) => {
             <button
               className="absolute bottom-2 right-0 bg-light-bg-body border-2 border-gray-300 p-2 rounded-[50%] cursor-pointer"
               onClick={() => imageRef.current.click()}
+              type="button"
             >
               <IoMdCloudUpload className="text-gray-400 text-2xl" />
             </button>
@@ -67,9 +82,17 @@ const ProfilePhoto = ({ fName, lName, onSelect }) => {
                 onSelect?.(null);
               }}
             >
-              <MdDelete className="text-gray-400 text-lg" />
+              <MdDelete className="text-gray-400 text-lg hover:text-red-700" />
             </button>
           </div>
+        )}
+
+        {fileSizeError && (
+          <p
+            className={`text-center font-body ${
+              fileSizeError ? "text-red-700" : "text-gray-400"
+            }`}
+          >{`File size < 2MB`}</p>
         )}
       </div>
     </>
