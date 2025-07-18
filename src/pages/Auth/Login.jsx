@@ -20,7 +20,7 @@ import { SyncLoader } from "react-spinners";
 import { emailIsValid, passwordIsValid } from "../../utils/validation";
 
 // Service
-import { loginUser } from "../../services/authService";
+import { loginUser } from "../../services/Auth/authService";
 
 const Login = () => {
   // Page title
