@@ -23,9 +23,9 @@ const ProtectedRoute = ({ children, allowedRoles = [] }) => {
           setIsAllowed(true);
         }
       } catch (error) {
-        // setIsAllowed(false);
+        setIsAllowed(false);
       } finally {
-        // setIsLoading(false);
+        setIsLoading(false);
       }
     };
 
@@ -39,7 +39,7 @@ const ProtectedRoute = ({ children, allowedRoles = [] }) => {
       </div>
     );
 
-  // return isAllowed ? children : <Navigate to="/auth" replace />;
+  return isAllowed ? children : <Navigate to="/auth" replace />;
   // return children;
 };
 
