@@ -1,8 +1,11 @@
+// 
+
+// Util
 import { pageTitle } from "../../utils/utils";
 
 const AdminDashboard = () => {
-pageTitle("Admin Dashboard")
-  
+  pageTitle("Admin Dashboard");
+
   return (
     <>
       <div className="">Admin Dashboard</div>

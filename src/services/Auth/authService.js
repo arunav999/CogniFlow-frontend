@@ -7,12 +7,6 @@ export const registerUser = async (formData) => {
   return response.data;
 };
 
-// Login user
-export const loginUser = async (formData) => {
-  const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, formData);
-  return response.data;
-};
-
 // check user
 export const checkUser = async (email) => {
   try {
@@ -28,4 +22,16 @@ export const checkUser = async (email) => {
       field: error?.response?.data?.field || "email",
     };
   }
+};
+
+// Login user
+export const loginUser = async (formData) => {
+  const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, formData);
+  return response.data;
+};
+
+// Get user info
+export const getUserInfo = async () => {
+  const response = await axiosInstance.get(API_PATHS.AUTH.GET_USER_INFO);
+  return response.data;
 };

@@ -1,3 +1,6 @@
+// ========== IMPORT ==========
+import { useState, useEffect } from "react";
+
 // ========== IMPORT 3rd party ==========
 import {
   BrowserRouter as Router,
