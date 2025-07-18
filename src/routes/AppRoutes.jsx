@@ -157,7 +157,7 @@ const AppRoutes = () => {
           <Route path="/unauthorized" element={<Unauthorized />} />
 
           {/* Forbidden */}
-          <Route path="/forbidden" element={<Forbidden />} />
+          <Route path="/403-forbidden" element={<Forbidden />} />
         </Routes>
       </Router>
     </>

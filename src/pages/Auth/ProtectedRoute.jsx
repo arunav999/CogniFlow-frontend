@@ -26,7 +26,7 @@ const ProtectedRoute = ({ children, allowedRoles = [] }) => {
 
   // Role-based access
   if (allowedRoles.length > 0 && !allowedRoles.includes(user.role)) {
-    return <Navigate to="/forbidden" replace />;
+    return <Navigate to="/403-forbidden" replace />;
   }
 
   // All checks passed
