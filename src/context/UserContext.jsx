@@ -23,25 +23,20 @@ export const UserProvider = ({ children }) => {
     const fetchUser = async () => {
       try {
         const response = await getUserInfo();
-        console.log("Calling from User Provider:", response.user);
 
         // Setting user and not losing prev values
         setStatus((prev) => ({
           ...prev,
           user: response.user,
         }));
-
-        console.log("The User data is setting:", status.user);
       } catch (error) {
         // Retrying for refresh token
         await new Promise((resolve) => {
-          console.log("Retrying...");
           setTimeout(resolve, 2000); // wait for 2s and retry again
         });
 
         try {
           const retryResponse = await getUserInfo();
-          console.log("Retry- User Provider:", retryResponse);
 
           // Setting user and not losing prev values
           setStatus((prev) => ({

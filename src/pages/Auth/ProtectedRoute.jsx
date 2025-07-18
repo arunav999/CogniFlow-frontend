@@ -11,8 +11,6 @@ const ProtectedRoute = ({ children, allowedRoles = [] }) => {
   // Extracting form context
   const { user, loading } = useUserAuth();
 
-  console.log("From Protected Route:", user);
-
   // Still loadin user info
   if (loading)
     return (
