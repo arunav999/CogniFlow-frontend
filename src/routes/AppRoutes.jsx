@@ -87,7 +87,7 @@ const AppRoutes = () => {
           <Route
             path="/manager/projects"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute allowedRoles={["manager", "admin"]}>
                 <ManageProjects />
               </ProtectedRoute>
             }
@@ -107,7 +107,7 @@ const AppRoutes = () => {
           <Route
             path="/developer/tickets"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute allowedRoles={["developer", "manager", "admin"]}>
                 <TicketsBoard />
               </ProtectedRoute>
             }
@@ -118,7 +118,7 @@ const AppRoutes = () => {
           <Route
             path="/tickets"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute allowedRoles={["developer", "manager", "admin"]}>
                 <ViewTickets />
               </ProtectedRoute>
             }
@@ -128,7 +128,7 @@ const AppRoutes = () => {
           <Route
             path="/tickets/:ticketId"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute allowedRoles={["developer", "manager", "admin"]}>
                 <TicketDetails />
               </ProtectedRoute>
             }
