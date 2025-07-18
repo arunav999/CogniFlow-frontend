@@ -1,6 +1,3 @@
-// ========== IMPORT ==========
-import { useState, useEffect } from "react";
-
 // ========== IMPORT 3rd party ==========
 import {
   BrowserRouter as Router,
@@ -35,9 +32,7 @@ import TicketDetails from "../pages/Shared/TicketDetails";
 import NotFound from "../pages/Error/NotFound";
 
 // ========== PROTECTED ROUTES ==========
-const ProtectedRoute = ({ children }) => {
-  return children; // replace with auth logic later
-};
+import ProtectedRoute from "../pages/Auth/ProtectedRoute";
 
 // ========== APP ROUTES ==========
 const AppRoutes = () => {
@@ -54,7 +49,7 @@ const AppRoutes = () => {
           <Route
             path="/admin"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute allowedRoles={["admin"]}>
                 <AdminDashboard />
               </ProtectedRoute>
             }

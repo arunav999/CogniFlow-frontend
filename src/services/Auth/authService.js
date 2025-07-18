@@ -35,3 +35,9 @@ export const getUserInfo = async () => {
   const response = await axiosInstance.get(API_PATHS.AUTH.GET_USER_INFO);
   return response.data;
 };
+
+// Logout user
+export const logoutUser = async () => {
+  const response = await axiosInstance.post(API_PATHS.AUTH.LOGOUT);
+  return response.data;
+};
