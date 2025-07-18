@@ -1,46 +1,36 @@
-// Imports
-import { useState, useEffect } from "react";
+// imports
 import { Navigate } from "react-router-dom";
 
+// React Spinners
 import { PropagateLoader } from "react-spinners";
 
-// Service
-import { getUserInfo } from "../../services/Auth/authService";
+// Custom Hook
+import useUserAuth from "../../hooks/useUserAuth";
 
 const ProtectedRoute = ({ children, allowedRoles = [] }) => {
-  const [loading, setIsLoading] = useState(true);
-  const [isAllowed, setIsAllowed] = useState(true);
+  // Extracting form context
+  const { user, loading } = useUserAuth();
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const response = await getUserInfo();
-        console.log("Calling user from Protected route:", response);
+  console.log("From Protected Route:", user);
 
-        let role = response.user.role;
-
-        if (allowedRoles.length === 0 || allowedRoles.includes(role)) {
-          setIsAllowed(true);
-        }
-      } catch (error) {
-        setIsAllowed(false);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    checkAuth();
-  }, [allowedRoles]);
-
+  // Still loadin user info
   if (loading)
     return (
       <div className="h-screen flex items-center justify-center">
-        <PropagateLoader loading={loading} speedMultiplier={1.25} size={20}/>
+        <PropagateLoader loading={loading} speedMultiplier={1.25} size={20} />
       </div>
     );
 
-  return isAllowed ? children : <Navigate to="/auth" replace />;
-  // return children;
+  // Not logged in
+  if (!user) return <Navigate to="/auth" replace />;
+
+  // Role-based access
+  if (allowedRoles.length > 0 && !allowedRoles.includes(user.role)) {
+    return <Navigate to="/forbidden" replace />;
+  }
+
+  // All checks passed
+  return children;
 };
 
 export default ProtectedRoute;

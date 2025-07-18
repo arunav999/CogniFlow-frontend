@@ -7,6 +7,9 @@ import {
 } from "react-router-dom";
 
 // ========== ELEMENTS ==========
+import { ROLES } from "../utils/roles/roles";
+
+// ========== ELEMENTS ==========
 // Shared
 import HomePage from "../components/Layout/HomePage";
 import AuthPage from "../pages/Auth/AuthPage";
@@ -31,6 +34,12 @@ import TicketDetails from "../pages/Shared/TicketDetails";
 // 404 | NotFound
 import NotFound from "../pages/Error/NotFound";
 
+// 401 | Unauthorized
+import Unauthorized from "../pages/Error/Unauthorized";
+
+// 403 | Forbidden
+import Forbidden from "../pages/Error/Forbidden";
+
 // ========== PROTECTED ROUTES ==========
 import ProtectedRoute from "../pages/Auth/ProtectedRoute";
 
@@ -49,7 +58,7 @@ const AppRoutes = () => {
           <Route
             path="/admin"
             element={
-              <ProtectedRoute allowedRoles={["admin"]}>
+              <ProtectedRoute allowedRoles={[ROLES.ADMIN]}>
                 <AdminDashboard />
               </ProtectedRoute>
             }
@@ -87,7 +96,7 @@ const AppRoutes = () => {
           <Route
             path="/manager/projects"
             element={
-              <ProtectedRoute allowedRoles={["manager", "admin"]}>
+              <ProtectedRoute allowedRoles={[ROLES.MANAGER, ROLES.ADMIN]}>
                 <ManageProjects />
               </ProtectedRoute>
             }
@@ -107,7 +116,9 @@ const AppRoutes = () => {
           <Route
             path="/developer/tickets"
             element={
-              <ProtectedRoute allowedRoles={["developer", "manager", "admin"]}>
+              <ProtectedRoute
+                allowedRoles={[ROLES.DEVELOPER, ROLES.MANAGER, ROLES.ADMIN]}
+              >
                 <TicketsBoard />
               </ProtectedRoute>
             }
@@ -118,7 +129,9 @@ const AppRoutes = () => {
           <Route
             path="/tickets"
             element={
-              <ProtectedRoute allowedRoles={["developer", "manager", "admin"]}>
+              <ProtectedRoute
+                allowedRoles={[ROLES.DEVELOPER, ROLES.MANAGER, ROLES.ADMIN]}
+              >
                 <ViewTickets />
               </ProtectedRoute>
             }
@@ -128,15 +141,23 @@ const AppRoutes = () => {
           <Route
             path="/tickets/:ticketId"
             element={
-              <ProtectedRoute allowedRoles={["developer", "manager", "admin"]}>
+              <ProtectedRoute
+                allowedRoles={[ROLES.DEVELOPER, ROLES.MANAGER, ROLES.ADMIN]}
+              >
                 <TicketDetails />
               </ProtectedRoute>
             }
           />
 
+          {/* ========== Error Routes ========== */}
           {/* Not found */}
           <Route path="*" element={<NotFound />} />
-          {/* <Route /> */}
+
+          {/* Unauthorized */}
+          <Route path="/unauthorized" element={<Unauthorized />} />
+
+          {/* Forbidden */}
+          <Route path="/forbidden" element={<Forbidden />} />
         </Routes>
       </Router>
     </>
