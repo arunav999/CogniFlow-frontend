@@ -19,6 +19,9 @@ const API_PROJECT = `${API_COMMON}/project`;
 // API Path for Ticket
 const API_TICKET = `${API_COMMON}/ticket`;
 
+// API Path for Dashboard
+const API_DASHBOARD = `${API_COMMON}/dashboard`;
+
 export const API_PATHS = {
   AUTH: {
     REGISTER: `${API_AUTH}/register`,
@@ -50,5 +53,10 @@ export const API_PATHS = {
     GET_BY_ID: (id) => `${API_TICKET}/${id}`,
     PATCH_BY_ID: (id) => `${API_TICKET}/${id}`,
     DELETE_BY_ID: (id) => `${API_TICKET}/${id}`,
+  },
+  DASHBOARD: {
+    GET_ADMIN: `${API_DASHBOARD}/admin`,
+    GET_MANAGER: `${API_DASHBOARD}/manager`,
+    GET_DEVELOPER: `${API_DASHBOARD}/developer`,
   },
 };
