@@ -18,7 +18,7 @@ const DashboardLaout = ({ children }) => {
   const navigate = useNavigate();
 
   // If user avatar url is null
-  const isURL = user.avatar.url !== null;
+  const isURL = user?.avatar?.url !== null;
 
   return (
     <>
@@ -31,21 +31,21 @@ const DashboardLaout = ({ children }) => {
           </div>
 
           {/* COMPANY */}
-          <div className=" border">{user.company}</div>
+          <div className=" border">{user?.company}</div>
 
           {/* AVATAR */}
-          <div className="h-12 w-12 rounded-[50%] flex items-center justify-center overflow-hidden">
+          <div className="xs:h-14 sm:h-18 xs:w-14 sm:w-18 rounded-[50%] flex items-center justify-center overflow-hidden border-2 border-gray-300">
             <button className="cursor-pointer h-full w-full rounded-[50%]">
-              {isURL ? (
+              {!isURL ? (
                 <img
-                  src={user.avatar.url}
+                  src={user?.avatar?.url}
                   alt="Profile Pic"
                   className="rounded-[50%] h-full w-full object-cover"
                 />
               ) : (
-                <div className="flex h-full w-full items-center justify-center rounded-[50%]">
-                  <p>{firstNameInitials(user.firstName)}</p>
-                  <p>{lastNameInitials(user.lastName)}</p>
+                <div className="flex h-full w-full items-center justify-center rounded-[50%] xs:text-[28px] sm:text-[38px] font-logo text-gray-400 xs:font-semibold sm:font-bold hover:text-light-bg-body hover:bg-gray-400 transition-all">
+                  <p>{firstNameInitials(user?.firstName)}</p>
+                  <p>{lastNameInitials(user?.lastName)}</p>
                 </div>
               )}
             </button>
