@@ -137,13 +137,13 @@ const DashboardLaout = ({ children }) => {
 
                     {/* ROLE TEXT */}
                     <div className="absolute inset-0 flex items-center justify-center transform translate-y-full group-hover:translate-y-0 transition-all duration-350 ease-in-out rounded-[50%]">
-                      <p className="text-2xl font-body text-light-bg-accent opacity-0 group-hover:opacity-100 transition-all duration-350 ease-in-out">
-                        Admin
+                      <p className="text-2xl font-body text-light-bg-accent opacity-0 group-hover:opacity-100 transition-all duration-350 ease-in-out capitalize select-none">
+                        {user?.role}
                       </p>
                     </div>
                   </div>
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center rounded-[50%] xs:text-[28px] sm:text-[38px] font-logo text-light-text-secondary bg-light-bg-body xs:font-semibold sm:font-bold hover:text-light-bg-body hover:bg-light-text-secondary transition-all">
+                  <div className="flex h-full w-full items-center justify-center rounded-[50%] xs:text-[48px] sm:text-[68px] font-logo text-light-text-secondary bg-light-bg-body xs:font-semibold sm:font-bold hover:text-light-bg-body hover:bg-light-text-secondary transition-all">
                     <p>{firstNameInitials(user?.firstName)}</p>
                     <p>{lastNameInitials(user?.lastName)}</p>
                   </div>
@@ -151,7 +151,7 @@ const DashboardLaout = ({ children }) => {
               </div>
             </div>
 
-            <div className="z-40">
+            <div className="z-40 text-2xl">
               <p>
                 {user?.firstName} {user?.lastName}
               </p>
@@ -162,13 +162,13 @@ const DashboardLaout = ({ children }) => {
                 <Links to={"/admin"}>Dashboard</Links>
               </li>
               <li>
-                <Links to={"/admin"}>Workspaces</Links>
+                <Links to={"/admin/workspaces"}>Workspaces</Links>
               </li>
               <li>
-                <Links to={"/admin"}>Projects</Links>
+                <Links to={"/projects"}>Projects</Links>
               </li>
               <li>
-                <Links to={"/admin"}>Tickets</Links>
+                <Links to={"/tickets"}>Tickets</Links>
               </li>
               <li>
                 <Links to={"/admin/manage-users"}>Team</Links>

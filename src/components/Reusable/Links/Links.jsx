@@ -1,13 +1,21 @@
 // imports from 3rd party
 import { HashLink } from "react-router-hash-link";
+import { useLocation } from "react-router-dom";
 
 // Custom context
 import { useActiveSection } from "../../../context/ActiveSectionContext";
 
 const Links = ({ children, to, bg }) => {
   const { activeSection } = useActiveSection();
-  const targetHash = to.split("#")[1];
-  const isActive = activeSection === targetHash;
+
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const isHashLink = to.includes("#");
+  const targetHash = isHashLink ? to.split("#")[1] : null;
+  const isActive = isHashLink
+    ? activeSection === targetHash
+    : currentPath === to;
 
   return (
     <HashLink
