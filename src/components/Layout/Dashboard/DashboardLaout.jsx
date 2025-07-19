@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 
-import { useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 // Service
 import { logoutUser } from "../../../services/Auth/authService";
@@ -20,16 +20,17 @@ const DashboardLaout = ({ children }) => {
   const navigate = useNavigate();
 
   // Header scroll effect
-  const [state, setState] = useState("");
+  const headerRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
+      if (!headerRef.current) return;
       if (window.scrollY > 0) {
-        setState(
-          "bg-[#f5e1da] shadow-[0_1px_8px_1px_rgba(0,0,0,0.05)] rounded-b-[8px] h-[5.6rem]"
-        );
+        headerRef.current.className =
+          "w-full top-0 fixed py-3 xs:px-4 md:px-22 flex items-center justify-between font-heading transition-all ease-in-out bg-[#f5e1da] shadow-[0_1px_8px_1px_rgba(0,0,0,0.05)] rounded-b-[8px] h-[5.6rem]";
       } else {
-        setState("h-[6.6rem]");
+        headerRef.current.className =
+          "w-full top-0 fixed py-3 xs:px-4 md:px-22 flex items-center justify-between font-heading transition-all ease-in-out h-[6.6rem] bg-light-bg-body";
       }
     };
 
@@ -46,8 +47,8 @@ const DashboardLaout = ({ children }) => {
       <div className="relative h-[1000px]">
         {/* ========== TOP HEADER ========== */}
         <header
-          className={`w-full top-0 fixed py-3 xs:px-4 md:px-22 flex items-center justify-between font-heading transition-all ease-in-out ${state}`}
-          id="navArea"
+          ref={headerRef}
+          className="w-full top-0 fixed py-3 xs:px-4 md:px-22 flex items-center justify-between font-heading transition-all ease-in-out h-[6.6rem] bg-light-bg-body"
         >
           {/* ROLE */}
           <div className="xs:text-xl md:text-2xl font-semibold text-light-text-tertiary">
@@ -79,7 +80,7 @@ const DashboardLaout = ({ children }) => {
         </header>
 
         {/* ========== SIDEBAR NAV ========== */}
-        <nav className="fixed top-0 right-0 h-screen hidden">
+        <nav className="border fixed top-0 right-0 h-screen">
           <Button
             secondary
             disabled={false}
