@@ -10,7 +10,7 @@ const AdminDashboard = () => {
   return (
     <>
       <DashboardLaout>
-        <main className="">ff</main>
+        <section className="">Main Content</section>
       </DashboardLaout>
     </>
   );

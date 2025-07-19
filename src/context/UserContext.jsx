@@ -58,7 +58,6 @@ export const UserProvider = ({ children }) => {
 
         try {
           const retryRes = await getUserInfo();
-          console.log(retryRes);
 
           // Get role after retry
 

@@ -147,7 +147,6 @@ const Login = () => {
 
     try {
       const res = await loginUser(payload);
-      console.log("Login success:", res);
 
       // Set userContext
       setUser(res.user);
