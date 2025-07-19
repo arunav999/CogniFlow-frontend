@@ -1,13 +1,16 @@
+import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useRef, useEffect } from "react";
+// React icons
+import { RiCloseCircleLine } from "react-icons/ri";
 
 // Service
 import { logoutUser } from "../../../services/Auth/authService";
 // Custom hook
 import useUserAuth from "../../../hooks/useUserAuth";
 
-// Button Custom
+// Custom Components
+import Links from "../../Reusable/Links/Links";
 import Button from "../../Reusable/Button/Button";
 
 // Utils
@@ -18,6 +21,13 @@ const DashboardLaout = ({ children }) => {
   const { user } = useUserAuth();
 
   const navigate = useNavigate();
+
+  // Sidebar toggle effect
+  const [toggle, setToggle] = useState(false);
+
+  const toggleSidebar = () => {
+    setToggle((prev) => !prev);
+  };
 
   // Header scroll effect
   const headerRef = useRef(null);
@@ -44,7 +54,7 @@ const DashboardLaout = ({ children }) => {
 
   return (
     <>
-      <div className="relative h-[1000px]">
+      <div className="relative">
         {/* ========== TOP HEADER ========== */}
         <header
           ref={headerRef}
@@ -61,9 +71,12 @@ const DashboardLaout = ({ children }) => {
           </div>
 
           {/* AVATAR */}
-          <div className="xs:h-14 sm:h-18 xs:w-14 sm:w-18 rounded-[50%] flex items-center justify-center overflow-hidden border-2 border-gray-300">
-            <button className="cursor-pointer h-full w-full rounded-[50%]">
-              {!isURL ? (
+          <div className="xs:h-14 sm:h-18 xs:w-14 sm:w-18 rounded-[50%] flex items-center justify-center overflow-hidden border-2 border-gray-300 hover:border-gray-500 p-[1px] transition-all hover:shadow-button active:shadow-button-active hover:translate-y-[-3px] active:translate-y-[0px]">
+            <button
+              className="cursor-pointer h-full w-full rounded-[50%]"
+              onClick={toggleSidebar}
+            >
+              {isURL ? (
                 <img
                   src={user?.avatar?.url}
                   alt="Profile Pic"
@@ -80,22 +93,104 @@ const DashboardLaout = ({ children }) => {
         </header>
 
         {/* ========== SIDEBAR NAV ========== */}
-        <nav className="border fixed top-0 right-0 h-screen">
-          <Button
-            secondary
-            disabled={false}
-            onClick={async () => {
-              const res = await logoutUser();
-              const redirect = res.redirect;
-              navigate(redirect);
-            }}
+        {
+          <nav
+            className={`fixed xs:w-[50%] sm:w-[25%] h-[100vh] flex flex-col items-center justify-center gap-2 transition-all duration-500 rounded-s-3xl ${
+              toggle ? "top-0 right-0" : "top-0 xs:-right-60 md:-right-170"
+            }`}
           >
-            Logout
-          </Button>
-        </nav>
+            {/* RADIAL EFFECT */}
+            <div className="h-full w-full overflow-hidden absolute top-0 rounded-s-3xl">
+              <div
+                className={`h-11 w-11 rounded-[50%] overflow-hidden ${
+                  toggle
+                    ? "scale-[70] duration-1000 ease-[cubic-bezier(0.86, 0, 0.07, 1)]"
+                    : "scale-[0] duration-500 ease-[cubic-bezier(0.86, 0, 0.07, 1)]"
+                } transition-all `}
+                style={{
+                  background:
+                    "radial-gradient(circle at center, rgba(141, 202, 193, 0.3), rgba(83, 174, 160, 0.3))",
+                  backdropFilter: "blur(0.25px)",
+                }}
+              ></div>
+            </div>
+
+            {/* TOGGLE BUTTON - CLOSE */}
+            <button
+              className="absolute top-12 -left-12 text-center cursor-pointer rounded-[50%] overflow-hidden"
+              onClick={toggleSidebar}
+            >
+              <RiCloseCircleLine className="text-gray-500 xs:text-2xl md:text-3xl hover:bg-gray-500 hover:text-light-bg-body transition-all" />
+            </button>
+
+            {/* SIDEBAR CONTENT */}
+            {/* AVATAR */}
+            <div className="xs:h-24 sm:h-28 xs:w-24 sm:w-28 rounded-[50%] flex items-center justify-center overflow-hidden border-2 border-gray-300 hover:border-gray-500 p-[1px] transition-all hover:shadow-button active:shadow-button-active hover:translate-y-[-3px] active:translate-y-[0px] z-40">
+              <div className="cursor-pointer h-full w-full rounded-[50%]">
+                {isURL ? (
+                  <div className="relative rounded-[50%] group">
+                    <img
+                      src={user?.avatar?.url}
+                      alt="Profile Pic"
+                      className="rounded-[50%] h-full w-full object-cover scale-[1.3] group-hover:scale-[1] group-hover:blur-[4px] group-hover:brightness-[90%] transition-all duration-350 ease-in-out"
+                    />
+
+                    {/* ROLE TEXT */}
+                    <div className="absolute inset-0 flex items-center justify-center transform translate-y-full group-hover:translate-y-0 transition-all duration-350 ease-in-out rounded-[50%]">
+                      <p className="text-2xl font-body text-light-bg-accent opacity-0 group-hover:opacity-100 transition-all duration-350 ease-in-out">
+                        Admin
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center rounded-[50%] xs:text-[28px] sm:text-[38px] font-logo text-light-text-secondary bg-light-bg-body xs:font-semibold sm:font-bold hover:text-light-bg-body hover:bg-light-text-secondary transition-all">
+                    <p>{firstNameInitials(user?.firstName)}</p>
+                    <p>{lastNameInitials(user?.lastName)}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="z-40">
+              <p>
+                {user?.firstName} {user?.lastName}
+              </p>
+            </div>
+
+            <ul className="z-40 flex flex-col gap-4">
+              <li>
+                <Links to={"/admin"}>Dashboard</Links>
+              </li>
+              <li>
+                <Links to={"/admin"}>Workspaces</Links>
+              </li>
+              <li>
+                <Links to={"/admin"}>Projects</Links>
+              </li>
+              <li>
+                <Links to={"/admin"}>Tickets</Links>
+              </li>
+              <li>
+                <Links to={"/admin/manage-users"}>Team</Links>
+              </li>
+            </ul>
+
+            <Button
+              secondary
+              disabled={false}
+              onClick={async () => {
+                const res = await logoutUser();
+                const redirect = res.redirect;
+                navigate(redirect);
+              }}
+            >
+              Logout
+            </Button>
+          </nav>
+        }
 
         {/* ========== MAIN CONTENT ========== */}
-        <main className="mt-22 hidden">{children}</main>
+        <main className="mt-27">{children}</main>
       </div>
     </>
   );
