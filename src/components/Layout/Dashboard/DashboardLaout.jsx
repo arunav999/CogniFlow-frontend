@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Service
 import { logoutUser } from "../../../services/Auth/authService";
@@ -24,9 +24,11 @@ const DashboardLaout = ({ children }) => {
     <>
       <div className="relative">
         {/* ========== TOP HEADER ========== */}
-        <header className="w-full top-0 fixed p-8 flex items-center justify-between border">
+        <header className="w-full top-0 fixed py-3 xs:px-4 md:px-22 flex items-center justify-between border">
           {/* ROLE */}
-          <div className="capitalize border">{user.role} Dashboard</div>
+          <div className="capitalize border">
+            <Link to="/admin">Dashboard</Link>
+          </div>
 
           {/* COMPANY */}
           <div className=" border">{user.company}</div>

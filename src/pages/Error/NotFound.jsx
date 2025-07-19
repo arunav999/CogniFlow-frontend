@@ -1,13 +1,29 @@
+// Location
 import { useLocation } from "react-router-dom";
 
+// Custom compo
 import Links from "../../components/Reusable/Links/Links";
+// Custom hook
+import useUserAuth from "../../hooks/useUserAuth";
 
+// Utils
 import { pageTitle } from "../../utils/utils";
+import { ROLES } from "../../utils/roles/roles";
 
 const NotFound = () => {
   pageTitle("404 - Not found");
 
+  const { user } = useUserAuth();
+
   const location = useLocation();
+
+  // Based on role: dashboard
+  const redirect =
+    user?.role === ROLES.ADMIN
+      ? "/admin"
+      : user?.role === ROLES.MANAGER
+      ? "/manager"
+      : "/developer";
 
   return (
     <>
@@ -24,8 +40,11 @@ const NotFound = () => {
           <p>The path {location.pathname} does not exist.</p>
 
           <div className="flex gap-2">
-            <Links to="/">Home</Links>
-            {/* <Links to="/admin">Dashboard</Links> */}
+            {user === null ? (
+              <Links to="/">Home</Links>
+            ) : (
+              <Links to={redirect}>Dashboard</Links>
+            )}
           </div>
         </div>
       </section>
