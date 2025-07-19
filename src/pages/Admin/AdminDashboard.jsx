@@ -1,11 +1,15 @@
 // Components
 import DashboardLaout from "../../components/Layout/Dashboard/DashboardLaout";
 
+import useUserAuth from "../../hooks/useUserAuth";
+
 // Util
 import { pageTitle } from "../../utils/utils";
 
 const AdminDashboard = () => {
-  pageTitle("Admin dashboard");
+  const { user } = useUserAuth();
+
+  pageTitle(`${user?.company} - Admin dashboard`);
 
   return (
     <>
