@@ -1,7 +1,8 @@
-import { BrowserRouter as Router } from "react-router-dom";
+// Router Provider
+import { RouterProvider } from "react-router-dom";
 
 // Routes
-import AppRoutes from "./routes/AppRoutes";
+import router from "./routes/AppRoutes";
 
 // Context
 import { ActiveSectionProvider } from "./context/ActiveSectionContext";
@@ -10,13 +11,11 @@ import { UserProvider } from "./context/UserContext";
 const App = () => {
   return (
     <>
-      <Router>
-        <ActiveSectionProvider>
-          <UserProvider>
-            <AppRoutes />
-          </UserProvider>
-        </ActiveSectionProvider>
-      </Router>
+      <ActiveSectionProvider>
+        <UserProvider>
+          <RouterProvider router={router} />
+        </UserProvider>
+      </ActiveSectionProvider>
     </>
   );
 };

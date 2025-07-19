@@ -1,5 +1,6 @@
 // ========== IMPORT 3rd party ==========
 import { Routes, Route, Navigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
 // ========== ELEMENTS ==========
 import { ROLES } from "../utils/roles/roles";
@@ -40,6 +41,8 @@ import ProtectedRoute from "../pages/Auth/ProtectedRoute";
 import DashboardLaout from "../components/Layout/Dashboard/DashboardLaout";
 
 // ========== APP ROUTES ==========
+const router = createBrowserRouter([]);
+
 const AppRoutes = () => {
   return (
     <>
@@ -160,4 +163,5 @@ const AppRoutes = () => {
   );
 };
 
-export default AppRoutes;
+// export default AppRoutes;
+export default router;
