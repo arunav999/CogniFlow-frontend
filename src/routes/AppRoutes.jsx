@@ -1,6 +1,5 @@
 // ========== IMPORT 3rd party ==========
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
@@ -47,119 +46,117 @@ import ProtectedRoute from "../pages/Auth/ProtectedRoute";
 const AppRoutes = () => {
   return (
     <>
-      <Router>
-        <Routes>
-          {/* ========== Public Routes ========== */}
-          <Route path="/" element={<HomePage />} />
-          <Route path="/auth" element={<AuthPage />} />
+      <Routes>
+        {/* ========== Public Routes ========== */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/auth" element={<AuthPage />} />
 
-          {/* ========== Admin Routes ========== */}
-          {/* DASHBOARD */}
-          <Route
-            path="/admin"
-            element={
-              <ProtectedRoute allowedRoles={[ROLES.ADMIN]}>
-                <AdminDashboard />
-              </ProtectedRoute>
-            }
-          />
-          {/* MANAGE USERS */}
-          <Route
-            path="/admin/manage-users"
-            element={
-              <ProtectedRoute>
-                <ManageTeamMembers />
-              </ProtectedRoute>
-            }
-          />
-          {/* MANAGE WORKSPACES */}
-          <Route
-            path="/admin/workspaces"
-            element={
-              <ProtectedRoute>
-                <ManageWorkspaces />
-              </ProtectedRoute>
-            }
-          />
+        {/* ========== Admin Routes ========== */}
+        {/* DASHBOARD */}
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute allowedRoles={[ROLES.ADMIN]}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        {/* MANAGE USERS */}
+        <Route
+          path="/admin/manage-users"
+          element={
+            <ProtectedRoute>
+              <ManageTeamMembers />
+            </ProtectedRoute>
+          }
+        />
+        {/* MANAGE WORKSPACES */}
+        <Route
+          path="/admin/workspaces"
+          element={
+            <ProtectedRoute>
+              <ManageWorkspaces />
+            </ProtectedRoute>
+          }
+        />
 
-          {/* ========== Manager Routes ========== */}
-          {/* DASHBOARD */}
-          <Route
-            path="/manager"
-            element={
-              <ProtectedRoute>
-                <ManagerDashboard />
-              </ProtectedRoute>
-            }
-          />
-          {/* MANAGE PROJECTS */}
-          <Route
-            path="/manager/projects"
-            element={
-              <ProtectedRoute allowedRoles={[ROLES.MANAGER, ROLES.ADMIN]}>
-                <ManageProjects />
-              </ProtectedRoute>
-            }
-          />
+        {/* ========== Manager Routes ========== */}
+        {/* DASHBOARD */}
+        <Route
+          path="/manager"
+          element={
+            <ProtectedRoute>
+              <ManagerDashboard />
+            </ProtectedRoute>
+          }
+        />
+        {/* MANAGE PROJECTS */}
+        <Route
+          path="/manager/projects"
+          element={
+            <ProtectedRoute allowedRoles={[ROLES.MANAGER, ROLES.ADMIN]}>
+              <ManageProjects />
+            </ProtectedRoute>
+          }
+        />
 
-          {/* ========== Developer Routes ========== */}
-          {/* DASHBOARD */}
-          <Route
-            path="/developer"
-            element={
-              <ProtectedRoute>
-                <DeveloperDashboard />
-              </ProtectedRoute>
-            }
-          />
-          {/* TICKETS BOARD */}
-          <Route
-            path="/developer/tickets"
-            element={
-              <ProtectedRoute
-                allowedRoles={[ROLES.DEVELOPER, ROLES.MANAGER, ROLES.ADMIN]}
-              >
-                <TicketsBoard />
-              </ProtectedRoute>
-            }
-          />
+        {/* ========== Developer Routes ========== */}
+        {/* DASHBOARD */}
+        <Route
+          path="/developer"
+          element={
+            <ProtectedRoute>
+              <DeveloperDashboard />
+            </ProtectedRoute>
+          }
+        />
+        {/* TICKETS BOARD */}
+        <Route
+          path="/developer/tickets"
+          element={
+            <ProtectedRoute
+              allowedRoles={[ROLES.DEVELOPER, ROLES.MANAGER, ROLES.ADMIN]}
+            >
+              <TicketsBoard />
+            </ProtectedRoute>
+          }
+        />
 
-          {/* ========== Shared Tickets Routes ========== */}
-          {/* VIEW TICKETS */}
-          <Route
-            path="/tickets"
-            element={
-              <ProtectedRoute
-                allowedRoles={[ROLES.DEVELOPER, ROLES.MANAGER, ROLES.ADMIN]}
-              >
-                <ViewTickets />
-              </ProtectedRoute>
-            }
-          />
+        {/* ========== Shared Tickets Routes ========== */}
+        {/* VIEW TICKETS */}
+        <Route
+          path="/tickets"
+          element={
+            <ProtectedRoute
+              allowedRoles={[ROLES.DEVELOPER, ROLES.MANAGER, ROLES.ADMIN]}
+            >
+              <ViewTickets />
+            </ProtectedRoute>
+          }
+        />
 
-          {/* TICKET DETAILS */}
-          <Route
-            path="/tickets/:ticketId"
-            element={
-              <ProtectedRoute
-                allowedRoles={[ROLES.DEVELOPER, ROLES.MANAGER, ROLES.ADMIN]}
-              >
-                <TicketDetails />
-              </ProtectedRoute>
-            }
-          />
+        {/* TICKET DETAILS */}
+        <Route
+          path="/tickets/:ticketId"
+          element={
+            <ProtectedRoute
+              allowedRoles={[ROLES.DEVELOPER, ROLES.MANAGER, ROLES.ADMIN]}
+            >
+              <TicketDetails />
+            </ProtectedRoute>
+          }
+        />
 
-          {/* ========== Error Routes ========== */}
-          {/* Not found */}
-          <Route path="*" element={<NotFound />} />
+        {/* ========== Error Routes ========== */}
+        {/* Not found */}
+        <Route path="*" element={<NotFound />} />
 
-          {/* Unauthorized */}
-          <Route path="/unauthorized" element={<Unauthorized />} />
+        {/* Unauthorized */}
+        <Route path="/unauthorized" element={<Unauthorized />} />
 
-          {/* Forbidden */}
-          <Route path="/403-forbidden" element={<Forbidden />} />
-        </Routes>
-      </Router>
+        {/* Forbidden */}
+        <Route path="/403-forbidden" element={<Forbidden />} />
+      </Routes>
     </>
   );
 };

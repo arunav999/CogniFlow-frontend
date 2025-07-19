@@ -1,7 +1,7 @@
 const MainContent = () => {
   return (
     <>
-      <div className="">Main Content</div>
+      <section className="border hidden">Main Content</section>
     </>
   );
 };

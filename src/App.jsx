@@ -1,3 +1,5 @@
+import { BrowserRouter as Router } from "react-router-dom";
+
 // Routes
 import AppRoutes from "./routes/AppRoutes";
 
@@ -8,11 +10,13 @@ import { UserProvider } from "./context/UserContext";
 const App = () => {
   return (
     <>
-      <ActiveSectionProvider>
-        <UserProvider>
-          <AppRoutes />
-        </UserProvider>
-      </ActiveSectionProvider>
+      <Router>
+        <ActiveSectionProvider>
+          <UserProvider>
+            <AppRoutes />
+          </UserProvider>
+        </ActiveSectionProvider>
+      </Router>
     </>
   );
 };
