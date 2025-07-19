@@ -6,8 +6,12 @@ import Button from "../../components/Reusable/Button/Button";
 
 import { useNavigate } from "react-router-dom";
 
+import useUserAuth from "../../hooks/useUserAuth";
+
 const AdminDashboard = () => {
   pageTitle("Admin Dashboard");
+
+  const { user } = useUserAuth();
 
   const navigate = useNavigate();
 
@@ -24,14 +28,7 @@ const AdminDashboard = () => {
     }
   };
 
-  return (
-    <>
-      <div className="">Admin Dashboard</div>
-      <Button disabled={false} onClick={handleLogout}>
-        Logout
-      </Button>
-    </>
-  );
+  return <></>;
 };
 
 export default AdminDashboard;

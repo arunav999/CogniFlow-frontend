@@ -55,8 +55,6 @@ export const API_PATHS = {
     DELETE_BY_ID: (id) => `${API_TICKET}/${id}`,
   },
   DASHBOARD: {
-    GET_ADMIN: `${API_DASHBOARD}/admin`,
-    GET_MANAGER: `${API_DASHBOARD}/manager`,
-    GET_DEVELOPER: `${API_DASHBOARD}/developer`,
+    GET_DASHBOARD: `${API_DASHBOARD}/`,
   },
 };
