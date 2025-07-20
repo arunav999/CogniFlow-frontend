@@ -9,9 +9,7 @@ import HomePage from "../components/Layout/LandingPage/HomePage";
 import AuthPage from "../pages/Auth/AuthPage";
 
 // Error pages
-import NotFound from "../pages/Error/NotFound";
-import Unauthorized from "../pages/Error/Unauthorized";
-import Forbidden from "../pages/Error/Forbidden";
+import ErrorPage from "../pages/Error/ErrorPage";
 
 // ========== DEFINING APP ROUTES ==========
 const router = createBrowserRouter([
@@ -19,7 +17,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
-    errorElement: <NotFound />,
   },
   {
     path: "/auth",
@@ -27,6 +24,15 @@ const router = createBrowserRouter([
   },
 
   // ===== PRIVATE ROUTES =====
+
+  // ===== CENTRALIZED ERROR ROUTES =====
+  {
+    path: "*",
+    loader: () => {
+      throw new Response("Not Found", { status: 404 });
+    },
+    errorElement: <ErrorPage />,
+  },
 ]);
 
 export default router;
