@@ -95,8 +95,8 @@ const DashboardLaout = ({ children }) => {
         {/* ========== SIDEBAR NAV ========== */}
         {
           <nav
-            className={`fixed xs:w-[50%] sm:w-[25%] h-[100vh] flex flex-col items-center justify-center gap-2 transition-all duration-500 rounded-s-3xl ${
-              toggle ? "top-0 right-0" : "top-0 xs:-right-60 md:-right-170"
+            className={`fixed xs:w-[50%] sm:w-[25%] h-[100vh] flex flex-col items-center justify-center gap-4 transition-all duration-500 rounded-s-3xl ${
+              toggle ? "top-0 right-0" : "top-0 -right-170"
             }`}
           >
             {/* RADIAL EFFECT */}
@@ -116,12 +116,14 @@ const DashboardLaout = ({ children }) => {
             </div>
 
             {/* TOGGLE BUTTON - CLOSE */}
-            <button
-              className="absolute top-12 -left-12 text-center cursor-pointer rounded-[50%] overflow-hidden"
-              onClick={toggleSidebar}
-            >
-              <RiCloseCircleLine className="text-gray-500 xs:text-2xl md:text-3xl hover:bg-gray-500 hover:text-light-bg-body transition-all" />
-            </button>
+            <div className="absolute top-12 -left-12 text-center cursor-pointer rounded-[50%] overflow-hidden">
+              <button
+                className="text-gray-500 xs:text-2xl md:text-3xl hover:bg-gray-500 hover:text-light-bg-body transition-all rounded-[50%] cursor-pointer"
+                onClick={toggleSidebar}
+              >
+                <RiCloseCircleLine />
+              </button>
+            </div>
 
             {/* SIDEBAR CONTENT */}
             {/* AVATAR */}
@@ -143,9 +145,19 @@ const DashboardLaout = ({ children }) => {
                     </div>
                   </div>
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center rounded-[50%] xs:text-[48px] sm:text-[68px] font-logo text-light-text-secondary bg-light-bg-body xs:font-semibold sm:font-bold hover:text-light-bg-body hover:bg-light-text-secondary transition-all">
-                    <p>{firstNameInitials(user?.firstName)}</p>
-                    <p>{lastNameInitials(user?.lastName)}</p>
+                  <div className="h-full w-full rounded-[50%] flex items-center justify-center group relative">
+                    {/* INITIALS TEXT */}
+                    <div className="absolute inset-0 flex font-logo xs:text-[48px] sm:text-[68px] h-full w-full rounded-[50%] items-center justify-center text-light-text-secondary bg-light-bg-body xs:font-semibold sm:font-bold transition-all duration-350 ease-in-out transform group-hover:-translate-y-full">
+                      <p>{firstNameInitials(user?.firstName)}</p>
+                      <p>{lastNameInitials(user?.lastName)}</p>
+                    </div>
+
+                    {/* ROLE TEXT */}
+                    <div className="absolute inset-0 flex items-center justify-center transform translate-y-full group-hover:translate-y-0 transition-all duration-350 ease-in-out capitalize select-none group-hover:text-light-bg-body group-hover:bg-light-text-secondary h-full w-full rounded-[50%]">
+                      <p className="font-logo xs:text-[26px] sm:text-[30px] xs:font-semibold sm: font-bold">
+                        {user?.role}
+                      </p>
+                    </div>
                   </div>
                 )}
               </div>
@@ -175,17 +187,20 @@ const DashboardLaout = ({ children }) => {
               </li>
             </ul>
 
-            <Button
-              secondary
-              disabled={false}
-              onClick={async () => {
-                const res = await logoutUser();
-                const redirect = res.redirect;
-                navigate(redirect);
-              }}
-            >
-              Logout
-            </Button>
+            {/* LOGUT BUTTON */}
+            <div className="">
+              <Button
+                secondary
+                disabled={false}
+                onClick={async () => {
+                  const res = await logoutUser();
+                  const redirect = res.redirect;
+                  navigate(redirect);
+                }}
+              >
+                Logout
+              </Button>
+            </div>
           </nav>
         }
 

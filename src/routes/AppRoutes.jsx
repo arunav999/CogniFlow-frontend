@@ -1,6 +1,9 @@
 // ========== IMPORT 3rd party ==========
-import { Routes, Route, Navigate } from "react-router-dom";
-import { createBrowserRouter } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 // ========== ELEMENTS ==========
 import { ROLES } from "../utils/roles/roles";
@@ -38,11 +41,8 @@ import Forbidden from "../pages/Error/Forbidden";
 
 // ========== PROTECTED ROUTES ==========
 import ProtectedRoute from "../pages/Auth/ProtectedRoute";
-import DashboardLaout from "../components/Layout/Dashboard/DashboardLaout";
 
 // ========== APP ROUTES ==========
-const router = createBrowserRouter([]);
-
 const AppRoutes = () => {
   return (
     <>
@@ -75,9 +75,7 @@ const AppRoutes = () => {
           path="/admin/workspaces"
           element={
             <ProtectedRoute>
-              <DashboardLaout>
-                <ManageWorkspaces />
-              </DashboardLaout>
+              <ManageWorkspaces />
             </ProtectedRoute>
           }
         />
@@ -94,7 +92,7 @@ const AppRoutes = () => {
         />
         {/* MANAGE PROJECTS */}
         <Route
-          path="/projects"
+          path="/manager/projects"
           element={
             <ProtectedRoute allowedRoles={[ROLES.MANAGER, ROLES.ADMIN]}>
               <ManageProjects />
@@ -114,7 +112,7 @@ const AppRoutes = () => {
         />
         {/* TICKETS BOARD */}
         <Route
-          path="/tickets"
+          path="/developer/tickets"
           element={
             <ProtectedRoute
               allowedRoles={[ROLES.DEVELOPER, ROLES.MANAGER, ROLES.ADMIN]}
@@ -163,5 +161,4 @@ const AppRoutes = () => {
   );
 };
 
-// export default AppRoutes;
-export default router;
+export default AppRoutes;
