@@ -1,4 +1,4 @@
-import cogniImg from "../../../assets/cimg.png";
+import cogniImg from "../../../../../assets/cimg.png";
 
 // React icons
 import { FiPlusCircle, FiUsers, FiTarget } from "react-icons/fi";

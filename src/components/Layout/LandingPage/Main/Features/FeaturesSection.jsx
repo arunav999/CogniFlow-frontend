@@ -1,4 +1,4 @@
-import cogniLogo from "../../../assets/cimg.png";
+import cogniLogo from "../../../../../assets/cimg.png";
 
 import { FEATURES_DATA } from "../../../../../utils/data";
 

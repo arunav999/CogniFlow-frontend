@@ -1,6 +1,8 @@
 // Router Provider
+import { RouterProvider } from "react-router-dom";
 
 // Routes
+import router from "./routes/AppRoutes";
 
 // Context
 import { ActiveSectionProvider } from "./context/ActiveSectionContext";
@@ -10,7 +12,9 @@ const App = () => {
   return (
     <>
       <ActiveSectionProvider>
-        <UserProvider></UserProvider>
+        <UserProvider>
+          <RouterProvider router={router} />
+        </UserProvider>
       </ActiveSectionProvider>
     </>
   );

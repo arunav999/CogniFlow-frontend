@@ -3,7 +3,7 @@ import { useActiveSectionObserver } from "../../../hooks/useActiveSectionObserve
 
 // Custom components
 import Header from "./Header/Header";
-import Main from "../Main/Main";
+import Main from "./Main/Main";
 import Footer from "./Footer/Footer";
 
 const HomePage = () => {
