@@ -171,7 +171,7 @@ const DashboardLaout = () => {
             </div>
 
             {/* NAV-LINKS */}
-            <ul className="z-40 flex flex-col gap-4">
+            <ul className="z-40 flex flex-col gap-4" onClick={toggleSidebar}>
               <li>
                 <Links to={"/admin"}>Dashboard</Links>
               </li>
@@ -179,10 +179,10 @@ const DashboardLaout = () => {
                 <Links to={"/admin/workspaces"}>Workspaces</Links>
               </li>
               <li>
-                <Links to={"/projects"}>Projects</Links>
+                <Links to={"/admin/projects"}>Projects</Links>
               </li>
               <li>
-                <Links to={"/tickets"}>Tickets</Links>
+                <Links to={"/admin/tickets"}>Tickets</Links>
               </li>
               <li>
                 <Links to={"/admin/manage-users"}>Team</Links>
