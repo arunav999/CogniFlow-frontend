@@ -1,5 +1,7 @@
+// Search params
 import { useSearchParams } from "react-router-dom";
 
+// Auth pages
 import Login from "./Login";
 import Signup from "./Signup";
 import ResetPassword from "./ResetPassword";
