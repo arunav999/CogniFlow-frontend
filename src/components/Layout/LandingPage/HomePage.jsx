@@ -1,5 +1,5 @@
 // Section Hook
-import { useActiveSectionObserver } from "../../hooks/useActiveSectionObserver";
+import { useActiveSectionObserver } from "../../../hooks/useActiveSectionObserver";
 
 // Custom components
 import Header from "./Header/Header";

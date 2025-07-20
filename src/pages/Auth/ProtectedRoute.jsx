@@ -1,5 +1,5 @@
 // imports
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
 // React Spinners
 import { PropagateLoader } from "react-spinners";
@@ -7,7 +7,7 @@ import { PropagateLoader } from "react-spinners";
 // Custom Hook
 import useUserAuth from "../../hooks/useUserAuth";
 
-const ProtectedRoute = ({ children, allowedRoles = [] }) => {
+const ProtectedRoute = ({ allowedRoles = [] }) => {
   // Extracting form context
   const { user, loading } = useUserAuth();
 
@@ -28,7 +28,7 @@ const ProtectedRoute = ({ children, allowedRoles = [] }) => {
   }
 
   // All checks passed
-  return children;
+  return <Outlet />;
 };
 
 export default ProtectedRoute;

@@ -1,9 +1,6 @@
 // React
 import { useState, useEffect, createContext } from "react";
 
-// React-Router
-import { useNavigate, useLocation } from "react-router-dom";
-
 // Get user info service
 import { getUserInfo } from "../services/Auth/authService";
 
@@ -16,14 +13,11 @@ export const UserContext = createContext({
 
 // Context provider
 export const UserProvider = ({ children }) => {
-  // Routing
-  const navigate = useNavigate();
-  const location = useLocation();
-
   // Defining state
   const [status, setStatus] = useState({
     user: null,
     loading: true,
+    path: null,
   });
 
   // Run on first render
@@ -36,20 +30,10 @@ export const UserProvider = ({ children }) => {
         // Get role
         const redirect = res.redirect;
 
-        // Setting user
+        // Setting Status
         setStatus((prev) => ({
           ...prev,
           user: res.user,
-        }));
-
-        // If logged in and on public route then redirect to dashboard
-        if (location.pathname === "/" || location.pathname === "/auth") {
-          navigate(redirect);
-        }
-
-        // Set loading
-        setStatus((prev) => ({
-          ...prev,
           loading: false,
         }));
       } catch (error) {
@@ -67,10 +51,6 @@ export const UserProvider = ({ children }) => {
             ...prev,
             user: retryRes.user,
           }));
-
-          // If login via refresh token
-          if (location.pathname === "/" || location.pathname === "/auth")
-            navigate(retryRedirect);
         } catch (retryError) {
           // Not logged in - stay on landing page
           setStatus((prev) => ({

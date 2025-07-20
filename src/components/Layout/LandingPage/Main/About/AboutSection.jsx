@@ -1,6 +1,6 @@
 import { TbNorthStar } from "react-icons/tb";
 
-import Button from "../../Reusable/Button/Button";
+import Button from "../../../../Reusable/Button/Button";
 
 const AboutSection = () => {
   return (
@@ -41,7 +41,9 @@ const AboutSection = () => {
             {/* 2 */}
             <div className="points">
               <h4 className="points-h">Missed Deadlines</h4>
-              <p className="points-p">Important tasks get buried, and reminders come too late.</p>
+              <p className="points-p">
+                Important tasks get buried, and reminders come too late.
+              </p>
             </div>
             {/* 3 */}
             <div className="points">
@@ -54,7 +56,9 @@ const AboutSection = () => {
             {/* 4 */}
             <div className="points">
               <h4 className="points-h">Lack of Flow</h4>
-              <p className="points-p">Your day feels busy &mdash; but progress feels stuck.</p>
+              <p className="points-p">
+                Your day feels busy &mdash; but progress feels stuck.
+              </p>
             </div>
           </div>
         </div>

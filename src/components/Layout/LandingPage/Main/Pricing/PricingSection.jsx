@@ -1,7 +1,7 @@
-import Cards from "../../Reusable/Cards/Cards";
-import Button from "../../Reusable/Button/Button";
+import Cards from "../../../../Reusable/Cards/Cards";
+import Button from "../../../../Reusable/Button/Button";
 
-import CARD_DATA from "../../../utils/data";
+import CARD_DATA from "../../../../../utils/data";
 
 const PricingSection = () => {
   return (

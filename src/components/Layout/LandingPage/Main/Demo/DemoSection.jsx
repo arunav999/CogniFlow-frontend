@@ -5,7 +5,7 @@ import { FiPlusCircle, FiUsers, FiTarget } from "react-icons/fi";
 import { BiTransferAlt } from "react-icons/bi";
 
 // Custom component
-import Button from "../../Reusable/Button/Button";
+import Button from "../../../../Reusable/Button/Button";
 
 const DemoSection = () => {
   return (

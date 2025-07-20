@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-import Links from "../../Reusable/Links/Links";
-import Button from "../../Reusable/Button/Button";
+import Links from "../../../Reusable/Links/Links";
+import Button from "../../../Reusable/Button/Button";
 
 import "./header.css";
 

@@ -1,6 +1,6 @@
 import cogniLogo from "../../../assets/cimg.png";
 
-import { FEATURES_DATA } from "../../../utils/data";
+import { FEATURES_DATA } from "../../../../../utils/data";
 
 const FeaturesSection = () => {
   return (

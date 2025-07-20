@@ -1,6 +1,6 @@
-import Button from "../../Reusable/Button/Button";
+import Button from "../../../../Reusable/Button/Button";
 
-import TypingLogic from "../../../utils/TypingLogic";
+import TypingLogic from "../../../../../utils/TypingLogic";
 
 const HeroSection = () => {
   const state = TypingLogic();

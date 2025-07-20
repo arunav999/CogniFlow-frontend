@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Outlet } from "react-router-dom";
 
 // React icons
 import { RiCloseCircleLine } from "react-icons/ri";
@@ -16,7 +16,7 @@ import Button from "../../Reusable/Button/Button";
 // Utils
 import { firstNameInitials, lastNameInitials } from "../../../utils/utils";
 
-const DashboardLaout = ({ children }) => {
+const DashboardLaout = () => {
   // Extracting user
   const { user } = useUserAuth();
 
@@ -163,12 +163,14 @@ const DashboardLaout = ({ children }) => {
               </div>
             </div>
 
+            {/* USER-NAME */}
             <div className="z-40 text-2xl">
-              <p>
+              <p className="font-heading text-light-text-primary">
                 {user?.firstName} {user?.lastName}
               </p>
             </div>
 
+            {/* NAV-LINKS */}
             <ul className="z-40 flex flex-col gap-4">
               <li>
                 <Links to={"/admin"}>Dashboard</Links>
@@ -205,7 +207,9 @@ const DashboardLaout = ({ children }) => {
         }
 
         {/* ========== MAIN CONTENT ========== */}
-        <main className="mt-27">{children}</main>
+        <main className="mt-27">
+          <Outlet />
+        </main>
       </div>
     </>
   );
