@@ -36,6 +36,7 @@ const router = createBrowserRouter([
   // ===== PRIVATE ROUTES =====
   // COMMON DASHBOARD LAYOUT
   {
+    // Admin routes
     path: "/admin",
     element: <DashboardLaout />,
     // lodaer to add for authentication
@@ -45,6 +46,17 @@ const router = createBrowserRouter([
       { path: "projects", element: <Projects /> },
       { path: "tickets", element: <Tickets /> },
       { path: "manage-users", element: <ManageUsers /> },
+    ],
+  },
+  {
+    // RABC based on role
+    path: "/u",
+    element: <DashboardLaout />,
+    // loader to add authentication
+    children: [
+      { index: true, element: <Dashboard /> },
+      { path: "projects", element: <Projects /> },
+      { path: "tickets", element: <Tickets /> },
     ],
   },
 

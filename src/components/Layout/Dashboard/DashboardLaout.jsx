@@ -173,19 +173,19 @@ const DashboardLaout = () => {
             {/* NAV-LINKS */}
             <ul className="z-40 flex flex-col gap-4" onClick={toggleSidebar}>
               <li>
-                <Links to={"/admin"}>Dashboard</Links>
+                <Links to={""}>Dashboard</Links>
               </li>
               <li>
-                <Links to={"/admin/workspaces"}>Workspaces</Links>
+                <Links to={"workspaces"}>Workspaces</Links>
               </li>
               <li>
-                <Links to={"/admin/projects"}>Projects</Links>
+                <Links to={"projects"}>Projects</Links>
               </li>
               <li>
-                <Links to={"/admin/tickets"}>Tickets</Links>
+                <Links to={"tickets"}>Tickets</Links>
               </li>
               <li>
-                <Links to={"/admin/manage-users"}>Team</Links>
+                <Links to={"manage-users"}>Team</Links>
               </li>
             </ul>
 
