@@ -13,9 +13,12 @@ import DashboardLaout from "../components/Layout/Dashboard/DashboardLaout";
 
 // Private pages
 import Dashboard from "../pages/Protected/Dashboard";
-import Workspaces from "../pages/Protected/Workspaces";
-import Projects from "../pages/Protected/Projects";
-import Tickets from "../pages/Protected/Tickets";
+import Workspaces from "../pages/Protected/Workspaces/Workspaces";
+import WorkspaceDetails from "../pages/Protected/Workspaces/WorkspaceDetails";
+import Projects from "../pages/Protected/Projects/Projects";
+import ProjectDetails from "../pages/Protected/Projects/ProjectDetails";
+import Tickets from "../pages/Protected/Tickets/Tickets";
+import TicketDetails from "../pages/Protected/Tickets/TicketDetails";
 import ManageUsers from "../pages/Protected/ManageUsers";
 
 // Error pages
@@ -41,11 +44,17 @@ const router = createBrowserRouter([
     element: <DashboardLaout />,
     // lodaer to add for authentication
     children: [
+      // Static Routes
       { index: true, element: <Dashboard /> },
       { path: "workspaces", element: <Workspaces /> },
       { path: "projects", element: <Projects /> },
       { path: "tickets", element: <Tickets /> },
       { path: "manage-users", element: <ManageUsers /> },
+
+      // Dynamic Routes
+      { path: "workspace/:id", element: <WorkspaceDetails /> },
+      { path: "project/:id", element: <ProjectDetails /> },
+      { path: "ticket/:id", element: <TicketDetails /> },
     ],
   },
   {
@@ -55,8 +64,9 @@ const router = createBrowserRouter([
     // loader to add authentication
     children: [
       { index: true, element: <Dashboard /> },
-      { path: "projects", element: <Projects /> },
-      { path: "tickets", element: <Tickets /> },
+      { path: "workspace", element: <Workspaces /> },
+      { path: "project", element: <Projects /> },
+      { path: "ticket", element: <Tickets /> },
     ],
   },
 
