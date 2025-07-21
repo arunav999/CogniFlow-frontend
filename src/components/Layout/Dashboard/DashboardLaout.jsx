@@ -14,6 +14,7 @@ import Links from "../../Reusable/Links/Links";
 import Button from "../../Reusable/Button/Button";
 
 // Utils
+import { ROUTE_NAMES } from "../../../utils/roles/routesNames";
 import { firstNameInitials, lastNameInitials } from "../../../utils/utils";
 
 const DashboardLaout = () => {
@@ -173,19 +174,19 @@ const DashboardLaout = () => {
             {/* NAV-LINKS */}
             <ul className="z-40 flex flex-col gap-4" onClick={toggleSidebar}>
               <li>
-                <Links to={""}>Dashboard</Links>
+                <Links to={`${ROUTE_NAMES.ADMIN.DASHBOARD}`}>Dashboard</Links>
               </li>
               <li>
-                <Links to={"workspaces"}>Workspaces</Links>
+                <Links to={`${ROUTE_NAMES.ADMIN.WORKSPACES}`}>Workspaces</Links>
               </li>
               <li>
-                <Links to={"projects"}>Projects</Links>
+                <Links to={`${ROUTE_NAMES.ADMIN.PROJECTS}`}>Projects</Links>
               </li>
               <li>
-                <Links to={"tickets"}>Tickets</Links>
+                <Links to={`${ROUTE_NAMES.ADMIN.TICKETS}`}>Tickets</Links>
               </li>
               <li>
-                <Links to={"manage-users"}>Team</Links>
+                <Links to={`${ROUTE_NAMES.ADMIN.MANAGE_USERS}`}>Team</Links>
               </li>
             </ul>
 
