@@ -36,6 +36,12 @@ export const getUserInfo = async () => {
   return response.data;
 };
 
+// Get user info by id
+export const getUserById = async (id) => {
+  const response = await axiosInstance.get(API_PATHS.AUTH.GET_USER_BY_ID(id));
+  return response.data;
+};
+
 // Logout user
 export const logoutUser = async () => {
   const response = await axiosInstance.post(API_PATHS.AUTH.LOGOUT);

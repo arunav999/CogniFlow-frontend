@@ -28,6 +28,7 @@ export const API_PATHS = {
     LOGIN: `${API_AUTH}/login`,
     CHECK_EMAIL: `${API_AUTH}/check-email`,
     GET_USER_INFO: `${API_AUTH}/getUser`,
+    GET_USER_BY_ID: (id) => `${API_AUTH}/getUser/${id}`,
     LOGOUT: `${API_AUTH}/logout`,
   },
   UPLOAD: {
