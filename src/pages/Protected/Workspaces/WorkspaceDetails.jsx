@@ -5,10 +5,16 @@ import { useParams } from "react-router-dom";
 import { getUserById } from "../../../services/Auth/authService";
 import { workspaceById } from "../../../services/Workspaces/workspacesService";
 
+// Utils
+import { pageTitle } from "../../../utils/utils";
+import { Link } from "react-router-dom";
+
 const WorkspaceDetails = () => {
   const params = useParams();
 
   const [workspaceDetails, setWorkspaceDetails] = useState(null);
+
+  let firstName;
 
   useEffect(() => {
     const getWorkspaceDetails = async () => {
@@ -19,6 +25,8 @@ const WorkspaceDetails = () => {
 
         const userById = await getUserById(res?.workspace?.createdBy);
         console.log("user details:", userById?.user?.firstName);
+        firstName = userById;
+        console.log(firstName);
       } catch (error) {
         console.log(error);
       }
@@ -29,6 +37,8 @@ const WorkspaceDetails = () => {
 
   console.log("State", workspaceDetails);
 
+  // Page Title
+  pageTitle(`Workspace - ${workspaceDetails?.name}`);
   return (
     <>
       <section className="">
@@ -42,7 +52,14 @@ const WorkspaceDetails = () => {
         </p>
         {workspaceDetails?.projects?.length < 1 && <p>No Projects</p>}
         {/* ADD PROJECTS */}
-        <p>Workspace created by: </p>
+        {workspaceDetails?.projects?.map((project) => (
+          <p key={project}>Project id: {project}</p>
+        ))}
+        <p>Workspace created by: {firstName}</p>
+
+        <Link to="/admin/workspaces">
+          Back
+        </Link>
       </section>
     </>
   );

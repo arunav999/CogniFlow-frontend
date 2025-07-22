@@ -46,14 +46,7 @@ const router = createBrowserRouter([
     children: [
       // Static Routes
       { index: true, element: <Dashboard /> },
-      {
-        path: "workspaces",
-        element: <Workspaces />,
-        children: [
-          { index: false },
-          { path: "workspace/:id", element: <WorkspaceDetails /> },
-        ],
-      },
+      { path: "workspaces", element: <Workspaces /> },
       { path: "projects", element: <Projects /> },
       { path: "tickets", element: <Tickets /> },
       { path: "manage-users", element: <ManageUsers /> },
