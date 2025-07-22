@@ -1,5 +1,5 @@
-import axiosInstance from "../Axios/axiosInstance";
-import { API_PATHS } from "../API/apiPaths";
+import axiosInstance from "./axiosInstance";
+import { API_PATHS } from "./apiPaths";
 
 // Create workspace
 export const createWorkspace = async (formData) => {

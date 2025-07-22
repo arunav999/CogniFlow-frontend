@@ -5,7 +5,8 @@ import { Link, useNavigate, Outlet } from "react-router-dom";
 import { RiCloseCircleLine } from "react-icons/ri";
 
 // Service
-import { logoutUser } from "../../../services/Auth/authService";
+import { logoutUser } from "../../../services/authService";
+
 // Custom hook
 import useUserAuth from "../../../hooks/useUserAuth";
 

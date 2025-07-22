@@ -2,7 +2,7 @@
 import { useState, useEffect, createContext } from "react";
 
 // Get user info service
-import { getUserInfo } from "../services/Auth/authService";
+import { getUserInfo } from "../services/authService";
 
 // User Context default values
 export const UserContext = createContext({

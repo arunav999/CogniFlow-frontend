@@ -21,8 +21,8 @@ import { SyncLoader } from "react-spinners";
 import * as validator from "../../utils/validation";
 
 // Signup service
-import { checkUser, registerUser } from "../../services/Auth/authService";
-import { uploadProfilePic } from "../../services/upload/uploadService";
+import { checkUser, registerUser } from "../../services/authService";
+import { uploadProfilePic } from "../../services/uploadService";
 
 // Custom User hook
 import useUserAuth from "../../hooks/useUserAuth";

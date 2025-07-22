@@ -14,12 +14,16 @@ import DashboardLaout from "../components/Layout/Dashboard/DashboardLaout";
 // Private pages
 import Dashboard from "../pages/Protected/Dashboard";
 import Workspaces from "../pages/Protected/Workspaces/Workspaces";
-import WorkspaceDetails from "../pages/Protected/Workspaces/WorkspaceDetails";
 import Projects from "../pages/Protected/Projects/Projects";
-import ProjectDetails from "../pages/Protected/Projects/ProjectDetails";
 import Tickets from "../pages/Protected/Tickets/Tickets";
-import TicketDetails from "../pages/Protected/Tickets/TicketDetails";
 import ManageUsers from "../pages/Protected/ManageUsers";
+
+// Dynamic pages
+import WorkspaceDetails from "../pages/Protected/Workspaces/WorkspaceDetails";
+import ProjectDetails from "../pages/Protected/Projects/ProjectDetails";
+import TicketDetails from "../pages/Protected/Tickets/TicketDetails";
+
+// Loader's
 
 // Error pages
 import ErrorPage from "../pages/Error/ErrorPage";

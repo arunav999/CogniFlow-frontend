@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { API_PATHS } from "../API/apiPaths";
+import { API_PATHS } from "./apiPaths";
 
 const uploadAxios = axios.create({
   baseURL: import.meta.env.VITE_COGNIFLOW_BACKEND_URL,
