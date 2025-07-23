@@ -32,6 +32,8 @@ import TicketDetails from "../pages/Protected/Tickets/TicketDetails";
 // Error pages
 import ErrorPage from "../pages/Error/ErrorPage";
 import NotFound from "../pages/Error/NotFound";
+import Unauthorized from "../pages/Error/Unauthorized";
+import Forbidden from "../pages/Error/Forbidden";
 
 // ========== DEFINING APP ROUTES ==========
 const router = createBrowserRouter([
@@ -92,15 +94,15 @@ const router = createBrowserRouter([
   //   ],
   // },
 
-  // ===== CENTRALIZED ERROR ROUTES =====
-  // {
-  //   path: "*",
-  //   loader: () => {
-  //     throw new Response("Not Found", { status: 404 });
-  //   },
-  //   errorElement: <ErrorPage />,
-  // },
+  // ===== ERROR ROUTES =====
+  // Not found
   { path: "*", element: <NotFound /> },
+
+  // Unauthorized
+  { path: "/401-unauthorized", element: <Unauthorized /> },
+
+  // Forbidden
+  { path: "/403-forbidden", element: <Forbidden /> },
 ]);
 
 export default router;
