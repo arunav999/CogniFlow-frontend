@@ -22,15 +22,9 @@ import { emailIsValid, passwordIsValid } from "../../utils/validation";
 // Service
 import { loginUser } from "../../services/authService";
 
-// Custom User hook
-import useUserAuth from "../../hooks/useUserAuth";
-
 const Login = () => {
   // Page title
   pageTitle("Login - Cogniflow");
-
-  // Extracting setUser
-  const { setUser } = useUserAuth();
 
   // Focus on first field
   const emailRef = useRef(null);
@@ -149,11 +143,12 @@ const Login = () => {
       const res = await loginUser(payload);
 
       // Set userContext
-      setUser(res.user);
+      // setUser(res.user);
 
       // If redirect
       navigate(res.redirect);
 
+      // Reset form
       setFormData({
         email: "",
         password: "",

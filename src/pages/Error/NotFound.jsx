@@ -3,8 +3,6 @@ import { useLocation } from "react-router-dom";
 
 // Custom compo
 import Links from "../../components/Reusable/Links/Links";
-// Custom hook
-import useUserAuth from "../../hooks/useUserAuth";
 
 // Utils
 import { pageTitle } from "../../utils/utils";
@@ -12,8 +10,6 @@ import { ROLES } from "../../utils/roles/roles";
 
 const NotFound = () => {
   pageTitle("404 - Not found");
-
-  const { user } = useUserAuth();
 
   const location = useLocation();
 

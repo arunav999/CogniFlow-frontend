@@ -23,8 +23,6 @@ import WorkspaceDetails from "../pages/Protected/Workspaces/WorkspaceDetails";
 import ProjectDetails from "../pages/Protected/Projects/ProjectDetails";
 import TicketDetails from "../pages/Protected/Tickets/TicketDetails";
 
-// Loader's
-
 // Error pages
 import ErrorPage from "../pages/Error/ErrorPage";
 
@@ -46,7 +44,7 @@ const router = createBrowserRouter([
     // Admin routes
     path: "/admin",
     element: <DashboardLaout />,
-    // lodaer to add for authentication
+   // Loder for auth
     children: [
       // Static Routes
       { index: true, element: <Dashboard /> },

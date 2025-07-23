@@ -24,17 +24,11 @@ import * as validator from "../../utils/validation";
 import { checkUser, registerUser } from "../../services/authService";
 import { uploadProfilePic } from "../../services/uploadService";
 
-// Custom User hook
-import useUserAuth from "../../hooks/useUserAuth";
-
 const Signup = () => {
   // Page title
   pageTitle("Sign up - Cogniflow");
 
   const navigate = useNavigate();
-
-  // Extracting setUser
-  const { setUser } = useUserAuth();
 
   // Profile Pic
   const [avatarFile, setavAtarFile] = useState(null);
@@ -316,9 +310,6 @@ const Signup = () => {
 
     try {
       const response = await registerUser(payload);
-
-      // Set userContext
-      setUser(response.user);
 
       if (avatarFile) {
         try {
