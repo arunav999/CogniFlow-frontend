@@ -1,10 +1,16 @@
+// ==================== React Imports ====================
 import { useState, useEffect } from "react";
 import { typingConfig } from "./data";
 
+// ==================== TypingLogic Hook/Component ====================
+// Provides animated typing effect for hero/landing text
+// Handles typing, deleting, blinking, and cycling through phrases
 const TypingLogic = () => {
+  // Destructure typing animation config
   const { texts, typingDuration, deletingDuration, blinkSpeed, pauseDuration } =
     typingConfig[0];
 
+  // State for current text, animation phase, and blinking
   const [state, setState] = useState({
     text: "",
     isDeleting: false,
@@ -13,6 +19,7 @@ const TypingLogic = () => {
     pause: false,
   });
 
+  // Effect: Handles typing and deleting logic
   useEffect(() => {
     const currentWord = texts[state.index];
     const totalTime = state.isDeleting
@@ -50,6 +57,7 @@ const TypingLogic = () => {
     return () => clearTimeout(timeout);
   }, [state.text, state.isDeleting, state.index, state.pause]);
 
+  // Effect: Handles blinking cursor animation
   useEffect(() => {
     const blinkInterval = setInterval(() => {
       setState((prev) => ({
@@ -57,10 +65,10 @@ const TypingLogic = () => {
         blink: !prev.blink,
       }));
     }, blinkSpeed);
-
     return () => clearInterval(blinkInterval);
   }, []);
 
+  // Return current typing state for use in UI
   return state;
 };
 

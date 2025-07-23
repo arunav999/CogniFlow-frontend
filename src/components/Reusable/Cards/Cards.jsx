@@ -1,7 +1,12 @@
+// ==================== 3rd-party Imports ====================
 import { useEffect, useRef, useState } from "react";
 import { TiTick } from "react-icons/ti";
+
+// ==================== Reusable Components ====================
 import Button from "../Button/Button";
 
+// ==================== Cards Component ====================
+// Interactive pricing/plan card with flip animation and details
 const Cards = ({
   plan,
   price,
@@ -11,7 +16,9 @@ const Cards = ({
   gradient,
   secondary,
 }) => {
+  // State for card flip
   const [flipped, setFlipped] = useState(false);
+  // Ref for card DOM node
   const cardRef = useRef(null);
 
   // Flip back when clicking outside the card
@@ -21,11 +28,11 @@ const Cards = ({
         setFlipped(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // ==================== Render Card ====================
   return (
     <div
       ref={cardRef}

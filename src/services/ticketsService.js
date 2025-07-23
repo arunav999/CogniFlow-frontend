@@ -1,25 +1,28 @@
-import axiosInstance from "./axiosInstance";
-import { API_PATHS } from "./apiPaths";
+// ==================== IMPORTS ====================
+import axiosInstance from "./axiosInstance"; // Pre-configured axios instance
+import { API_PATHS } from "./apiPaths"; // Centralized API endpoint paths
 
-// Create Ticket
+// ==================== TICKET SERVICE FUNCTIONS ====================
+
+// Create a new ticket with provided form data
 export const createTicket = async (formData) => {
   const response = await axiosInstance.post(API_PATHS.TICKET.CREATE, formData);
   return response.data;
 };
 
-// Get All Tickets for Current project
+// Get all tickets for the current project
 export const getAllTickets = async (formData) => {
   const response = await axiosInstance.get(API_PATHS.TICKET.GET_ALL, formData);
   return response.data;
 };
 
-// Get Ticket by id
+// Get a ticket by its ID
 export const getTicketById = async (id) => {
   const response = await axiosInstance.get(API_PATHS.TICKET.GET_BY_ID(id));
   return response.data;
 };
 
-// Patch Ticket by id
+// Update (patch) a ticket by its ID
 export const patchTicketById = async (id, formData) => {
   const response = await axiosInstance.patch(
     API_PATHS.TICKET.PATCH_BY_ID(id),
@@ -28,7 +31,7 @@ export const patchTicketById = async (id, formData) => {
   return response.data;
 };
 
-// Delete Ticket by id
+// Delete a ticket by its ID
 export const deleteTicketById = async (id) => {
   const response = await axiosInstance.delete(
     API_PATHS.TICKET.DELETE_BY_ID(id)

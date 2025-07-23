@@ -1,3 +1,5 @@
+/* ==================== Button Styles ==================== */
+/* Base button styles for all variants */
 .button {
   display: inline-block;
   position: relative;
@@ -12,6 +14,7 @@
   z-index: 1;
 }
 
+/* ==================== Responsive Styles ==================== */
 @media (min-width: 768px) {
   .button {
     font-size: 0.975rem;
@@ -33,6 +36,7 @@
   }
 }
 
+/* ==================== Button Variants ==================== */
 /* Primary button (default) */
 .button.primary {
   background-color: #53aea0;

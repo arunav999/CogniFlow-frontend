@@ -1,24 +1,26 @@
-// Location
+// ==================== 3rd-party Imports ====================
 import { useLocation } from "react-router-dom";
 
-// Custom compo
+// ==================== Reusable Components ====================
 import Links from "../../components/Reusable/Links/Links";
-// Custom hook
+
+// ==================== Hooks ====================
 import useUserAuth from "../../hooks/useUserAuth";
 
-// Utils
+// ==================== Utilities ====================
 import { pageTitle } from "../../utils/utils";
 import { ROLES } from "../../utils/roles/roles";
 import { ROUTE_NAMES } from "../../utils/roles/routesNames";
 
+// ==================== Not Found Page Component ====================
+// Renders a 404 page and suggests navigation based on user role
 const NotFound = () => {
   pageTitle("404 - Not found");
 
   const { user } = useUserAuth();
-
   const location = useLocation();
 
-  // Based on role: dashboard
+  // Determine redirect path based on user role
   const redirect =
     user?.role === ROLES.ADMIN
       ? ROUTE_NAMES.ADMIN.DASHBOARD
@@ -29,7 +31,7 @@ const NotFound = () => {
   return (
     <>
       <section className="section">
-        {/* HEADING */}
+        {/* ==================== Heading ==================== */}
         <div className="text-center mb-8">
           <h2 className="heading">404 &mdash; Page not found</h2>
           <h4 className="sub-heading text-light-text-secondary">

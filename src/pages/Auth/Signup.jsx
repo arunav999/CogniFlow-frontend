@@ -1,52 +1,48 @@
-// React imports
+// ==================== React & Router Imports ====================
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-// Custom component
+// ==================== Reusable Components ====================
 import Input from "../../components/Reusable/Input/Input";
 import ProfilePhoto from "../../components/Reusable/Input/ProfilePhoto";
 import Button from "../../components/Reusable/Button/Button";
 
-// Util
+// ==================== Utilities & Icons ====================
 import { pageTitle, debounce } from "../../utils/utils";
-
-// Icon
 import { FiUser, FiLock, FiBriefcase, FiHash } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
-
-// Spinners
 import { SyncLoader } from "react-spinners";
 
-// Validators
+// ==================== Validation & Services ====================
 import * as validator from "../../utils/validation";
-
-// Signup service
 import { checkUser, registerUser } from "../../services/authService";
 import { uploadProfilePic } from "../../services/uploadService";
 
-// Custom User hook
+// ==================== Custom Hooks ====================
 import useUserAuth from "../../hooks/useUserAuth";
 
+// ==================== Signup Page Component ====================
+// Handles user registration, validation, and form state
 const Signup = () => {
-  // Page title
+  // ========== Page Title ==========
   pageTitle("Sign up - Cogniflow");
 
+  // ========== Navigation ==========
   const navigate = useNavigate();
 
-  // Extracting setUser
+  // ========== User Context ==========
   const { setUser } = useUserAuth();
 
-  // Profile Pic
+  // ========== Profile Picture State ==========
   const [avatarFile, setavAtarFile] = useState(null);
 
-  // Focus on first field
+  // ========== Input Focus Ref ==========
   const firstNameRef = useRef(null);
-
   useEffect(() => {
     firstNameRef.current?.focus();
   }, []);
 
-  // Form data
+  // ========== Form Data State ==========
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -57,7 +53,7 @@ const Signup = () => {
     company: "",
   });
 
-  // Error
+  // ========== Error State ==========
   const [error, setError] = useState({
     firstName: { hasError: false, hasErrorMessage: null },
     lastName: { hasError: false, hasErrorMessage: null },
@@ -67,15 +63,16 @@ const Signup = () => {
     company: { hasError: false, hasErrorMessage: null },
   });
 
-  // Submitting
+  // ========== Submission State ==========
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // ========== Handlers ==========
+  // Handle profile picture selection
   const handleAvatarSelect = (file) => setavAtarFile(file);
 
-  // Debounce
+  // Debounced email check for uniqueness
   const debouncedCheckEmail = debounce(async (email) => {
     const res = await checkUser(email);
-
     setError((prev) => ({
       ...prev,
       email: {
@@ -85,12 +82,10 @@ const Signup = () => {
     }));
   }, 500);
 
-  // handle blur
+  // Validate fields on blur
   const handleBlur = (field) => {
-    // first name
     if (field === "firstName") {
       const result = validator.firstNameIsValid(formData.firstName);
-
       if (result) {
         setError((prev) => ({
           ...prev,
@@ -102,11 +97,8 @@ const Signup = () => {
         return;
       }
     }
-
-    // last name
     if (field === "lastName") {
       const result = validator.lastNameIsValid(formData.lastName);
-
       if (result) {
         setError((prev) => ({
           ...prev,
@@ -118,12 +110,9 @@ const Signup = () => {
         return;
       }
     }
-
-    // email
     if (field === "email") {
       const email = formData.email.trim();
       const result = validator.emailIsValid(formData.email);
-
       if (result) {
         setError((prev) => ({
           ...prev,
@@ -134,15 +123,10 @@ const Signup = () => {
         }));
         return;
       }
-
-      // Debounced API call
       debouncedCheckEmail(email);
     }
-
-    // password
     if (field === "password") {
       const result = validator.passwordIsValid(formData.password);
-
       if (result) {
         setError((prev) => ({
           ...prev,
@@ -154,14 +138,11 @@ const Signup = () => {
         return;
       }
     }
-
-    // confirmPassword
     if (field === "confirmPassword") {
       const result = validator.confirmPasswordIsValid(
         formData.password,
         formData.confirmPassword
       );
-
       if (result) {
         setError((prev) => ({
           ...prev,
@@ -173,11 +154,8 @@ const Signup = () => {
         return;
       }
     }
-
-    // company
     if (field === "company") {
       const result = validator.companyIsValid(formData.company);
-
       if (result) {
         setError((prev) => ({
           ...prev,
@@ -191,117 +169,60 @@ const Signup = () => {
     }
   };
 
-  // handle change
+  // Handle input changes
   const handleChange = (e, field) => {
     const value = e.target.value;
-
-    // first name
     if (field === "firstName") {
-      setFormData((prev) => ({
-        ...prev,
-        firstName: value,
-      }));
-
+      setFormData((prev) => ({ ...prev, firstName: value }));
       setError((prev) => ({
         ...prev,
-        firstName: {
-          hasError: false,
-          hasErrorMessage: null,
-        },
+        firstName: { hasError: false, hasErrorMessage: null },
       }));
     }
-
-    // last name
     if (field === "lastName") {
-      setFormData((prev) => ({
-        ...prev,
-        lastName: value,
-      }));
-
+      setFormData((prev) => ({ ...prev, lastName: value }));
       setError((prev) => ({
         ...prev,
-        lastName: {
-          hasError: false,
-          hasErrorMessage: null,
-        },
+        lastName: { hasError: false, hasErrorMessage: null },
       }));
     }
-
-    // email
     if (field === "email") {
-      setFormData((prev) => ({
-        ...prev,
-        email: value,
-      }));
-
+      setFormData((prev) => ({ ...prev, email: value }));
       setError((prev) => ({
         ...prev,
-        email: {
-          hasError: false,
-          hasErrorMessage: null,
-        },
+        email: { hasError: false, hasErrorMessage: null },
       }));
     }
-
-    // password
     if (field === "password") {
-      setFormData((prev) => ({
-        ...prev,
-        password: value,
-      }));
-
+      setFormData((prev) => ({ ...prev, password: value }));
       setError((prev) => ({
         ...prev,
-        password: {
-          hasError: false,
-          hasErrorMessage: null,
-        },
+        password: { hasError: false, hasErrorMessage: null },
       }));
     }
-
-    // confirmPassword
     if (field === "confirmPassword") {
-      setFormData((prev) => ({
-        ...prev,
-        confirmPassword: value,
-      }));
-
+      setFormData((prev) => ({ ...prev, confirmPassword: value }));
       setError((prev) => ({
         ...prev,
-        confirmPassword: {
-          hasError: false,
-          hasErrorMessage: null,
-        },
+        confirmPassword: { hasError: false, hasErrorMessage: null },
       }));
     }
-
-    // company
     if (field === "company") {
-      setFormData((prev) => ({
-        ...prev,
-        company: value,
-      }));
-
+      setFormData((prev) => ({ ...prev, company: value }));
       setError((prev) => ({
         ...prev,
-        company: {
-          hasError: false,
-          hasErrorMessage: null,
-        },
+        company: { hasError: false, hasErrorMessage: null },
       }));
     }
   };
 
-  // check for errors
+  // Check if any field has errors
   const hasErrors = Object.values(error).some((field) => field.hasError);
 
-  // handle register user
+  // Handle signup form submission
   const handleSignup = async (e) => {
     e.preventDefault();
-
     if (hasErrors) return;
-
-    // if no errors
     const payload = {
       firstName: formData.firstName,
       lastName: formData.lastName,
@@ -311,15 +232,10 @@ const Signup = () => {
       role: formData.role,
       company: formData.company,
     };
-
     setIsSubmitting(true);
-
     try {
       const response = await registerUser(payload);
-
-      // Set userContext
-      setUser(response.user);
-
+      setUser(response.user); // Set user context
       if (avatarFile) {
         try {
           const uploadRes = await uploadProfilePic(avatarFile);
@@ -328,9 +244,7 @@ const Signup = () => {
           console.warn("Avatar upload failed:", uploadError.message);
         }
       }
-
-      navigate(response.redirect);
-
+      navigate(response.redirect); // Redirect after signup
       setFormData({
         firstName: "",
         lastName: "",
@@ -342,10 +256,8 @@ const Signup = () => {
       });
     } catch (error) {
       setIsSubmitting(false);
-
-      // Backend error message
+      // Handle backend error
       const backendError = error.response?.data;
-
       if (backendError && backendError.field) {
         setError((prev) => ({
           ...prev,
@@ -362,10 +274,11 @@ const Signup = () => {
     }
   };
 
+  // ==================== Render Signup Form ====================
   return (
     <>
       <section className="section">
-        {/* HEADING */}
+        {/* ========== Heading Section ========== */}
         <div className="text-center mb-8">
           <h2 className="heading">
             Create your{" "}
@@ -379,21 +292,20 @@ const Signup = () => {
           </h4>
         </div>
 
-        {/* SIGNUP FORM */}
+        {/* ========== Signup Form ========== */}
         <form
           className="flex items-center justify-center"
           onSubmit={handleSignup}
-          // noValidate
         >
           <div className="flex flex-col items-center justify-center gap-1">
-            {/* Upload profile Image */}
+            {/* Profile Photo Upload */}
             <ProfilePhoto
               fName={formData.firstName}
               lName={formData.lastName}
               onSelect={handleAvatarSelect}
             />
 
-            {/* First name */}
+            {/* First Name Input */}
             <Input
               type="text"
               id="fName"
@@ -408,7 +320,7 @@ const Signup = () => {
               errorMessage={error.firstName.hasErrorMessage}
             />
 
-            {/* Last name */}
+            {/* Last Name Input */}
             <Input
               type="text"
               id="lName"
@@ -423,7 +335,7 @@ const Signup = () => {
               errorMessage={error.lastName.hasErrorMessage}
             />
 
-            {/* Email */}
+            {/* Email Input */}
             <Input
               type="email"
               id="email"
@@ -437,7 +349,7 @@ const Signup = () => {
               errorMessage={error.email.hasErrorMessage}
             />
 
-            {/* Password */}
+            {/* Password Input */}
             <Input
               type="password"
               id="password"
@@ -451,7 +363,7 @@ const Signup = () => {
               errorMessage={error.password.hasErrorMessage}
             />
 
-            {/* Confirm password */}
+            {/* Confirm Password Input */}
             <Input
               type="password"
               id="confirmPassword"
@@ -465,12 +377,12 @@ const Signup = () => {
               errorMessage={error.confirmPassword.hasErrorMessage}
             />
 
-            {/* ROLE */}
+            {/* User Role Selection */}
             <h4 className="font-body text-lg text-gray-500">
               What type of user are you?
             </h4>
             <div className="flex items-center justify-evenly w-full font-body">
-              {/* Radio for admin */}
+              {/* Admin Role Radio */}
               <label htmlFor="admin" className="radio">
                 <input
                   type="radio"
@@ -484,8 +396,7 @@ const Signup = () => {
                 />
                 <p>Admin</p>
               </label>
-
-              {/* Radio for manager */}
+              {/* Manager Role Radio */}
               <label htmlFor="manager" className="radio">
                 <input
                   type="radio"
@@ -499,8 +410,7 @@ const Signup = () => {
                 />
                 <p>Manager</p>
               </label>
-
-              {/* Radio for developer */}
+              {/* Developer Role Radio */}
               <label htmlFor="developer" className="radio">
                 <input
                   type="radio"
@@ -516,11 +426,11 @@ const Signup = () => {
               </label>
             </div>
 
-            {/* CONDITIONAL RENDERING ADMIN / MEMBER */}
-            {/* ADMIN */}
+            {/* Conditional Fields for Role */}
             <div className="mt-4 flex flex-col items-center justify-center">
               {formData.role === "admin" && (
                 <>
+                  {/* Company Input for Admin */}
                   <Input
                     type="text"
                     id="company"
@@ -535,10 +445,9 @@ const Signup = () => {
                   />
                 </>
               )}
-
-              {/* MANAGER */}
               {formData.role === "manager" && (
                 <>
+                  {/* Invite Code Input for Manager */}
                   <Input
                     type="text"
                     id="inviteCode"
@@ -550,10 +459,9 @@ const Signup = () => {
                   />
                 </>
               )}
-
-              {/* DEVELOPER */}
               {formData.role === "developer" && (
                 <>
+                  {/* Invite Code Input for Developer */}
                   <Input
                     type="text"
                     id="inviteCode"
@@ -567,11 +475,10 @@ const Signup = () => {
               )}
             </div>
 
-            {/* Reset form */}
+            {/* Reset Form Button */}
             <div
               className="w-[100%] underline cursor-pointer text-right font-body text-gray-500"
               onClick={() => {
-                // Reset form data
                 setFormData({
                   firstName: "",
                   lastName: "",
@@ -582,8 +489,6 @@ const Signup = () => {
                   role: "admin",
                   inviteCode: "",
                 });
-
-                // Reset errors
                 setError({
                   firstName: { hasError: false, hasErrorMessage: null },
                   lastName: { hasError: false, hasErrorMessage: null },
@@ -592,21 +497,15 @@ const Signup = () => {
                   confirmPassword: { hasError: false, hasErrorMessage: null },
                   company: { hasError: false, hasErrorMessage: null },
                 });
-
-                // Reset focus
                 firstNameRef.current?.focus();
               }}
             >
               Reset
             </div>
 
-            {/* Signup button */}
+            {/* Signup Button */}
             <div className="my-4">
-              <Button
-                disabled={hasErrors || isSubmitting}
-                // redirect={`${role === "admin" ? "/admin" : "/u"}`}
-                type="submit"
-              >
+              <Button disabled={hasErrors || isSubmitting} type="submit">
                 {isSubmitting ? (
                   <>
                     <span className="font-body">Signing up</span>{" "}
@@ -620,7 +519,7 @@ const Signup = () => {
               </Button>
             </div>
 
-            {/* Re-direct to login */}
+            {/* Redirect to Login */}
             <div className="flex items-center text-gray-500 gap-4 font-body">
               <p>Already have an account?</p>
               <Button secondary disabled={false} redirect="/auth?type=login">

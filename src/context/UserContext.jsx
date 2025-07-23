@@ -1,32 +1,33 @@
-// React
+// ==================== 3rd-party Imports ====================
 import { useState, useEffect, createContext } from "react";
 
-// Get user info service
+// ==================== Services ====================
 import { getUserInfo } from "../services/authService";
 
-// User Context default values
+// ==================== User Context ====================
+// Provides user authentication state and loading status
 export const UserContext = createContext({
   user: null,
   loading: true,
   setUser: () => {},
 });
 
-// Context provider
+// Provider component to wrap the app and provide user state
 export const UserProvider = ({ children }) => {
-  // Defining state
+  // State for user and loading
   const [status, setStatus] = useState({
     user: null,
     loading: true,
   });
 
-  // Run on first render
+  // Check authentication status on mount
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        // Getting user
+        // Get user info
         const res = await getUserInfo();
 
-        // Setting Status
+        // Set user and loading state
         setStatus((prev) => ({
           ...prev,
           user: res.user,

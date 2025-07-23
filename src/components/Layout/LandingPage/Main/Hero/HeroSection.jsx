@@ -1,14 +1,19 @@
+// ==================== 3rd-party Imports ====================
 import Button from "../../../../Reusable/Button/Button";
 
+// ==================== Utilities ====================
 import TypingLogic from "../../../../../utils/TypingLogic";
 
+// ==================== Hero Section Component ====================
+// Main hero section with dynamic typing effect and intro text
 const HeroSection = () => {
+  // Typing animation state
   const state = TypingLogic();
 
   return (
     <>
       <section className="section scroll-mt-20 h-[85vh]" id="hero">
-        {/* HEADING */}
+        {/* ==================== Heading ==================== */}
         <div className="text-center mb-10">
           <h2 className="heading">
             <span className="logo logo-gradient">Cogniflow</span> &mdash; your
@@ -16,7 +21,7 @@ const HeroSection = () => {
           </h2>
         </div>
 
-        {/* DYNAMIC TYPING */}
+        {/* ==================== Dynamic Typing ==================== */}
         <div className="xs:text-[22px] xs:p-4 lg:pl-18 md:text-[28px] xs:h-[43vh] lg:h-[60vh] flex flex-col md:justify-center gap-4 font-body text-light-text-link-active">
           <div>
             <p className="inline mr-2">It helps you</p>

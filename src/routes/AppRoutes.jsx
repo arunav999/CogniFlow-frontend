@@ -1,77 +1,67 @@
-// ========== IMPORT 3rd party ==========
+// ==================== 3rd PARTY IMPORTS ====================
+// Importing React Router for SPA navigation and route management
 import { createBrowserRouter } from "react-router-dom";
 
-// ========== COMPONENTS ==========
-// Home page
+// ==================== COMPONENT IMPORTS ====================
+// Home/Landing page
 import HomePage from "../components/Layout/LandingPage/HomePage";
-
-// Auth page
+// Authentication page
 import AuthPage from "../pages/Auth/AuthPage";
-
-// Common dashboard layput
+// Dashboard layout for admin area
 import DashboardLaout from "../components/Layout/Dashboard/DashboardLaout";
-
-// Public Routes
+// Route guards for public and protected routes
 import PublicRoute from "../pages/PublicRoute";
-
-// Protected Routes
 import ProtectedRoute from "../pages/Auth/ProtectedRoute";
-
-// Private pages
+// Private (admin) pages
 import Dashboard from "../pages/Protected/Dashboard";
 import Workspaces from "../pages/Protected/Workspaces/Workspaces";
 import Projects from "../pages/Protected/Projects/Projects";
 import Tickets from "../pages/Protected/Tickets/Tickets";
 import ManageUsers from "../pages/Protected/ManageUsers";
-
-// Dynamic pages
+// Dynamic detail pages
 import WorkspaceDetails from "../pages/Protected/Workspaces/WorkspaceDetails";
 import ProjectDetails from "../pages/Protected/Projects/ProjectDetails";
 import TicketDetails from "../pages/Protected/Tickets/TicketDetails";
-
-// Error pages
-import ErrorPage from "../pages/Error/ErrorPage";
+// Error pages for fallback and access control
 import NotFound from "../pages/Error/NotFound";
 import Unauthorized from "../pages/Error/Unauthorized";
 import Forbidden from "../pages/Error/Forbidden";
 
-// ========== DEFINING APP ROUTES ==========
+// ==================== ROUTER CONFIGURATION ====================
+// Main application router: defines all public, protected, and error routes
 const router = createBrowserRouter([
-  // ===== PUBLIC ROUTES =====
+  // ----------- PUBLIC ROUTES (Accessible to all users) -----------
   {
-    element: <PublicRoute />,
+    element: <PublicRoute />, // Wrapper for public routes
     children: [
       {
         path: "/",
-        element: <HomePage />,
+        element: <HomePage />, // Home/Landing page
       },
       {
         path: "/auth",
-        element: <AuthPage />,
+        element: <AuthPage />, // Authentication (login/signup)
       },
     ],
   },
 
-  // ===== PROTECTED ROUTES =====
+  // ----------- PROTECTED ROUTES (Require authentication & role) -----------
   {
-    element: <ProtectedRoute allowedRoles={["admin"]} />,
+    element: <ProtectedRoute allowedRoles={["admin"]} />, // Only admin users
     children: [
-      // ===== PRIVATE ROUTES =====
-      // COMMON DASHBOARD LAYOUT
+      // ---- ADMIN DASHBOARD LAYOUT ----
       {
-        // Admin routes
         path: "/admin",
-        element: <DashboardLaout />,
-        // Loder for auth
+        element: <DashboardLaout />, // Main dashboard layout
         children: [
-          // Static Routes
-          { index: true, element: <Dashboard /> },
+          // ---- STATIC ADMIN PAGES ----
+          { index: true, element: <Dashboard /> }, // Dashboard home
           { path: "workspaces", element: <Workspaces /> },
           { path: "projects", element: <Projects /> },
           { path: "tickets", element: <Tickets /> },
           { path: "manage-users", element: <ManageUsers /> },
 
-          // Dynamic Routes
+          // ---- DYNAMIC DETAIL PAGES ----
           { path: "workspace/:id", element: <WorkspaceDetails /> },
           { path: "project/:id", element: <ProjectDetails /> },
           { path: "ticket/:id", element: <TicketDetails /> },
@@ -79,6 +69,13 @@ const router = createBrowserRouter([
       },
     ],
   },
+
+  // ----------- ERROR & FALLBACK ROUTES -----------
+  { path: "*", element: <NotFound /> }, // 404 Not Found
+  { path: "/401-unauthorized", element: <Unauthorized /> }, // 401 Unauthorized
+  { path: "/403-forbidden", element: <Forbidden /> }, // 403 Forbidden
+]);
+
 
   // this will come later - first admin
   // {
@@ -94,15 +91,5 @@ const router = createBrowserRouter([
   //   ],
   // },
 
-  // ===== ERROR ROUTES =====
-  // Not found
-  { path: "*", element: <NotFound /> },
-
-  // Unauthorized
-  { path: "/401-unauthorized", element: <Unauthorized /> },
-
-  // Forbidden
-  { path: "/403-forbidden", element: <Forbidden /> },
-]);
-
+// ==================== EXPORT ROUTER ====================
 export default router;

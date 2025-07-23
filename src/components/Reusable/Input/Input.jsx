@@ -1,8 +1,12 @@
+// ==================== 3rd-party Imports ====================
 import { useState } from "react";
 
+// ==================== Icons ====================
 import { PiEyeDuotone, PiEyeClosedDuotone } from "react-icons/pi";
 import { MdOutlineErrorOutline } from "react-icons/md";
 
+// ==================== Input Component ====================
+// Reusable input field with support for password toggle, error display, and icons
 const Input = ({
   id,
   name,
@@ -17,16 +21,18 @@ const Input = ({
   error,
   errorMessage,
 }) => {
+  // State for password visibility
   const [showPassword, setShowPassword] = useState(false);
 
-  // input field vale checking
+  // Check if input is filled
   const isFilled = value?.trim().length > 0;
 
-  // Show / Hide Password
+  // Toggle password visibility
   const togglePassword = () => {
     setShowPassword((prev) => !prev);
   };
 
+  // ==================== Render Input ====================
   return (
     <>
       <div className="flex flex-col">

@@ -1,4 +1,5 @@
-// React-Icons
+// ==================== Icon Imports ====================
+// Importing icons from react-icons for use in feature, card, and footer data
 import {
   FiPackage,
   FiBriefcase,
@@ -16,10 +17,8 @@ import { BiMoney, BiBookContent, BiBug } from "react-icons/bi";
 
 import cogniLogo from "../assets/cimg.png";
 
-/* ======================== */
-/*      FEATURES DATA      */
-/* ======================== */
-
+// ==================== Features Data ====================
+// Array of feature objects for the landing page or marketing sections
 export const FEATURES_DATA = [
   {
     id: 1,
@@ -62,10 +61,8 @@ export const FEATURES_DATA = [
   },
 ];
 
-/* ======================== */
-/*     PRICING CARD DATA    */
-/* ======================== */
-
+// ==================== Pricing Card Data ====================
+// Array of pricing plan objects for the pricing section
 const CARD_DATA = [
   {
     id: 1,
@@ -118,10 +115,8 @@ const CARD_DATA = [
   },
 ];
 
-/* ======================== */
-/*     FOOTER CARD DATA     */
-/* ======================== */
-
+// ==================== Footer Card Data ====================
+// Array of footer navigation and info cards
 export const FOOTER_DATA = [
   {
     id: 1,
@@ -195,10 +190,8 @@ export const FOOTER_DATA = [
   },
 ];
 
-/* ======================== */
-/*   DYNAMIC TYPING DATA    */
-/* ======================== */
-
+// ==================== Dynamic Typing Data ====================
+// Configuration for typing animation in hero/landing section
 const typingConfig = [
   {
     texts: [
@@ -215,5 +208,6 @@ const typingConfig = [
   },
 ];
 
+// Export pricing card data as default, and typing config as named export
 export default CARD_DATA;
 export { typingConfig };

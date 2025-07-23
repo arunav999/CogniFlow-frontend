@@ -1,12 +1,16 @@
+// ==================== 3rd-party Imports ====================
 import cogniLogo from "../../../../../assets/cimg.png";
 
+// ==================== Data ====================
 import { FEATURES_DATA } from "../../../../../utils/data";
 
+// ==================== Features Section Component ====================
+// Lists the main features of Cogniflow with alternating layouts
 const FeaturesSection = () => {
   return (
     <>
       <section className="section scroll-mt-20" id="features">
-        {/* HEADING */}
+        {/* ==================== Heading ==================== */}
         <div className="text-center mb-16">
           <h2 className="heading">
             Everything you need &mdash; nothing you don't.
@@ -18,7 +22,7 @@ const FeaturesSection = () => {
           </h4>
         </div>
 
-        {/* FEATURES */}
+        {/* ==================== Features List ==================== */}
         {FEATURES_DATA.map((feature, index) => (
           <div
             key={feature.id}

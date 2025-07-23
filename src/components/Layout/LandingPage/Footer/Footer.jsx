@@ -1,4 +1,5 @@
-// React-Icons
+// ==================== 3rd-party Imports ====================
+// Social media icons
 import {
   FaFacebookF,
   FaInstagram,
@@ -7,13 +8,17 @@ import {
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
+// ==================== Data ====================
+// Footer navigation and social data
 import { FOOTER_DATA } from "../../../../utils/data";
 
+// ==================== Footer Component ====================
+// Main footer for the landing page, includes social links, navigation, and copyright
 const Footer = () => {
   return (
     <>
       <footer className="bg-[#ddd] border-dashed p-12">
-        {/* HEADING */}
+        {/* ==================== Heading & Social Links ==================== */}
         <div className="mb-16 flex flex-col items-center">
           <h2 className="heading">
             <span className="logo logo-footer-gradient">Cogniflow</span>
@@ -60,6 +65,7 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* ==================== Footer Navigation ==================== */}
         <div className="grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] xs:gap-12 md:gap-4">
           {FOOTER_DATA.map((item) => (
             <div key={item.id} className="text-2xl flex flex-col items-center ">
@@ -85,7 +91,7 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* COPYRIGHT */}
+        {/* ==================== Copyright ==================== */}
         <div className="flex flex-col items-center justify-center mt-12 gap-1 text-sm text-[#777] font-body">
           <p className="xs:text-[12px] md:text-[14px]">
             &copy; {new Date().getFullYear()}.{" "}

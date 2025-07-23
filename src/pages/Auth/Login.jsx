@@ -1,70 +1,63 @@
-// React imports
+// ==================== React & Router Imports ====================
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-// Custom component
+// ==================== Reusable Components ====================
 import Input from "../../components/Reusable/Input/Input";
 import Button from "../../components/Reusable/Button/Button";
 
-// Util
+// ==================== Utilities & Icons ====================
 import { pageTitle } from "../../utils/utils";
-
-// Icon
 import { FiLock } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
-
-// Spinners
 import { SyncLoader } from "react-spinners";
 
-// Validators
+// ==================== Validation & Services ====================
 import { emailIsValid, passwordIsValid } from "../../utils/validation";
-
-// Service
 import { loginUser } from "../../services/authService";
 
-// Custom User hook
+// ==================== Custom Hooks ====================
 import useUserAuth from "../../hooks/useUserAuth";
 
+// ==================== Login Page Component ====================
+// Handles user login, validation, and form state
 const Login = () => {
-  // Page title
+  // Set page title
   pageTitle("Login - Cogniflow");
 
-  // Extracting setUser
+  // Extract setUser from context
   const { setUser } = useUserAuth();
 
-  // Focus on first field
+  // Ref for focusing email input
   const emailRef = useRef(null);
-
   useEffect(() => {
     emailRef.current?.focus();
   }, []);
 
   const navigate = useNavigate();
 
-  // Remember me
+  // State for remember me checkbox
   const [rememberMe, setRememberMe] = useState(false);
 
-  // Form data
+  // State for form data
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  // Error
+  // State for error messages
   const [error, setError] = useState({
     email: { hasError: false, hasErrorMessage: null },
     password: { hasError: false, hasErrorMessage: null },
   });
 
-  // Submitting
+  // State for submission status
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Handle Blur
+  // Validate fields on blur
   const handleBlur = (field) => {
-    // Email
     if (field === "email") {
       const result = emailIsValid(formData.email);
-
       if (result) {
         setError((prev) => ({
           ...prev,
@@ -75,11 +68,8 @@ const Login = () => {
         }));
       }
     }
-
-    // Password
     if (field === "password") {
       const result = passwordIsValid(formData.password);
-
       if (result) {
         setError((prev) => ({
           ...prev,
@@ -92,81 +82,44 @@ const Login = () => {
     }
   };
 
-  // Handle Chnage
+  // Handle input changes
   const handleChange = (e, field) => {
     const value = e.target.value;
-
-    // email
     if (field === "email") {
-      setFormData((prev) => ({
-        ...prev,
-        email: value,
-      }));
-
+      setFormData((prev) => ({ ...prev, email: value }));
       setError((prev) => ({
         ...prev,
-        email: {
-          hasError: false,
-          hasErrorMessage: null,
-        },
+        email: { hasError: false, hasErrorMessage: null },
       }));
     }
-
-    // password
     if (field === "password") {
-      setFormData((prev) => ({
-        ...prev,
-        password: value,
-      }));
-
+      setFormData((prev) => ({ ...prev, password: value }));
       setError((prev) => ({
         ...prev,
-        password: {
-          hasError: false,
-          hasErrorMessage: null,
-        },
+        password: { hasError: false, hasErrorMessage: null },
       }));
     }
   };
 
-  // check for errors
+  // Check if any field has errors
   const hasErrors = Object.values(error).some((field) => field.hasError);
 
-  // User login
+  // Handle login form submission
   const handleLogin = async (e) => {
     e.preventDefault();
-
     if (hasErrors) return;
-
-    const payload = {
-      ...formData,
-      remember: rememberMe,
-    };
-
+    const payload = { ...formData, remember: rememberMe };
     setIsSubmitting(true);
-
     try {
       const res = await loginUser(payload);
-
-      // Set userContext
-      setUser(res.user);
-
-      // If redirect
-      navigate(res.redirect);
-
-      // Reset
-      setFormData({
-        email: "",
-        password: "",
-      });
-
+      setUser(res.user); // Set user context
+      navigate(res.redirect); // Redirect after login
+      setFormData({ email: "", password: "" }); // Reset form
       setRememberMe(false);
     } catch (error) {
       setIsSubmitting(false);
-
-      // Backend error message
+      // Handle backend error
       const backendError = error?.response;
-
       if (backendError?.data?.field === "login") {
         setError((prev) => ({
           ...prev,
@@ -185,10 +138,11 @@ const Login = () => {
     }
   };
 
+  // ==================== Render Login Form ====================
   return (
     <>
       <section className="section">
-        {/* HEADING */}
+        {/* ========== Heading Section ========== */}
         <div className="text-center mb-8">
           <h2 className="heading">
             Welcome back to{" "}
@@ -201,13 +155,13 @@ const Login = () => {
           </h4>
         </div>
 
-        {/* LOGIN FORM */}
+        {/* ========== Login Form ========== */}
         <form
           className="flex items-center justify-center"
           onSubmit={handleLogin}
         >
           <div className="flex flex-col items-center justify-center gap-1">
-            {/* Email */}
+            {/* Email Input */}
             <Input
               type="email"
               id="email"
@@ -222,7 +176,7 @@ const Login = () => {
               errorMessage={error.email.hasErrorMessage}
             />
 
-            {/* Password */}
+            {/* Password Input */}
             <Input
               type="password"
               id="password"
@@ -236,7 +190,7 @@ const Login = () => {
               errorMessage={error.password.hasErrorMessage}
             />
 
-            {/* Remember me and Forgot password */}
+            {/* Remember Me & Forgot Password */}
             <div className="flex items-center justify-between w-full text-light-text-primary">
               <span className="flex items-center gap-1 justify-center">
                 <input
@@ -250,13 +204,12 @@ const Login = () => {
                   Stay logged in
                 </label>
               </span>
-
               <span className="border-b-1">
                 <a href="/auth?type=reset">Forgot password?</a>
               </span>
             </div>
 
-            {/* Login button and Signup page */}
+            {/* Login Button & Signup Redirect */}
             <div className="flex flex-col items-center justify-center gap-6 mt-8">
               <span>
                 <Button disabled={hasErrors || isSubmitting} type="submit">
@@ -270,7 +223,6 @@ const Login = () => {
                   )}
                 </Button>
               </span>
-
               <span className="flex items-center gap-2 text-gray-600">
                 <p>Don't have an account?</p>
                 <Button secondary disabled={false} redirect="/auth?type=signup">
@@ -279,26 +231,16 @@ const Login = () => {
               </span>
             </div>
 
-            {/* Reset form */}
+            {/* Reset Form Button */}
             <div
               className="underline cursor-pointer font-body text-gray-500"
               onClick={() => {
-                // Reset form data
-                setFormData({
-                  email: "",
-                  password: "",
-                });
-
-                // Reset remember
+                setFormData({ email: "", password: "" });
                 setRememberMe(false);
-
-                // Reset errors
                 setError({
                   email: { hasError: false, hasErrorMessage: null },
                   password: { hasError: false, hasErrorMessage: null },
                 });
-
-                // Reset focus
                 emailRef.current?.focus();
               }}
             >

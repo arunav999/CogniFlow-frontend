@@ -1,15 +1,21 @@
+// ==================== 3rd-party Imports ====================
 import { useState, useEffect } from "react";
 
+// ==================== Reusable Components ====================
 import Links from "../../../Reusable/Links/Links";
 import Button from "../../../Reusable/Button/Button";
 
+// ==================== Styles ====================
 import "./header.css";
 
+// ==================== Header Component ====================
+// Main navigation header for the landing page, includes logo and navigation links
 const Header = () => {
+  // State for sticky background and mobile nav
   const [linkBg, setLinkBg] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
-  // For handling scroll effect of header
+  // Handle scroll effect for sticky header
   useEffect(() => {
     const handleScroll = () => {
       const navArea = document.getElementById("navArea");
@@ -21,23 +27,21 @@ const Header = () => {
         setLinkBg(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
       <header className="header" id="navArea">
-        {/* LOGO */}
+        {/* ==================== Logo ==================== */}
         <h2 className="font-logo font-bold text-4xl">
           <a href="/" className="logo-gradient">
             Cogniflow
           </a>
         </h2>
 
-        {/* NAVIGATION */}
+        {/* ==================== Navigation ==================== */}
         {/* NAVIGATION-FOR-SMALLER-DEVICES */}
         <div className="relative lg:hidden h-13 w-13 rounded-[50%] flex items-center justify-center shadow-nav">
           <button

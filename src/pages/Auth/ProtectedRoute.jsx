@@ -1,17 +1,19 @@
-// imports
+// ==================== 3rd-party Imports ====================
 import { Navigate, Outlet } from "react-router-dom";
 
-// React Spinners
+// ==================== Spinner ====================
 import { PropagateLoader } from "react-spinners";
 
-// Custom Hook
+// ==================== Hooks ====================
 import useUserAuth from "../../hooks/useUserAuth";
 
+// ==================== Protected Route Component ====================
+// Restricts access to routes based on authentication and allowed roles
 const ProtectedRoute = ({ allowedRoles = [] }) => {
-  // Extracting form context
+  // Get user and loading state from context
   const { user, loading } = useUserAuth();
 
-  // Still loadin user info
+  // Show loading spinner while user info is loading
   if (loading)
     return (
       <div className="h-screen flex items-center justify-center">
@@ -19,15 +21,15 @@ const ProtectedRoute = ({ allowedRoles = [] }) => {
       </div>
     );
 
-  // Not logged in
+  // Redirect to auth if not logged in
   if (!user) return <Navigate to="/auth" replace />;
 
-  // Role-based access
+  // Role-based access control
   if (allowedRoles.length > 0 && !allowedRoles.includes(user.role)) {
     return <Navigate to="/403-forbidden" replace />;
   }
 
-  // All checks passed
+  // All checks passed, render child routes
   return <Outlet />;
 };
 

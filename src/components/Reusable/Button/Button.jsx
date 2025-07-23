@@ -1,7 +1,13 @@
+// ==================== 3rd-party Imports ====================
+// React Router navigation
 import { useNavigate } from "react-router-dom";
 
+// ==================== Styles ====================
+// Button component styles
 import "./button.css";
 
+// ==================== Button Component ====================
+// Reusable button with support for primary/secondary styles, disabled state, and optional redirect
 const Button = ({
   children,
   design,
@@ -13,9 +19,9 @@ const Button = ({
 }) => {
   const navigate = useNavigate();
 
+  // Handle button click: call onClick and optionally redirect
   const handleClick = (e) => {
     if (onClick) onClick(e);
-
     if (redirect) navigate(redirect, { replace: true });
   };
 

@@ -1,13 +1,17 @@
+// ==================== 3rd-party Imports ====================
 import Cards from "../../../../Reusable/Cards/Cards";
 import Button from "../../../../Reusable/Button/Button";
 
+// ==================== Data ====================
 import CARD_DATA from "../../../../../utils/data";
 
+// ==================== Pricing Section Component ====================
+// Displays pricing plans and a call-to-action for Cogniflow
 const PricingSection = () => {
   return (
     <>
       <section className="section scroll-mt-20" id="pricing">
-        {/* HEADING */}
+        {/* ==================== Heading ==================== */}
         <div className="text-center mb-16">
           <h2 className="heading">Simple Plans, Built for Flow</h2>
           <h4 className="sub-heading text-light-text-secondary">
@@ -17,7 +21,7 @@ const PricingSection = () => {
           </h4>
         </div>
 
-        {/* PRICING CARDS */}
+        {/* ==================== Pricing Cards ==================== */}
         <div className="flex xs:flex-col lg:flex-row items-center justify-evenly gap-10 ">
           {CARD_DATA.map((item) => (
             <Cards
@@ -33,7 +37,7 @@ const PricingSection = () => {
           ))}
         </div>
 
-        {/* CTA */}
+        {/* ==================== Call to Action ==================== */}
         <div className="my-12">
           <h4 className="sub-heading text-light-text-tertiary flex xs:flex-col lg:flex-row items-center justify-center gap-2">
             <span>Not sure which to pick? &mdash; </span>

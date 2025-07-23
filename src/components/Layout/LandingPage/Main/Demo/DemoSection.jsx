@@ -1,17 +1,20 @@
+// ==================== 3rd-party Imports ====================
 import cogniImg from "../../../../../assets/cimg.png";
 
-// React icons
+// ==================== Icons ====================
 import { FiPlusCircle, FiUsers, FiTarget } from "react-icons/fi";
 import { BiTransferAlt } from "react-icons/bi";
 
-// Custom component
+// ==================== Reusable Components ====================
 import Button from "../../../../Reusable/Button/Button";
 
+// ==================== Demo Section Component ====================
+// Shows a demo image and highlights key features of Cogniflow
 const DemoSection = () => {
   return (
     <>
       <section className="section scroll-mt-20" id="demo">
-        {/* HEADING */}
+        {/* ==================== Heading ==================== */}
         <div className="text-center mb-16">
           <h2 className="heading">
             See <span className="logo logo-gradient">Cogniflow</span> in action.
@@ -21,7 +24,7 @@ const DemoSection = () => {
           </h4>
         </div>
 
-        {/* IMAGE / GIF / VIDEO */}
+        {/* ==================== Demo Image ==================== */}
         <div className="md:w-full h-64 md:h-96 flex items-center justify-center overflow-hidden">
           <img
             src={cogniImg}
@@ -30,7 +33,7 @@ const DemoSection = () => {
           />
         </div>
 
-        {/* FEATURE POINTS */}
+        {/* ==================== Feature Points ==================== */}
         <div className="flex justify-center my-12">
           <div className="grid md:grid-cols-2 text-center gap-12 w-[85%]">
             <div className="demo-f">

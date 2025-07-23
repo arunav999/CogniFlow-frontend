@@ -1,21 +1,28 @@
+// ==================== 3rd-party Imports ====================
 import { useRef, useState } from "react";
 
-// React icons
+// ==================== Icons ====================
 import { FaUser } from "react-icons/fa";
 import { IoMdCloudUpload } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 
-// Utils
+// ==================== Utilities ====================
 import { firstNameInitials, lastNameInitials } from "../../../utils/utils";
 
+// ==================== Profile Photo Component ====================
+// Allows user to upload, preview, and validate a profile photo
 const ProfilePhoto = ({ fName, lName, onSelect }) => {
+  // Ref for file input
   const imageRef = useRef(null);
+  // State for image file, error, and preview
   const [image, setImage] = useState(null);
   const [fileSizeError, setFileSizeError] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(null);
 
+  // Max file size in MB
   const MAX_FILE_SIZE_MB = 2;
 
+  // Handle image file selection and validation
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -32,6 +39,7 @@ const ProfilePhoto = ({ fName, lName, onSelect }) => {
     onSelect?.(file);
   };
 
+  // ==================== Render Profile Photo ====================
   return (
     <>
       <div

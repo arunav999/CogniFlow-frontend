@@ -1,101 +1,97 @@
-  /* ======================== */
-  /*         HEADER           */
-  /* ======================== */
-  .header {
-    padding: 2rem 3rem;
-    position: fixed;
-    top: 0;
-    height: 5.6rem;
-    width: 100%;
-    background-color: #f2f2f1;
+/* ==================== HEADER STYLES ==================== */
+/* Main header container styles */
+.header {
+  padding: 2rem 3rem;
+  position: fixed;
+  top: 0;
+  height: 5.6rem;
+  width: 100%;
+  background-color: #f2f2f1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 999;
+  transition: all 0.3s ease-in-out;
+}
 
+/* Sticky header effect on scroll */
+#navArea.is-sticky {
+  height: 4.6rem;
+  background-color: #f5e1da;
+  box-shadow: 0px 1px 8px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 0px 0px 8px 8px;
+}
+
+/* ==================== NAVIGATION STYLES ==================== */
+@media (width <=64rem) {
+  .nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(100%);
+    transition: all 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    z-index: 999;
-    transition: all 0.3s ease-in-out;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    visibility: none;
   }
 
-  #navArea.is-sticky {
-    height: 4.6rem;
-    background-color: #f5e1da;
-    box-shadow: 0px 1px 8px 1px rgba(0, 0, 0, 0.05);
-    border-radius: 0px 0px 8px 8px;
+  .nav-open {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
   }
 
   /* ======================== */
-  /*      NAVIGATION          */
+  /*     HAMBURGER-ICON       */
   /* ======================== */
-  @media (width <=64rem) {
-    .nav {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      transform: translateX(100%);
-      transition: all 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      visibility: none;
-    }
-
-    .nav-open {
-      transform: translateX(0);
-      opacity: 1;
-      pointer-events: auto;
-      visibility: visible;
-    }
-
-    /* ======================== */
-    /*     HAMBURGER-ICON       */
-    /* ======================== */
-    .nav-icon {
-      position: relative;
-      margin-top: 1.6rem;
-      transition: all 0.15s;
-    }
-    
-    .nav-icon,
-    .nav-icon::after,
-    .nav-icon::before {
-      width: 1.6rem;
-      height: 2px;
-      background-color: #333;
-      display: inline-block;
-    }
-    
-    .nav-icon::after,
-    .nav-icon::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      transition: all 0.25s ease-in;
-    }
-
-    .nav-icon::before {
-      top: -0.5rem;
-    }
-
-    .nav-icon::after {
-      top: 0.5rem;
-    }
-
-    .nav-icon-checked {
-      background-color: transparent;
-    }
-
-    .nav-icon-checked::before {
-      top: 0;
-      transform: rotate(135deg);
-    }
-
-    .nav-icon-checked::after {
-      top: 0;
-      transform: rotate(-135deg);
-    }
+  .nav-icon {
+    position: relative;
+    margin-top: 1.6rem;
+    transition: all 0.15s;
   }
+
+  .nav-icon,
+  .nav-icon::after,
+  .nav-icon::before {
+    width: 1.6rem;
+    height: 2px;
+    background-color: #333;
+    display: inline-block;
+  }
+
+  .nav-icon::after,
+  .nav-icon::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    transition: all 0.25s ease-in;
+  }
+
+  .nav-icon::before {
+    top: -0.5rem;
+  }
+
+  .nav-icon::after {
+    top: 0.5rem;
+  }
+
+  .nav-icon-checked {
+    background-color: transparent;
+  }
+
+  .nav-icon-checked::before {
+    top: 0;
+    transform: rotate(135deg);
+  }
+
+  .nav-icon-checked::after {
+    top: 0;
+    transform: rotate(-135deg);
+  }
+}

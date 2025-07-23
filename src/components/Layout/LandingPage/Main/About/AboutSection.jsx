@@ -1,12 +1,16 @@
+// ==================== 3rd-party Imports ====================
 import { TbNorthStar } from "react-icons/tb";
 
+// ==================== Reusable Components ====================
 import Button from "../../../../Reusable/Button/Button";
 
+// ==================== About Section Component ====================
+// Describes the problems Cogniflow solves and invites users to try the product
 const AboutSection = () => {
   return (
     <>
       <section className="section scroll-mt-20 mb-12" id="about">
-        {/* HEADING */}
+        {/* ==================== Heading ==================== */}
         <div className="text-center mb-10">
           <h2 className="heading">
             Tired of juggling tools and forgetting tasks?
@@ -18,7 +22,7 @@ const AboutSection = () => {
           </h4>
         </div>
 
-        {/* BODY */}
+        {/* ==================== Problem Points ==================== */}
         <div className="flex flex-col items-center gap-12">
           <div className="flex items-center justify-center">
             <h2 className="text-2xl font-heading flex items-center justify-center gap-2 w-fit py-2 px-6 border-2 border-light-ui-border rounded">
@@ -29,7 +33,7 @@ const AboutSection = () => {
             </h2>
           </div>
 
-          {/* POINTS */}
+          {/* ==================== Points List ==================== */}
           <div className="grid lg:grid-cols-2 gap-12">
             {/* 1 */}
             <div className="points">

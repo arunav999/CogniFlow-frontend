@@ -1,20 +1,24 @@
+// ==================== Route Path Constants ====================
+// Base paths for admin and user routes
 const ADMIN = "/admin";
 const USERS = "/u";
 
+// ==================== Route Names Mapping ====================
+// Centralized object for all route paths, organized by user role and purpose
 export const ROUTE_NAMES = {
-  // ADMIN ROUTES
+  // ==================== Admin Routes ====================
   ADMIN: {
-    DASHBOARD: `${ADMIN}`,
-    WORKSPACES: `${ADMIN}/workspaces`,
-    PROJECTS: `${ADMIN}/projects`,
-    TICKETS: `${ADMIN}/tickets`,
-    MANAGE_USERS: `${ADMIN}/manage-users`,
+    DASHBOARD: `${ADMIN}`, // Admin dashboard
+    WORKSPACES: `${ADMIN}/workspaces`, // Admin workspaces management
+    PROJECTS: `${ADMIN}/projects`, // Admin projects management
+    TICKETS: `${ADMIN}/tickets`, // Admin tickets management
+    MANAGE_USERS: `${ADMIN}/manage-users`, // User management
   },
-  // USER'S ROUTES
+  // ==================== User Routes ====================
   USERS: {
-    DASHBOARD: `${USERS}`,
-    WORKSPACE: `${USERS}/workspace`,
-    PROJECT: `${USERS}/project`,
-    TICKET: `${USERS}/ticket`,
+    DASHBOARD: `${USERS}`, // User dashboard
+    WORKSPACE: `${USERS}/workspace`, // User workspace
+    PROJECT: `${USERS}/project`, // User project
+    TICKET: `${USERS}/ticket`, // User ticket
   },
 };
