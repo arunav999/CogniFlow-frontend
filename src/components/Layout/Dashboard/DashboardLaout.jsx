@@ -8,7 +8,7 @@ import { RiCloseCircleLine } from "react-icons/ri";
 import { logoutUser } from "../../../services/authService";
 
 // Custom hook
-// import useUserAuth from "../../../hooks/useUserAuth";
+import useUserAuth from "../../../hooks/useUserAuth";
 
 // Custom Components
 import Links from "../../Reusable/Links/Links";
@@ -20,7 +20,7 @@ import { firstNameInitials, lastNameInitials } from "../../../utils/utils";
 
 const DashboardLaout = () => {
   // Extracting user
-  // const { user } = useUserAuth();
+  const { user, setUser } = useUserAuth();
 
   const navigate = useNavigate();
 
@@ -197,9 +197,9 @@ const DashboardLaout = () => {
                 secondary
                 disabled={false}
                 onClick={async () => {
-                  const res = await logoutUser();
-                  const redirect = res.redirect;
-                  navigate(redirect);
+                  await logoutUser();
+                  setUser(null);
+                  navigate("/auth");
                 }}
               >
                 Logout

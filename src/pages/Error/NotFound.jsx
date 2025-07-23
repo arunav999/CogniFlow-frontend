@@ -3,23 +3,28 @@ import { useLocation } from "react-router-dom";
 
 // Custom compo
 import Links from "../../components/Reusable/Links/Links";
+// Custom hook
+import useUserAuth from "../../hooks/useUserAuth";
 
 // Utils
 import { pageTitle } from "../../utils/utils";
 import { ROLES } from "../../utils/roles/roles";
+import { ROUTE_NAMES } from "../../utils/roles/routesNames";
 
 const NotFound = () => {
   pageTitle("404 - Not found");
+
+  const { user } = useUserAuth();
 
   const location = useLocation();
 
   // Based on role: dashboard
   const redirect =
     user?.role === ROLES.ADMIN
-      ? "/admin"
-      : user?.role === ROLES.MANAGER
-      ? "/manager"
-      : "/developer";
+      ? ROUTE_NAMES.ADMIN.DASHBOARD
+      : [ROLES.MANAGER, ROLES.DEVELOPER].includes(user?.role)
+      ? ROUTE_NAMES.USERS.DASHBOARD
+      : "/auth";
 
   return (
     <>
