@@ -1,14 +1,29 @@
+<!--
+  =============================================================
+  index.html
+  This is the main HTML entry point for the CogniFlow frontend app.
+  It sets up the root containers for React, favicon, and loads the main JS bundle.
+  =============================================================
+-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- ========== META TAGS ========== -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ========== FAVICON ========== -->
     <link rel="icon" href="/src/assets/cimg.png" />
+
+    <!-- ========== PAGE TITLE ========== -->
     <title>CogniFlow</title>
   </head>
   <body class="bg-light-bg-body">
+    <!-- ========== MODAL ROOT (for React Portals) ========== -->
     <div id="modal"></div>
+    <!-- ========== MAIN REACT ROOT ========== -->
     <div id="root"></div>
+    <!-- ========== MAIN JS ENTRY POINT ========== -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
