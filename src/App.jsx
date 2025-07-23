@@ -6,15 +6,15 @@ import router from "./routes/AppRoutes";
 
 // Context
 import { ActiveSectionProvider } from "./context/ActiveSectionContext";
-// import { UserProvider } from "./context/UserContext";
+import { UserProvider } from "./context/UserContext";
 
 const App = () => {
   return (
     <>
       <ActiveSectionProvider>
-        {/* <UserProvider> */}
+        <UserProvider>
         <RouterProvider router={router} />
-        {/* </UserProvider> */}
+        </UserProvider>
       </ActiveSectionProvider>
     </>
   );

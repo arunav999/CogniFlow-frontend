@@ -17,7 +17,6 @@ export const UserProvider = ({ children }) => {
   const [status, setStatus] = useState({
     user: null,
     loading: true,
-    path: null,
   });
 
   // Run on first render
@@ -26,9 +25,6 @@ export const UserProvider = ({ children }) => {
       try {
         // Getting user
         const res = await getUserInfo();
-
-        // Get role
-        const redirect = res.redirect;
 
         // Setting Status
         setStatus((prev) => ({
@@ -42,10 +38,6 @@ export const UserProvider = ({ children }) => {
 
         try {
           const retryRes = await getUserInfo();
-
-          // Get role after retry
-
-          const retryRedirect = retryRes.redirect;
 
           setStatus((prev) => ({
             ...prev,
