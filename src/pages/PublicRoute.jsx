@@ -30,9 +30,7 @@ const PublicRoute = () => {
   useEffect(() => {
     if (user && (location.pathname === "/" || location.pathname === "/auth")) {
       navigate(redirect);
-    } else if (!user) {
-      navigate("/auth");
-    }
+    } 
   }, [user, location.pathname, redirect]);
 
   return <Outlet />;
