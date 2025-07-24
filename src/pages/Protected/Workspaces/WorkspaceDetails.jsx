@@ -3,7 +3,10 @@ import { useParams } from "react-router-dom";
 // Utils
 import { pageTitle } from "../../../utils/utils";
 
+// query hooks
+import { useGetUserById } from "../../../hooks/query/useUsers";
 import { useGetWorkspaceById } from "../../../hooks/query/useWorkspaces";
+import { useGetProjectById } from "../../../hooks/query/useProjects";
 
 const WorkspaceDetails = () => {
   // Page Title
@@ -12,25 +15,64 @@ const WorkspaceDetails = () => {
   // workspace id from route
   const { id } = useParams();
 
-  const { data, isLoading, error } = useGetWorkspaceById(id);
-  console.log(data);
+  // workspace by id hook
+  const {
+    data: workspaceData,
+    isLoading: isWorkspaceLoading,
+    error: workspaceError,
+  } = useGetWorkspaceById(id);
+  console.log(workspaceData);
 
-  const details = data?.workspace;
+  const userId = workspaceData?.workspace?.createdBy;
+  const projectId = workspaceData?.workspace?.projects[0];
+
+  // user by id hook
+  const {
+    data: userData,
+    isLoading: isUserLoading,
+    error: userError,
+  } = useGetUserById(userId);
+
+  console.log(userData);
+
+  // project by id
+  const {
+    data: projectData,
+    isLoading: isProjectLoading,
+    error: projectError,
+  } = useGetProjectById(projectId);
+
+  console.log("Project Data", projectData);
+
+  const details = workspaceData?.workspace;
 
   return (
     <>
       <section className="">
-        {isLoading && <p>Loading...</p>}
+        {isWorkspaceLoading && <p>Loading...</p>}
 
-        {!isLoading && !error && (
+        {!isWorkspaceLoading && !workspaceError && (
           <div className="">
             <p>Workspace details</p>
-            <p>Name: {data?.workspace?.name}</p>
+            <p>Name: {workspaceData?.workspace?.name}</p>
             <p>
               Description:{" "}
               {details?.description === "" ? "Empty" : details?.description}
             </p>
-            <p></p>
+            <p>
+              Created by: {isUserLoading && <span>Loading user...</span>}
+              {!isUserLoading && !userError && (
+                <span>
+                  {userData?.user?.firstName} {userData?.user?.lastName}
+                </span>
+              )}
+            </p>
+            <p>
+              Projects: {isProjectLoading && <span>Loading Project...</span>}{" "}
+              {!isProjectLoading && !projectError && (
+                <span>{projectData?.project?.name}</span>
+              )}
+            </p>
           </div>
         )}
       </section>

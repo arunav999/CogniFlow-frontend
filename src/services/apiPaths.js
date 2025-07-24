@@ -22,7 +22,7 @@ export const API_PATHS = {
     LOGIN: `${API_AUTH}/login`, // Login endpoint
     CHECK_EMAIL: `${API_AUTH}/check-email`, // Check if email exists
     GET_USER_INFO: `${API_AUTH}/getUser`, // Get current user info
-    GET_USER_BY_ID: (id) => `${API_AUTH}/getUser/${id}`,
+    GET_USER_BY_ID: (id) => `${API_AUTH}/getUser/${id}`, // Get user info by id
     LOGOUT: `${API_AUTH}/logout`, // Logout endpoint
   },
   UPLOAD: {
