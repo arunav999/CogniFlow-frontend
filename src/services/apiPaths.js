@@ -31,23 +31,23 @@ export const API_PATHS = {
   WORKSPACE: {
     CREATE: `${API_WORKSPACE}/`, // Create workspace
     GET_ALL: `${API_WORKSPACE}/`, // Get all workspaces
-    GET_BY_ID: (id) => `${API_WORKSPACE}/${id}`,
-    PATCH_BY_ID: (id) => `${API_WORKSPACE}/${id}`,
-    DELETE_BY_ID: (id) => `${API_WORKSPACE}/${id}`,
+    GET_BY_ID: (id) => `${API_WORKSPACE}/${id}`, // Get a workspace by id
+    PATCH_BY_ID: (id) => `${API_WORKSPACE}/${id}`, // Patch a workspace by id
+    DELETE_BY_ID: (id) => `${API_WORKSPACE}/${id}`, // Delete a workspace by id
   },
   PROJECT: {
-    CREATE: `${API_PROJECT}/`, // Create project
-    GET_ALL: `${API_PROJECT}/`, // Get all projects
-    GET_BY_ID: (id) => `${API_PROJECT}/${id}`,
-    PATCH_BY_ID: (id) => `${API_PROJECT}/${id}`,
-    DELETE_BY_ID: (id) => `${API_PROJECT}/${id}`,
+    CREATE: (id) => `${API_PROJECT}/workspace/${id}`, // Create project by workspace
+    GET_ALL: (id) => `${API_PROJECT}/workspace/${id}`, // Get all projects by workspace
+    GET_BY_ID: (id) => `${API_PROJECT}/${id}`, // Get a project by id
+    PATCH_BY_ID: (id) => `${API_PROJECT}/${id}`, // Patch a project by id
+    DELETE_BY_ID: (id) => `${API_PROJECT}/${id}`, // Delete a project by id
   },
   TICKET: {
-    CREATE: `${API_TICKET}/`, // Create ticket
-    GET_ALL: `${API_TICKET}/`, // Get all tickets
-    GET_BY_ID: (id) => `${API_TICKET}/${id}`,
-    PATCH_BY_ID: (id) => `${API_TICKET}/${id}`,
-    DELETE_BY_ID: (id) => `${API_TICKET}/${id}`,
+    CREATE: (id) => `${API_TICKET}/project/${id}`, // Create ticket by project
+    GET_ALL: (id) => `${API_TICKET}/project/${id}`, // Get all tickets by project
+    GET_BY_ID: (id) => `${API_TICKET}/${id}`, // Get a ticket by id
+    PATCH_BY_ID: (id) => `${API_TICKET}/${id}`, // Patch a ticket by id
+    DELETE_BY_ID: (id) => `${API_TICKET}/${id}`, // Delete a ticket by id
   },
   DASHBOARD: {
     GET_DASHBOARD: `${API_DASHBOARD}/`, // Get dashboard data
