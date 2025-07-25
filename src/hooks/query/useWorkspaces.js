@@ -5,11 +5,18 @@ import * as workspaceServices from "../../services/workspacesService";
 
 // Get all workspaces hook
 export const useGetAllWorkspaces = () => {
-  return useQuery({
+  const { data, isLoading, error, isError } = useQuery({
     queryKey: ["workspaces"],
     queryFn: workspaceServices.workspacesAll,
     retry: 1,
   });
+
+  return {
+    wsData: data,
+    isWsLoading: isLoading,
+    wsError: error,
+    isWsError: isError,
+  };
 };
 
 // Get a workspace by id

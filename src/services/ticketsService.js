@@ -5,14 +5,14 @@ import { API_PATHS } from "./apiPaths"; // Centralized API endpoint paths
 // ==================== TICKET SERVICE FUNCTIONS ====================
 
 // Create a new ticket with provided form data
-export const createTicket = async (formData) => {
-  const response = await axiosInstance.post(API_PATHS.TICKET.CREATE, formData);
+export const createTicket = async (id, formData) => {
+  const response = await axiosInstance.post(API_PATHS.TICKET.CREATE(id), formData);
   return response.data;
 };
 
 // Get all tickets for the current project
-export const getAllTickets = async (formData) => {
-  const response = await axiosInstance.get(API_PATHS.TICKET.GET_ALL, formData);
+export const getAllTickets = async (id) => {
+  const response = await axiosInstance.get(API_PATHS.TICKET.GET_ALL(id));
   return response.data;
 };
 

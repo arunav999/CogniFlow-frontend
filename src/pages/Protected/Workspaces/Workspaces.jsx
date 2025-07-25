@@ -11,9 +11,9 @@ import { pageTitle } from "../../../utils/utils";
 const Workspaces = () => {
   const { user } = useUserAuth();
 
-  const { data, isLoading, error, isError } = useGetAllWorkspaces();
+  const { wsData, isWsLoading, wsError, isWsError } = useGetAllWorkspaces();
 
-  const errorMessage = error?.response?.data?.message || "No workspace";
+  const errorMessage = wsError?.response?.data?.message || "No workspace";
 
   pageTitle(`${user?.company} - Workspaces | Cogniflow`);
 
@@ -21,12 +21,12 @@ const Workspaces = () => {
     <>
       <section className="">
         <div className="">List of workspaces</div>
-        {isLoading && <div className="">Loading...</div>}
-        {isError && <div className="">{errorMessage}</div>}
+        {isWsLoading && <div className="">Loading...</div>}
+        {isWsError && <div className="">{errorMessage}</div>}
 
-        {!isLoading && !isError && data?.workspaces?.length > 0 && (
+        {!isWsLoading && !isWsError && wsData?.workspaces?.length > 0 && (
           <ul>
-            {data?.workspaces.map((ws) => (
+            {wsData?.workspaces.map((ws) => (
               <li key={ws?.id}>
                 <Link to={`/admin/workspace/${ws?.id}`}>{ws?.name}</Link>
               </li>

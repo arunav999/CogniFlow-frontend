@@ -5,14 +5,17 @@ import { API_PATHS } from "./apiPaths"; // Centralized API endpoint paths
 // ==================== PROJECT SERVICE FUNCTIONS ====================
 
 // Create a new project with provided form data
-export const createProject = async (formData) => {
-  const response = await axiosInstance.post(API_PATHS.PROJECT.CREATE, formData);
+export const createProject = async (id, formData) => {
+  const response = await axiosInstance.post(
+    API_PATHS.PROJECT.CREATE(id),
+    formData
+  );
   return response.data;
 };
 
 // Get all projects for the current workspace
-export const getAllProjects = async (formData) => {
-  const response = await axiosInstance.get(API_PATHS.PROJECT.GET_ALL, formData);
+export const getAllProjects = async (id) => {
+  const response = await axiosInstance.get(API_PATHS.PROJECT.GET_ALL(id));
   return response.data;
 };
 
