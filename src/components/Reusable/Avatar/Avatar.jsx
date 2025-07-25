@@ -9,7 +9,7 @@ const Avatar = () => {
 
   return (
     <>
-      <div className="xs:h-10 sm:h-14 xs:w-10 sm:w-14 rounded-[50%] flex items-center justify-center overflow-hidden border-3 border-gray-100 p-[1px] xs:-mr-4 sm:-mr-6 bg-light-bg-body">
+      <div className="h-10 w-10 rounded-[50%] flex items-center justify-center overflow-hidden border border-gray-100 p-[1px] xs:-mr-4 bg-light-bg-body">
         {imgURL ? (
           <img
             src={imgURL}

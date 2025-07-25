@@ -80,6 +80,7 @@
   --shadow-f-link: 7px 7px 0 rgba(0, 0, 0, 0.2);
   --shadow-s-link: inset 5px 5px 0 rgba(0, 0, 0, 0.2);
   --shadow-profile-pic: 0 0 20px 7px rgba(0, 0, 0, 0.06);
+  --shadow-ws-card: 6px 6px 0 0 rgba(0, 0, 0, 0.1);
 
   /* ======================== */
   /*        BREAKPOINT        */

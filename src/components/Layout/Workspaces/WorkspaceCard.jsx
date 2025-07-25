@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 
+// Icons
+import { LuEye, LuPencil, LuTrash2 } from "react-icons/lu";
+
 import AvatarGroup from "../../Reusable/Avatar/AvatarGroup";
 
 const WorkspaceCard = () => {
   return (
     <>
-      <div className="shadow-md rounded-2xl py-4 px-8 font-body">
+      <div className="hover:shadow-ws-card transition-all duration-300 rounded-xl border-2 border-[#0000001a] py-4 px-8 font-body max-w-3xl">
         {/* Heading */}
         <div className="flex flex-col items-center justify-center py-2 px-4">
           <h2 className="font-heading text-2xl font-semibold text-light-text-secondary">
@@ -17,20 +20,48 @@ const WorkspaceCard = () => {
         </div>
 
         {/* Members */}
-        <div className="">
-          {/* <p>members(their pro pic or Initials as circle)</p> */}
+        <div className="flex items-center justify-between">
+          <p>Members:</p>
           <AvatarGroup />
         </div>
-        <p>projects - 0</p>
-        <p>Created by: name</p>
+
+        {/* Projects */}
+        <div className="flex items-center justify-between mb-1">
+          <p>Projects:</p>
+          <p>12</p>
+        </div>
+
+        {/* Created by */}
+        <div className="flex items-center justify-between mb-2">
+          <p>Created by:</p>
+          <p>name - you | role</p>
+        </div>
 
         {/* Links */}
-        <div className="flex items-center justify-between py-2 px-4">
-          <p>
-            <Link to="/dynamic">View</Link>
+        <div className="flex items-center justify-between p-1">
+          <p className="border py-1 px-2 transition-all hover:bg-purple-100 rounded text-purple-700">
+            <Link
+              to="/dynamic"
+              className="flex items-center justify-center gap-1"
+            >
+              <span>
+                <LuEye />
+              </span>
+              <span>View</span>
+            </Link>
           </p>
-          <button className="cursor-pointer">Edit</button>
-          <button className="cursor-pointer">Delete</button>
+          <button className="cursor-pointer border py-1 px-2 transition-all hover:bg-amber-100 rounded text-amber-700 flex items-center justify-center gap-1">
+            <span>
+              <LuPencil />
+            </span>
+            <span>Edit</span>
+          </button>
+          <button className="cursor-pointer border py-1 px-2 transition-all hover:bg-red-100 rounded text-red-700 flex items-center justify-center gap-1">
+            <span>
+              <LuTrash2 />
+            </span>
+            <span>Delete</span>
+          </button>
         </div>
       </div>
     </>
