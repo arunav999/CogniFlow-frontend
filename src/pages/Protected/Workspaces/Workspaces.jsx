@@ -1,10 +1,12 @@
 // ==================== IMPORTS ====================
-import { Link } from "react-router-dom";
 import useUserAuth from "../../../hooks/useUserAuth";
 
 import WorkspaceEmptyState from "../../../components/Layout/Workspaces/WorkspaceEmptyState";
+import WorkspaceCard from "../../../components/Layout/Workspaces/WorkspaceCard";
 
 import { IoAdd } from "react-icons/io5";
+
+import AvatarGroup from "../../../components/Reusable/Avatar/AvatarGroup";
 
 // Custom hooks
 // import { useGetAllWorkspaces } from "../../../hooks/query/useWorkspaces";
@@ -37,7 +39,16 @@ const Workspaces = () => {
         </div>
 
         {/* If no workspace */}
-        <WorkspaceEmptyState />
+        {/* <WorkspaceEmptyState /> */}
+
+        {/* If workspace available */}
+        <div className="my-4 grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-4">
+          <WorkspaceCard />
+          <WorkspaceCard />
+          <WorkspaceCard />
+          <WorkspaceCard />
+          <WorkspaceCard />
+        </div>
       </section>
     </>
   );
