@@ -2,8 +2,12 @@
 import { Link } from "react-router-dom";
 import useUserAuth from "../../../hooks/useUserAuth";
 
+import WorkspaceEmptyState from "../../../components/Layout/Workspaces/WorkspaceEmptyState";
+
+import { IoAdd } from "react-icons/io5";
+
 // Custom hooks
-import { useGetAllWorkspaces } from "../../../hooks/query/useWorkspaces";
+// import { useGetAllWorkspaces } from "../../../hooks/query/useWorkspaces";
 
 // Util
 import { pageTitle } from "../../../utils/utils";
@@ -11,28 +15,29 @@ import { pageTitle } from "../../../utils/utils";
 const Workspaces = () => {
   const { user } = useUserAuth();
 
-  const { wsData, isWsLoading, wsError, isWsError } = useGetAllWorkspaces();
+  // const { wsData, isWsLoading, wsError, isWsError } = useGetAllWorkspaces();
 
-  const errorMessage = wsError?.response?.data?.message || "No workspace";
+  // const errorMessage = wsError?.response?.data?.message || "No workspace";
 
   pageTitle(`${user?.company} - Workspaces | Cogniflow`);
 
   return (
     <>
-      <section className="">
-        <div className="">List of workspaces</div>
-        {isWsLoading && <div className="">Loading...</div>}
-        {isWsError && <div className="">{errorMessage}</div>}
+      <section className="xs:px-4 md:px-16">
+        {/* Create button */}
+        <div className="xs:text-sm sm:text-lg font-body">
+          <button className="flex items-center gap-1 bg-[#d8d7d779] py-1 px-2 cursor-pointer rounded-lg text-gray-500 border border-gray-400">
+            <span>
+              <IoAdd />
+            </span>
+            <span>Create workspace</span>
+          </button>
 
-        {!isWsLoading && !isWsError && wsData?.workspaces?.length > 0 && (
-          <ul>
-            {wsData?.workspaces.map((ws) => (
-              <li key={ws?.id}>
-                <Link to={`/admin/workspace/${ws?.id}`}>{ws?.name}</Link>
-              </li>
-            ))}
-          </ul>
-        )}
+          {/* Sorting will come later */}
+        </div>
+
+        {/* If no workspace */}
+        <WorkspaceEmptyState />
       </section>
     </>
   );

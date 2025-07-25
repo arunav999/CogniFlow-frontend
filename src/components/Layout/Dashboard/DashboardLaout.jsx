@@ -104,7 +104,7 @@ const DashboardLaout = () => {
         {/* ==================== Sidebar Navigation ==================== */}
         {
           <nav
-            className={`fixed xs:w-[50%] sm:w-[25%] h-[100vh] flex flex-col items-center justify-center gap-4 transition-all duration-500 rounded-s-3xl ${
+            className={`fixed xs:w-[50%] sm:w-[25%] h-[100vh] flex flex-col items-center justify-center gap-4 transition-all duration-500 rounded-s-3xl z-999 ${
               toggle ? "top-0 right-0" : "top-0 -right-170"
             }`}
           >
