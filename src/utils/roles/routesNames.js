@@ -9,7 +9,8 @@ export const ROUTE_NAMES = {
   // ==================== Admin Routes ====================
   ADMIN: {
     DASHBOARD: `${ADMIN}`, // Admin dashboard
-    WORKSPACES: `${ADMIN}/workspaces`, // Admin workspaces management
+    WORKSPACES: `${ADMIN}/workspaces`, // Admin all workspaces management
+    WORKSPACE: `${ADMIN}/workspace`, // Admin workspace
     PROJECTS: `${ADMIN}/projects`, // Admin projects management
     TICKETS: `${ADMIN}/tickets`, // Admin tickets management
     MANAGE_USERS: `${ADMIN}/manage-users`, // User management
