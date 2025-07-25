@@ -21,7 +21,6 @@ const WorkspaceDetails = () => {
     isLoading: isWorkspaceLoading,
     error: workspaceError,
   } = useGetWorkspaceById(id);
-  console.log(workspaceData);
 
   const userId = workspaceData?.workspace?.createdBy;
   const projectId = workspaceData?.workspace?.projects[0];
@@ -33,16 +32,12 @@ const WorkspaceDetails = () => {
     error: userError,
   } = useGetUserById(userId);
 
-  console.log(userData);
-
   // project by id
   const {
     data: projectData,
     isLoading: isProjectLoading,
     error: projectError,
   } = useGetProjectById(projectId);
-
-  console.log("Project Data", projectData);
 
   const details = workspaceData?.workspace;
 

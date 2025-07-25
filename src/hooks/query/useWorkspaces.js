@@ -1,13 +1,14 @@
 // ==================== IMPORTS ====================
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 
-import { workspacesAll, workspaceById } from "../../services/workspacesService";
+import * as workspaceServices from "../../services/workspacesService";
 
 // Get all workspaces hook
 export const useGetAllWorkspaces = () => {
   return useQuery({
     queryKey: ["workspaces"],
-    queryFn: workspacesAll,
+    queryFn: workspaceServices.workspacesAll,
+    retry: 1,
   });
 };
 
@@ -15,7 +16,7 @@ export const useGetAllWorkspaces = () => {
 export const useGetWorkspaceById = (id) => {
   return useQuery({
     queryKey: ["workspace", id],
-    queryFn: () => workspaceById(id),
+    queryFn: () => workspaceServices.workspaceById(id),
     enabled: !!id,
   });
 };

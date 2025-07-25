@@ -11,10 +11,9 @@ import { pageTitle } from "../../../utils/utils";
 const Workspaces = () => {
   const { user } = useUserAuth();
 
-  const { data, isLoading, error } = useGetAllWorkspaces();
-  console.log(data);
+  const { data, isLoading, error, isError } = useGetAllWorkspaces();
 
-  console.log(error);
+  const errorMessage = error?.response?.data?.message || "No workspace";
 
   pageTitle(`${user?.company} - Workspaces | Cogniflow`);
 
@@ -23,7 +22,9 @@ const Workspaces = () => {
       <section className="">
         <div className="">List of workspaces</div>
         {isLoading && <div className="">Loading...</div>}
-        {!isLoading && (
+        {isError && <div className="">{errorMessage}</div>}
+
+        {!isLoading && !isError && data?.workspaces?.length > 0 && (
           <ul>
             {data?.workspaces.map((ws) => (
               <li key={ws?.id}>
