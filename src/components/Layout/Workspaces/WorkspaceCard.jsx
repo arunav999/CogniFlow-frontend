@@ -63,11 +63,19 @@ const WorkspaceCard = ({
           <h2 className="font-heading text-2xl font-semibold text-light-text-secondary">
             {wsName}
           </h2>
-          <p className="text-xs text-light-text-tertiary">{wsDesc}</p>
+          <p className="text-xs text-light-text-tertiary">
+            {wsDesc === "" ? (
+              <span className="text-transparent pointer-events-none select-none">
+                Placeholder
+              </span>
+            ) : (
+              wsDesc
+            )}
+          </p>
         </div>
 
         {/* Members */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-2">
           <p>Members:</p>
           <AvatarGroup />
         </div>
@@ -87,12 +95,17 @@ const WorkspaceCard = ({
         </div>
 
         {/* Updated by */}
-        {wsUpdatedBy !== null && (
+        {wsUpdatedBy !== null ? (
           <div className="flex items-center justify-between mb-1">
             <p>Updated by:</p>
             <p>
               {userUpdFname} {uIsMe ? "(you)" : `| ${uRole}`}
             </p>
+          </div>
+        ) : (
+          <div className="flex items-center justify-between mb-1 text-transparent pointer-events-none select-none">
+            <p>Placeholder</p>
+            <p>Placeholder</p>
           </div>
         )}
 
