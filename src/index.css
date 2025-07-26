@@ -135,11 +135,11 @@ dialog::backdrop {
 
 /* animate class */
 .animate-modal-in {
-  animation: modal-in 0.2s ease-out forwards;
+  animation: modal-in 0.2s ease-in forwards;
 }
 
 .animate-modal-out {
-  animation: modal-out 0.2s ease-out forwards;
+  animation: modal-out 0.1s ease-out forwards;
 }
 
 .logo {

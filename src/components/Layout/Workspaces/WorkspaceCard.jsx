@@ -98,10 +98,10 @@ const WorkspaceCard = ({
 
         {/* Links */}
         <div className="flex items-center justify-between p-1">
-          <p className="border py-1 px-2 transition-all hover:bg-purple-100 rounded text-purple-700">
+          <p className="border transition-all hover:bg-purple-100 rounded text-purple-700">
             <Link
               to={`${workspaceBasePath}/${wsId}`}
-              className="flex items-center justify-center gap-1"
+              className="flex items-center justify-center gap-1 py-1 px-2"
             >
               <span>
                 <LuEye />
