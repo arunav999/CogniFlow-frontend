@@ -10,7 +10,7 @@
 /* #416272  Muted Blue*/
 /* #18455a  Dark Blue -- dark-mode-bg*/
 
-@layer utilities{
+@layer utilities {
   .clip-bottom {
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
   }
@@ -28,44 +28,58 @@
   /* ======================== */
   /*        TEXT COLORS       */
   /* ======================== */
-  --color-light-text-primary: #18455a;   /* Main text, headings */
-  --color-light-text-secondary: #416272; /* Links hover */
-  --color-light-text-tertiary: #938783; /* Subtext, labels */
-  --color-light-text-footer: #666;      /* Footer */
-  --color-light-text-link: #53aea0;      /* Links default */
-  --color-light-text-link-hover: #416272; /* Links hover */
-  --color-light-text-link-active: #18455a; /* Links active */
+  --color-light-text-primary: #18455a;
+  /* Main text, headings */
+  --color-light-text-secondary: #416272;
+  /* Links hover */
+  --color-light-text-tertiary: #938783;
+  /* Subtext, labels */
+  --color-light-text-footer: #666;
+  /* Footer */
+  --color-light-text-link: #53aea0;
+  /* Links default */
+  --color-light-text-link-hover: #416272;
+  /* Links hover */
+  --color-light-text-link-active: #18455a;
+  /* Links active */
 
   /* ======================== */
   /*       BACKGROUNDS        */
   /* ======================== */
-  --color-light-bg-body: #f2f2f1;        /* Page background */
-  --color-light-bg-card: #ffffff;        /* Cards, containers */
-  --color-light-bg-accent: #f5e1da;      /* Empty states, soft UI blocks */
+  --color-light-bg-body: #f2f2f1;
+  /* Page background */
+  --color-light-bg-card: #ffffff;
+  /* Cards, containers */
+  --color-light-bg-accent: #f5e1da;
+  /* Empty states, soft UI blocks */
 
   /* ======================== */
   /*      UI ELEMENTS         */
   /* ======================== */
-  --color-light-ui-primary: #53aea0;     /* Primary button */
-  --color-light-ui-secondary: #416272;   /* Secondary button */
-  --color-light-ui-border: #416272;      /* Borders/dividers */
-  --color-light-ui-disabled: #8dcac1;    /* Optional: disabled state */
-  
+  --color-light-ui-primary: #53aea0;
+  /* Primary button */
+  --color-light-ui-secondary: #416272;
+  /* Secondary button */
+  --color-light-ui-border: #416272;
+  /* Borders/dividers */
+  --color-light-ui-disabled: #8dcac1;
+  /* Optional: disabled state */
+
   /* ======================== */
   /*        GRADIENTS         */
   /* ======================== */
   --color-gradient-soft-aqua: linear-gradient(135deg, #cee7e2, #8dcac1);
-                                          /* Free Plan Front Side */
+  /* Free Plan Front Side */
   --color-gradient-cool-mint: linear-gradient(135deg, #416272 45%, #18455a);
-                                          /* Paid Plan Front Side */
+  /* Paid Plan Front Side */
   --color-gradient-warm-muted: linear-gradient(135deg, #f5e1da, #938783);
-                                          /* Custom Plan Front Side */
+  /* Custom Plan Front Side */
   --color-gradient-fresh-pastel: linear-gradient(135deg, #8dcac1, #f5e1da);
-                                          /* Free Plan Back Side */
+  /* Free Plan Back Side */
   --color-gradient-deep-cool: linear-gradient(135deg, #18455a, #53aea0);
-                                          /* Paid Plan Back Side */
+  /* Paid Plan Back Side */
   --color-gradient-soft-muted: linear-gradient(135deg, #938783, #8dcac1);
-                                          /* Custom Plan Back Side */
+  /* Custom Plan Back Side */
 
 
   /* ======================== */
@@ -85,14 +99,57 @@
   /* ======================== */
   /*        BREAKPOINT        */
   /* ======================== */
-  --breakpoint-xs: 384px;           /* Breakpoint for XS displays */
-  --breakpoint-3xl: 1920px;         /* Breakpoint for 4k displays */
+  --breakpoint-xs: 384px;
+  /* Breakpoint for XS displays */
+  --breakpoint-3xl: 1920px;
+  /* Breakpoint for 4k displays */
 }
 
 /* LOGO */
 /* * {
   border: 1px solid black
 } */
+
+/* Global backdrop for dialog */
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+/* === Keyframes and animate class for dialog === */
+/* Modal in */
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Modal out */
+@keyframes modal-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
+
+/* animate class */
+.animate-modal-in {
+  animation: modal-in 0.2s ease-out forwards;
+}
+
+.animate-modal-out {
+  animation: modal-out 0.2s ease-out forwards;
+}
 
 .logo {
   @apply font-logo xs:text-3xl sm:text-5xl font-bold;
@@ -158,4 +215,3 @@
 .radio {
   @apply flex items-center gap-2 text-lg text-gray-600 cursor-pointer
 }
-

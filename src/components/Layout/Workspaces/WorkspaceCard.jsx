@@ -1,9 +1,9 @@
-import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { LuEye, LuPencil, LuTrash2 } from "react-icons/lu";
 
 import useUserAuth from "../../../hooks/useUserAuth";
 import { useGetUserById } from "../../../hooks/query/useUsers";
+import { useModal } from "../../../hooks/useModal";
 
 import Modal from "../../Reusable/Modal/Modal";
 import AvatarGroup from "../../Reusable/Avatar/AvatarGroup";
@@ -20,6 +20,9 @@ const WorkspaceCard = ({
   wsUpdatedBy,
   wsProjects,
 }) => {
+  // Modal options
+  const { dialogRef, open, close, modalContent } = useModal();
+
   // Get user details
   const { user } = useUserAuth();
   const { userData } = useGetUserById(wsCreatedBy);
@@ -41,30 +44,16 @@ const WorkspaceCard = ({
       ? ROUTE_NAMES.ADMIN.WORKSPACE
       : ROUTE_NAMES.USERS.WORKSPACE;
 
-  // Function's for modal open/close
-  const [modalContent, setModalContent] = useState(null);
-  const dialogRef = useRef();
-
-  const dynamicModal = (field) => {
-    let content = null;
-
-    if (field === "edit") {
-      content = "Editing modal, form will appear";
-    }
-
-    if (field === "delete") {
-      content = "Delete modal, warning message will appear";
-    }
-
-    setModalContent(content);
-    dialogRef.current.showModal();
+  // Modal function
+  const handleModal = (type) => {
+    open(type); // set modalContent to "edit" or "delete"
   };
 
   return (
     <>
       {/* ===== MODAL ===== */}
-      <Modal ref={dialogRef}>
-        <WorkspaceModal>{modalContent}</WorkspaceModal>
+      <Modal modalRef={dialogRef} onBackdropClick={close}>
+        <WorkspaceModal type={modalContent} onClose={close} />
       </Modal>
 
       {/* WS Card */}
@@ -122,8 +111,8 @@ const WorkspaceCard = ({
           </p>
           {/* Edit */}
           <button
+            onClick={() => handleModal("edit")}
             className="cursor-pointer border py-1 px-2 transition-all hover:bg-amber-100 rounded text-amber-700 flex items-center justify-center gap-1"
-            onClick={() => dynamicModal("edit")}
           >
             <span>
               <LuPencil />
@@ -132,8 +121,8 @@ const WorkspaceCard = ({
           </button>
           {/* Delete */}
           <button
+            onClick={() => handleModal("delete")}
             className="cursor-pointer border py-1 px-2 transition-all hover:bg-red-100 rounded text-red-700 flex items-center justify-center gap-1"
-            onClick={() => dynamicModal("delete")}
           >
             <span>
               <LuTrash2 />

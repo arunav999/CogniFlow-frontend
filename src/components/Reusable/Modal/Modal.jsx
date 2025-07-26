@@ -1,28 +1,34 @@
 import { createPortal } from "react-dom";
 
-const Modal = ({ ref, children }) => {
+import { IoIosCloseCircleOutline } from "react-icons/io";
+
+const Modal = ({ children, onBackdropClick, modalRef }) => {
   // Close on click
-  const closeModal = (e) => {
-    if (e.target === e.currentTarget) {
-      ref?.current?.close();
+  const handleClickOutside = (e) => {
+    if (e.target === e.currentTarget && onBackdropClick) {
+      onBackdropClick(); // Trigers close() from useModal hook.
     }
   };
 
   return createPortal(
     <>
       <dialog
-        className="open:flex open:items-center open:justify-center h-full w-full m-auto p-0 overflow-hidden border fixed top-0 left-0 z-50 bg-transparent"
-        ref={ref} onClick={closeModal}
+        ref={modalRef}
+        onClick={handleClickOutside}
+        className="animate-modal-in open:flex open:items-center open:justify-center h-full w-full m-auto p-0 overflow-hidden fixed top-0 left-0 z-50 bg-transparent"
       >
-        <div className="bg-white max-h-[90vh] w-[90%] max-w-[800px] rounded-lg shadow-lg p-6 overflow-y-auto relative">
-          {children}
-
+        {/* Children */}
+        <div className="bg-light-bg-body max-h-[90vh] w-[90%] max-w-[800px] rounded-lg shadow-lg p-6 overflow-y-auto relative">
+          {/* Close button */}
           <button
-            onClick={() => ref?.current?.close()}
-            className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 cursor-pointer"
+            onClick={onBackdropClick}
+            className="absolute top-4 right-4 cursor-pointer rounded-[50%] transition-all text-light-text-primary bg-light-bg-body hover:text-light-bg-body hover:bg-light-text-primary"
           >
-            x
+            <span>
+              <IoIosCloseCircleOutline size={25} />
+            </span>
           </button>
+          {children}
         </div>
       </dialog>
     </>,
