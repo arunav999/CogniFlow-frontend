@@ -4,13 +4,26 @@ const WorkspaceModal = ({ type, onClose, wsName }) => {
   return (
     <>
       <div className="">
+        {/* Create workspace */}
+        {type === "create" && (
+          <>
+            <h2 className="text-xl font-semibold mb-4">Create Workspace</h2>
+            <p>Placeholder for create form</p>
+          </>
+        )}
+
+        {/* Edit workspace */}
         {type === "edit" && (
           <>
             <h2 className="text-xl font-semibold mb-4">Edit workspace</h2>
             <div className="">
               {wsName}
               <form action="">
-                <button type="button" onClick={onClose} className="cursor-pointer">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="cursor-pointer"
+                >
                   Close
                 </button>
               </form>
@@ -18,6 +31,7 @@ const WorkspaceModal = ({ type, onClose, wsName }) => {
           </>
         )}
 
+        {/* Delete workspace */}
         {type === "delete" && (
           <>
             <h2 className="text-xl font-semibold mb-4 text-red-600">

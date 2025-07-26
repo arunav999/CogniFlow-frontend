@@ -1,6 +1,6 @@
 import { IoAdd } from "react-icons/io5";
 
-const WorkspaceEmptyState = () => {
+const WorkspaceEmptyState = ({ onCreate }) => {
   return (
     <>
       <div className="flex items-center justify-center flex-col font-body gap-2 h-[60vh]">
@@ -8,7 +8,10 @@ const WorkspaceEmptyState = () => {
           No workspace
         </h2>
 
-        <button className="flex items-center gap-1 border-2 border-dashed py-4 px-8 rounded-lg xs:text-base sm:text-xl text-gray-400 bg-[#d8d7d779] cursor-pointer">
+        <button
+          onClick={onCreate}
+          className="flex items-center gap-1 border-2 border-dashed py-4 px-8 rounded-lg xs:text-base sm:text-xl text-gray-400 bg-[#d8d7d779] cursor-pointer"
+        >
           <span>
             <IoAdd />
           </span>

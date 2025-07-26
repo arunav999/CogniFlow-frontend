@@ -1,26 +1,28 @@
-// ==================== IMPORTS ====================
-import useUserAuth from "../../../hooks/useUserAuth";
-
-// Components
-import WorkspaceEmptyState from "../../../components/Layout/Workspaces/WorkspaceEmptyState";
-import WorkspaceCard from "../../../components/Layout/Workspaces/WorkspaceCard";
-import AvatarGroup from "../../../components/Reusable/Avatar/AvatarGroup";
-
-// Icons
 import { IoAdd } from "react-icons/io5";
-
-// Loader
 import { ScaleLoader } from "react-spinners";
 
-// Custom hooks
-import { useGetAllWorkspaces } from "../../../hooks/query/useWorkspaces";
+import WorkspaceEmptyState from "../../../components/Layout/Workspaces/WorkspaceEmptyState";
+import WorkspaceCard from "../../../components/Layout/Workspaces/WorkspaceCard";
 
-// Util
+import useUserAuth from "../../../hooks/useUserAuth";
+import { useGetAllWorkspaces } from "../../../hooks/query/useWorkspaces";
+import { useModal } from "../../../hooks/useModal";
+import Modal from "../../../components/Reusable/Modal/Modal";
+import WorkspaceModal from "../../../components/Layout/Workspaces/WorkspaceModal";
+
 import { pageTitle } from "../../../utils/utils";
 
 const Workspaces = () => {
+  // User context hook
   const { user } = useUserAuth();
 
+  // Modal hook and function
+  const { dialogRef, open, close, modalContent } = useModal();
+  const handleCreateClick = () => {
+    open("create");
+  };
+
+  // Services custom hook
   const { wsData, isWsLoading, wsError, isWsError } = useGetAllWorkspaces();
 
   // const errorMessage = wsError?.response?.data?.message || "No workspace";
@@ -29,10 +31,19 @@ const Workspaces = () => {
 
   return (
     <>
+      {/* Modal */}
+      <Modal modalRef={dialogRef} onBackdropClick={close}>
+        <WorkspaceModal type={modalContent} onClose={close} />
+      </Modal>
+
+      {/* WS - Section */}
       <section className="xs:px-2 md:px-16">
         {/* Create button - Always */}
         <div className="xs:text-sm sm:text-lg font-body">
-          <button className="flex items-center gap-1 bg-[#d8d7d779] py-1 px-2 cursor-pointer rounded-lg text-gray-500 border border-gray-400">
+          <button
+            onClick={handleCreateClick}
+            className="flex items-center gap-1 bg-[#d8d7d779] py-1 px-2 cursor-pointer rounded-lg text-gray-500 border border-gray-400"
+          >
             <span>
               <IoAdd />
             </span>
@@ -50,7 +61,7 @@ const Workspaces = () => {
         )}
 
         {/* If no workspace */}
-        {isWsError && <WorkspaceEmptyState />}
+        {isWsError && <WorkspaceEmptyState onCreate={handleCreateClick} />}
 
         {/* If workspace available */}
         {!isWsError && (
@@ -68,8 +79,6 @@ const Workspaces = () => {
             ))}
           </div>
         )}
-
-        
       </section>
     </>
   );
