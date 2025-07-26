@@ -15,6 +15,7 @@ const Modal = ({ children, onBackdropClick, modalRef }) => {
       <dialog
         ref={modalRef}
         onClick={handleClickOutside}
+        onCancel={(e) => e.preventDefault()}
         className="animate-modal-in open:flex open:items-center open:justify-center h-full w-full m-auto p-0 overflow-hidden fixed top-0 left-0 z-50 bg-transparent"
       >
         {/* Children */}

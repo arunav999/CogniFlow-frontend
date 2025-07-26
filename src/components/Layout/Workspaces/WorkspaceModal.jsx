@@ -1,4 +1,4 @@
-const WorkspaceModal = ({ type, onClose }) => {
+const WorkspaceModal = ({ type, onClose, wsName }) => {
   if (!type) return null;
 
   return (
@@ -7,7 +7,14 @@ const WorkspaceModal = ({ type, onClose }) => {
         {type === "edit" && (
           <>
             <h2 className="text-xl font-semibold mb-4">Edit workspace</h2>
-            <p>Placeholder for form</p>
+            <div className="">
+              {wsName}
+              <form action="">
+                <button type="button" onClick={onClose} className="cursor-pointer">
+                  Close
+                </button>
+              </form>
+            </div>
           </>
         )}
 

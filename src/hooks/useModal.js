@@ -1,8 +1,27 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export const useModal = () => {
   const dialogRef = useRef(null);
   const [modalContent, setModalContent] = useState(null);
+
+  // Effect on "Escape" close
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        e.preventDefault(); // Stop native close
+        close();
+      }
+    };
+
+    dialog.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      dialog.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [dialogRef.current]); // Runs only dialogRef changes
 
   // Modal open function
   const open = (content = null) => {

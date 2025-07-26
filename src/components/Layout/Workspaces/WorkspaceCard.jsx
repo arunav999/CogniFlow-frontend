@@ -53,7 +53,7 @@ const WorkspaceCard = ({
     <>
       {/* ===== MODAL ===== */}
       <Modal modalRef={dialogRef} onBackdropClick={close}>
-        <WorkspaceModal type={modalContent} onClose={close} />
+        <WorkspaceModal type={modalContent} onClose={close} wsName={wsName} />
       </Modal>
 
       {/* WS Card */}
