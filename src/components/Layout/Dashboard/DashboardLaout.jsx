@@ -1,6 +1,6 @@
 // ==================== 3rd-party Imports ====================
 import { useState, useRef, useEffect } from "react";
-import { Link, useNavigate, Outlet } from "react-router-dom";
+import { Link, useNavigate, Outlet, useLocation } from "react-router-dom";
 
 // ==================== Icons ====================
 // React icon for sidebar close button
@@ -32,6 +32,9 @@ const DashboardLaout = () => {
   // ==================== Navigation ====================
   // React Router navigation hook
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const getPathname = location.pathname.split("/")[2];
 
   // ==================== Sidebar State ====================
   // State for toggling sidebar visibility
@@ -70,8 +73,8 @@ const DashboardLaout = () => {
           className="w-full top-0 fixed py-3 xs:px-4 md:px-22 flex items-center justify-between font-heading transition-all ease-in-out h-[6.6rem] bg-light-bg-body"
         >
           {/* Dashboard Title */}
-          <div className="xs:text-xl md:text-2xl font-semibold text-light-text-tertiary">
-            <Link to="/admin">Dashboard</Link>
+          <div className="xs:text-xl md:text-2xl font-semibold text-light-text-tertiary capitalize">
+            {getPathname}
           </div>
 
           {/* Company Name */}

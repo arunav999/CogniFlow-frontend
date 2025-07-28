@@ -5,7 +5,7 @@ const WorkspaceModal = ({ type, onClose, wsName }) => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center gap-2 rounded-lg">
+      <div className="flex flex-col items-center justify-center gap-8 rounded-lg">
         {/* Create workspace */}
         {type === "create" && (
           <>
