@@ -39,7 +39,7 @@ const Input = ({
         <div
           className={`border-2 ${
             error ? "border-red-600" : "border-gray-300"
-          } relative flex w-90 font-body rounded-2xl text-gray-700 items-center`}
+          } relative flex min-w-82 font-body rounded-2xl text-gray-700 items-center`}
         >
           <span
             className={`pl-1.5 ${error ? "text-red-700" : "text-gray-500"}`}
@@ -54,7 +54,7 @@ const Input = ({
             type={
               type === "password" ? (showPassword ? "text" : "password") : type
             }
-            className="peer  outline-none py-4 px-6 w-[90%]"
+            className="peer outline-none py-4 px-6 w-[90%]"
             placeholder=" "
             required={required}
             ref={ref}
@@ -75,18 +75,19 @@ const Input = ({
           </label>
 
           {/* EYE-ICON */}
-          <span
-            className={`cursor-pointer ${
-              error ? "text-red-700" : "text-gray-500"
-            } pr-2`}
-          >
-            {type === "password" &&
-              (showPassword ? (
+          {type === "password" && (
+            <span
+              className={`cursor-pointer ${
+                error ? "text-red-700" : "text-gray-500"
+              } pr-2`}
+            >
+              {showPassword ? (
                 <PiEyeDuotone size={22} onClick={togglePassword} />
               ) : (
                 <PiEyeClosedDuotone size={22} onClick={togglePassword} />
-              ))}
-          </span>
+              )}
+            </span>
+          )}
         </div>
 
         {/* Error Message */}

@@ -1,14 +1,15 @@
+import { WorkspaceForm } from "./WorkspaceForm";
+
 const WorkspaceModal = ({ type, onClose, wsName }) => {
   if (!type) return null;
 
   return (
     <>
-      <div className="">
+      <div className="flex flex-col items-center justify-center gap-2 rounded-lg">
         {/* Create workspace */}
         {type === "create" && (
           <>
-            <h2 className="text-xl font-semibold mb-4">Create Workspace</h2>
-            <p>Placeholder for create form</p>
+            <WorkspaceForm />
           </>
         )}
 

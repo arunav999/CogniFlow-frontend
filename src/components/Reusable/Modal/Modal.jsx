@@ -10,6 +10,8 @@ const Modal = ({ children, onBackdropClick, modalRef }) => {
     }
   };
 
+  // max-h-[90vh] w-[100%] min-w-[300px] max-w-[800px] rounded-lg shadow-lg p-6 overflow-y-auto relative grid grid-rows-4 border
+
   return createPortal(
     <>
       <dialog
@@ -19,11 +21,11 @@ const Modal = ({ children, onBackdropClick, modalRef }) => {
         className="animate-modal-in open:flex open:items-center open:justify-center h-full w-full m-auto p-0 overflow-hidden fixed top-0 left-0 z-50 bg-transparent"
       >
         {/* Children */}
-        <div className="bg-light-bg-body max-h-[90vh] w-[90%] max-w-[800px] rounded-lg shadow-lg p-6 overflow-y-auto relative">
+        <div className="relative bg-light-bg-body xs:p-4 md:p-8 max-h-[80vh] rounded-lg shadow-lg min-w-[300px] w-[100%] max-w-[600px] overflow-y-auto">
           {/* Close button */}
           <button
             onClick={onBackdropClick}
-            className="absolute top-4 right-4 cursor-pointer rounded-[50%] transition-all text-light-text-primary bg-light-bg-body hover:text-light-bg-body hover:bg-light-text-primary"
+            className="absolute xs:top-2 md:top-8 xs:right-2 md:right-6 cursor-pointer rounded-[50%] transition-all text-light-text-primary bg-light-bg-body hover:text-light-bg-body hover:bg-light-text-primary"
           >
             <span>
               <IoIosCloseCircleOutline size={25} />
