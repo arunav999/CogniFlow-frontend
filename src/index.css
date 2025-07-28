@@ -118,6 +118,14 @@ dialog::backdrop {
   }
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Modal out */
 @keyframes modal-out {
   from {
