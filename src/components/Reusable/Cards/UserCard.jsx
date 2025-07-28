@@ -1,20 +1,23 @@
-import useUserAuth from "../../../hooks/useUserAuth";
-
 import Avatar from "../Avatar/Avatar";
 
-const UserCard = () => {
-  const { user } = useUserAuth();
+const UserCard = ({ user, isSelected, onSelect }) => {
+  const handleClick = () => {
+    onSelect(user);
+  };
 
   return (
     <>
-      <div className="py-2 px-4 rounded-lg flex w-full justify-between items-center bg-light-bg-card hover:bg-light-bg-body cursor-pointer transition-all">
+      <div
+        className="py-2 px-4 rounded-lg flex w-full justify-between items-center bg-light-bg-card hover:bg-gray-200 cursor-pointer transition-all"
+        onClick={handleClick}
+      >
         <span className="">
           <Avatar />
         </span>
         <p className="">
           {user?.firstName} {user?.lastName}
         </p>
-        <input type="checkbox" name="" id="" />
+        <input type="checkbox" checked={isSelected} readOnly className="hidden" />
       </div>
     </>
   );

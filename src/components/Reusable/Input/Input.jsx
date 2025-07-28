@@ -40,6 +40,15 @@ const Input = ({
   const [drop, setDrop] = useState(false);
   const dropDownRef = useRef(null);
 
+  const [selectedUsers, setSelectedUsers] = useState([]);
+  const handleUserSelect = (user) => {
+    setSelectedUsers((prev) =>
+      prev.find((u) => u?.id === user?.id)
+        ? prev.filter((u) => u?.id !== user?.id)
+        : [...prev, user]
+    );
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
@@ -81,7 +90,11 @@ const Input = ({
                   setDrop((prev) => !prev);
                 }}
               >
-                <p>Select members</p>
+                <p>
+                  {selectedUsers.length < 1
+                    ? "Select members"
+                    : `Selected: ${selectedUsers.length}`}
+                </p>
                 <p
                   className={`transform ${
                     drop ? "rotate-0" : "rotate-180"
@@ -92,8 +105,17 @@ const Input = ({
               </div>
 
               {drop && (
-                <div className="animate-modal-in no-scrollbar bg-gray-200 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]  w-[90%] z-20 py-4 px-6 rounded-2xl max-h-[380px] overflow-y-auto flex flex-col gap-4">
+                <div
+                  className="animate-modal-in no-scrollbar bg-light-text-link-hover absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]  w-[90%] z-20 py-4 px-6 rounded-2xl max-h-[380px] overflow-y-auto flex flex-col gap-4"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
                   {/* Dynamic */}
+                  <UserCard />
+                  <UserCard />
+                  <UserCard />
+                  <UserCard />
                   <UserCard />
                 </div>
               )}
