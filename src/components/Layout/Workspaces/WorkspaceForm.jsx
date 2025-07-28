@@ -6,7 +6,6 @@ import Button from "../../Reusable/Button/Button";
 export const WorkspaceForm = () => {
   return (
     <>
-      <h2 className="heading">Create Workspace</h2>
       <form action="">
         {/* INPUTS */}
         <div className="">
