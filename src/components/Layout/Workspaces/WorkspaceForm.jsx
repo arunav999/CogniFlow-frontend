@@ -1,6 +1,7 @@
 // ==================== Reusable Components ====================
 import Input from "../../Reusable/Input/Input";
 import Button from "../../Reusable/Button/Button";
+import DropDown from "../../Reusable/Input/DropDown";
 
 // Create WS Form
 export const WorkspaceForm = () => {
@@ -11,7 +12,7 @@ export const WorkspaceForm = () => {
         <div className="">
           <Input type={"text"} id={"text"} placeholder={"Name"} />
           <Input type={"text"} id={"text"} placeholder={"Description"} />
-          <Input dropDown={true} />
+          <DropDown />
           <Input type={"text"} id={"text"} placeholder={"Projects"} />
         </div>
 

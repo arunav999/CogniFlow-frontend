@@ -5,7 +5,7 @@ import useUserAuth from "../../../hooks/useUserAuth";
 import { firstNameInitials, lastNameInitials } from "../../../utils/utils";
 import { randomColor } from "../../../utils/utils";
 
-const Avatar = ({ userImg, userFname, userLname }) => {
+const Avatar = ({ userId_r, userImg, userFname, userLname }) => {
   const { user } = useUserAuth();
 
   const userId = user?._id;
