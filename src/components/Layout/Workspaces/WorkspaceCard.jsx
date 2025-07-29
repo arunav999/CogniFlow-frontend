@@ -83,7 +83,7 @@ const WorkspaceCard = ({
         {/* Projects */}
         <div className="flex items-center justify-between mb-1">
           <p>Projects:</p>
-          <p>{wsProjects?.length === 0 ? "No projects" : wsProjects}</p>
+          <p>{wsProjects?.length === 0 ? "No projects" : wsProjects?.length}</p>
         </div>
 
         {/* Created by */}

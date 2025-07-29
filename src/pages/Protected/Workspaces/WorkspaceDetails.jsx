@@ -7,6 +7,7 @@ import { pageTitle } from "../../../utils/utils";
 import { useGetUserById } from "../../../hooks/query/useUsers";
 import { useGetWorkspaceById } from "../../../hooks/query/useWorkspaces";
 import { useGetProjectById } from "../../../hooks/query/useProjects";
+import { Link } from "react-router-dom";
 
 const WorkspaceDetails = () => {
   // Page Title
@@ -23,7 +24,7 @@ const WorkspaceDetails = () => {
   } = useGetWorkspaceById(id);
 
   const userId = workspaceData?.workspace?.createdBy;
-  const projectId = workspaceData?.workspace?.projects[0];
+  const projectId = workspaceData?.workspace?.projects;
 
   // user by id hook
   const {
@@ -32,44 +33,46 @@ const WorkspaceDetails = () => {
     error: userError,
   } = useGetUserById(userId);
 
-  // project by id
-  const {
-    data: projectData,
-    isLoading: isProjectLoading,
-    error: projectError,
-  } = useGetProjectById(projectId);
+  // Get all project by id
+  const getAllProjectById = (id = []) => {
+    if (id.length < 1) return;
+
+    const eachProject = id?.map((project) => {
+      // project by id
+      // const {data: projectData} = useGetProjectById(project);
+      // return projectData;
+      const pId = project;
+      return pId;
+    });
+
+    return eachProject;
+  };
+
+  console.log("Projects:", getAllProjectById(projectId));
 
   const details = workspaceData?.workspace;
 
   return (
     <>
-      <section className="">
-        {isWorkspaceLoading && <p>Loading...</p>}
+      <section className="border xs:px-2 md:px-16">
+        {/* Action button */}
+        <div className="flex justify-between">
+          <Link to={"/admin/workspaces"}>
+            <span>Icon</span>
+            <span>Back</span>
+          </Link>
 
-        {!isWorkspaceLoading && !workspaceError && (
           <div className="">
-            <p>Workspace details</p>
-            <p>Name: {workspaceData?.workspace?.name}</p>
-            <p>
-              Description:{" "}
-              {details?.description === "" ? "Empty" : details?.description}
-            </p>
-            <p>
-              Created by: {isUserLoading && <span>Loading user...</span>}
-              {!isUserLoading && !userError && (
-                <span>
-                  {userData?.user?.firstName} {userData?.user?.lastName}
-                </span>
-              )}
-            </p>
-            <p>
-              Projects: {isProjectLoading && <span>Loading Project...</span>}{" "}
-              {!isProjectLoading && !projectError && (
-                <span>{projectData?.project?.name}</span>
-              )}
-            </p>
+            <span>Edit icon</span>
+            <span>Delete icon</span>
           </div>
-        )}
+        </div>
+
+        {/* Heading */}
+        <div className="flex flex-col items-center justify-center">
+          <h2 className="heading">{workspaceData?.workspace?.name}</h2>
+          <p>{workspaceData?.workspace?.description}</p>
+        </div>
       </section>
     </>
   );

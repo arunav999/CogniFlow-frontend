@@ -74,7 +74,7 @@ const DashboardLaout = () => {
         >
           {/* Dashboard Title */}
           <div className="xs:text-xl md:text-2xl font-semibold text-light-text-tertiary capitalize">
-            {getPathname}
+            {getPathname !== undefined ? getPathname : "Dashboard"}
           </div>
 
           {/* Company Name */}
